@@ -1,0 +1,69 @@
+@use '../base/var.base.scss';
+
+#create {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  flex: 1;
+  width: 100%;
+  padding: var.$space;
+  gap: var.$space;
+  padding-top: calc(var.$spaceSmall * 9);
+}
+
+#create > form {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: var.$space;
+  gap: var.$spaceLarge;
+  background: var(--container);
+}
+
+#create > form > header {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var.$spaceSmall;
+  width: 100%;
+}
+
+#create > form > main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var.$spaceSmall;
+}
+
+#create > form > main > button {
+  align-self: end;
+}
+
+#create > form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
+#create > form > div > h3 {
+  padding-bottom: var.$spaceSmall;
+}
+
+#create > form > footer {
+  display: flex;
+  align-items: end;
+  align-self: end;
+  flex: 1;
+}
+
+@media screen and (min-width: var.$mobileWidth) {
+  #create {
+    margin-top: 0;
+    padding-left: calc(var.$spaceSmall * 27);
+  }
+}

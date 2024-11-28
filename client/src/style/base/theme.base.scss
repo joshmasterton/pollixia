@@ -1,0 +1,29 @@
+[data-theme='dark'] {
+  --color: white;
+  --colorSwitch: black;
+  --switch: rgba(255, 255, 255, 1);
+  --outline: rgba(200, 200, 255, 0.15) 0.1rem solid;
+  --primary: #e6751f;
+  --container: rgba(0, 0, 0, 0.25);
+  --backgroundGradient: linear-gradient(90deg, #282a3d 0%, #2d263f 100%),
+    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.15) 100%),
+    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
+  --background: rgb(37, 34, 46);
+}
+
+[data-theme='light'] {
+  --color: black;
+  --colorSwitch: white;
+  --switch: rgba(24, 28, 32, 1);
+  --outline: rgba(0, 0, 50, 0.15) 0.1rem solid;
+  --primary: #e6751f;
+  --container: rgba(255, 255, 255, 0.5);
+  --backgroundGradient: linear-gradient(
+      90deg,
+      rgb(235, 235, 250) 0%,
+      rgb(235, 235, 245) 100%
+    ),
+    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%),
+    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
+  --background: rgba(220, 220, 235, 1);
+}

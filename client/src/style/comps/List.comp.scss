@@ -1,0 +1,29 @@
+@use '../base/var.base.scss';
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  flex: 1;
+  height: fit-content;
+  gap: var.$space;
+  padding: var.$space;
+}
+
+ul > header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var.$spaceXXSmall;
+  padding-bottom: 0;
+}
+
+ul > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: var.$spaceSmall;
+}

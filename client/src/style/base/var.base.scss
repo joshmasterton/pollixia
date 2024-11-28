@@ -1,0 +1,21 @@
+// Borde-radius
+$round: 0.25rem;
+
+// Padding
+$size: 1.95rem;
+$sizeLarge: calc($size * 1.5);
+$sizeSmall: calc($size / 2);
+$space: calc($size / 1.75);
+$spaceLarge: calc($space * 1.5);
+$spaceSmall: calc($space / 2);
+$spaceXSmall: calc($space / 3);
+$spaceXXSmall: calc($spaceXSmall / 2);
+
+// Color
+$blend: multiply, screen;
+$filter: blur(1rem);
+
+// Width
+$mobileWidth: 40rem;
+$tabletWidth: 50em;
+$maxWidth: 65rem;

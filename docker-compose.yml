@@ -1,0 +1,35 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: dev.Dockerfile
+    ports:
+      - '9000:9000'
+    volumes:
+      - ./client/src:/app/src
+      - ./client/index.html:/app/index.html
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  api:
+    build:
+      context: ./api
+      dockerfile: dev.Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - ./api/src:/app/src
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - postgres
+  postgres:
+    env_file:
+      - api/dev.env
+    container_name: postgres
+    image: postgres:15
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

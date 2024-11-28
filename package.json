@@ -1,0 +1,19 @@
+{
+  "name": "pollixia",
+  "version": "1.0.0",
+  "description": "Pollixia is a simple, fast, and intuitive web app for creating polls and surveys. Easily collect and analyze feedback in real-time, with a seamless user experience for both creators and respondents",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.12.0",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.15.0"
+  }
+}

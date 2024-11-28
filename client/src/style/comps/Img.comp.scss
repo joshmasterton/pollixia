@@ -1,0 +1,46 @@
+@use '../base/var.base.scss';
+
+.img {
+  width: var.$size;
+  max-width: var.$size;
+  height: var.$size;
+  max-height: var.$size;
+}
+
+.img.padding {
+  padding: var.$spaceXSmall;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+img.logo {
+  width: var.$sizeLarge;
+}
+
+img.blur {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+}
+
+img.outline {
+  border: var(--outline);
+}
+
+img.large {
+  width: var.$sizeLarge;
+  height: var.$sizeLarge;
+}
+
+svg {
+  width: 100%;
+  max-width: var.$size;
+  height: 100%;
+  padding: var.$spaceXSmall;
+}
+
+svg.group {
+  margin-left: var.$spaceXSmall;
+}

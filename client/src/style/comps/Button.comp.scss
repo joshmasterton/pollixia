@@ -1,0 +1,76 @@
+@use '../base/var.base.scss';
+
+button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: var.$size;
+  min-height: var.$size;
+  height: var.$size;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color);
+}
+
+button.blur {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+}
+
+button > div,
+button > p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var.$spaceSmall;
+}
+
+button > svg {
+  color: var(--color);
+}
+
+button.container {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--container);
+}
+
+button.full {
+  width: 100%;
+}
+
+button.end {
+  justify-content: end;
+}
+
+button.large {
+  min-height: var.$sizeLarge;
+}
+
+button.large > svg {
+  padding: var.$spaceXXSmall;
+}
+
+button.large > div {
+  padding: var.$spaceSmall;
+}
+
+button.primary {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--primary);
+}
+
+button.primary > div,
+button.primary > p {
+  color: white;
+}
+
+button.outline {
+  border: var(--outline);
+}
+
+button.active {
+  background: var(--primary);
+}

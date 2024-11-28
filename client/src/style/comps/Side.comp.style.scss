@@ -1,0 +1,22 @@
+@use '../base/var.base.scss';
+
+.side {
+  position: fixed;
+  display: none;
+  overflow: scroll;
+  left: 0;
+  top: 0;
+  width: calc(var.$spaceSmall * 25);
+  height: 100%;
+  backdrop-filter: var.$filter;
+  border-radius: 0;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--container);
+  border-right: var(--outline);
+}
+
+@media screen and (min-width: var.$mobileWidth) {
+  .side {
+    display: flex;
+  }
+}

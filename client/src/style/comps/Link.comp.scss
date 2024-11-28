@@ -1,0 +1,70 @@
+@use '../base/var.base.scss';
+
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var.$size;
+  max-height: var.$size;
+  text-decoration: none;
+}
+
+a.blur {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+}
+
+a > div {
+  padding: var.$spaceSmall;
+}
+
+a.end > svg {
+  padding-left: 0;
+}
+
+a.start > svg {
+  padding-right: 0;
+}
+
+a.outline {
+  border: var(--outline);
+}
+
+a.container {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--container);
+}
+
+a.primary {
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--primary);
+}
+
+a.primary > div,
+a.primary > svg {
+  color: white;
+}
+
+a.full {
+  display: flex;
+  width: 100%;
+}
+
+.start {
+  justify-content: start;
+}
+
+.end {
+  justify-content: end;
+}
+
+a.active {
+  background: var(--primary);
+}
+
+a.active > div,
+a.active > svg {
+  color: white;
+}

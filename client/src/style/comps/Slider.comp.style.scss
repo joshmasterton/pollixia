@@ -1,0 +1,40 @@
+@use '../base/var.base.scss';
+
+.slider {
+  width: 100%;
+  max-width: 10rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var.$spaceSmall;
+}
+
+.slider > input {
+  appearance: none;
+  height: var.$spaceXSmall;
+  padding: 0;
+  background: transparent;
+  outline: none;
+  border: var(--outline);
+  z-index: 0;
+}
+
+.slider > span {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var.$spaceXSmall;
+  background: var(--primary);
+}
+
+.slider > ::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  width: var.$sizeSmall + var.$spaceXXSmall;
+  height: var.$sizeSmall + var.$spaceXXSmall;
+  border-radius: 10rem;
+  outline: var(--outline);
+  background: var(--primary);
+}

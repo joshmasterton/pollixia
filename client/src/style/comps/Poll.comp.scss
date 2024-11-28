@@ -1,0 +1,82 @@
+@use '../base/var.base.scss';
+
+.poll {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  gap: var.$space;
+  padding: var.$space;
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--container);
+}
+
+.poll > div > div {
+  text-align: end;
+}
+
+.poll > main {
+  display: flex;
+  flex-direction: column;
+  gap: var.$space;
+  flex: 1;
+  width: 100%;
+}
+
+.poll > header > h3 {
+  text-align: start;
+  padding-bottom: var.$spaceLarge;
+}
+
+.poll > main > .progressBar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var.$space;
+  padding: var.$spaceSmall;
+  width: 100%;
+  min-height: calc(var.$spaceSmall * 7);
+  border: var(--outline);
+  flex: 1;
+}
+
+.poll > main > .progressBar > div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var.$spaceXSmall;
+  padding: 0;
+}
+
+.poll > main > .progressBar > div:first-of-type > div:first-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var.$sizeSmall;
+  height: var.$sizeSmall;
+  padding: var.$spaceXXSmall;
+  outline: var(--outline);
+}
+
+.poll > main > .progressBar > div:first-of-type > div:first-of-type > div {
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+}
+
+.poll > main > .progressBar > div:first-of-type > div:nth-of-type(2) {
+  text-align: start;
+  flex: 1;
+}
+
+.poll > main > .progressBar > .percent {
+  width: 100%;
+  outline: var(--outline);
+}
+
+.poll > main > .progressBar > .percent > div {
+  height: var.$spaceSmall;
+  width: 50%;
+  background: var(--primary);
+}

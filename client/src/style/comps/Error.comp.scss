@@ -1,0 +1,9 @@
+@use '../base/var.base.scss';
+
+.error {
+  display: flex;
+  align-items: center;
+  height: var.$size;
+  padding: var.$spaceXSmall;
+  color: rgb(205, 37, 37);
+}

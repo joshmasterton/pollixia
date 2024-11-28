@@ -1,0 +1,51 @@
+@use '../base/var.base.scss';
+
+#auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  min-height: 100%;
+  gap: var.$space;
+  padding: var.$space;
+  max-width: var.$maxWidth;
+}
+
+#auth > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: var.$mobileWidth;
+  height: 100%;
+  gap: var.$space;
+  padding: var.$spaceLarge;
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background: var(--container);
+}
+
+#auth > div > header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var.$space;
+}
+
+#auth > div > header > div {
+  display: flex;
+  flex-direction: column;
+  gap: var.$spaceXSmall;
+}
+
+#auth > div > main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var.$spaceSmall;
+  width: 100%;
+  padding-top: var.$space + var.$sizeLarge;
+}

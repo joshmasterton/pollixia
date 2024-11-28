@@ -1,0 +1,72 @@
+@use '../base/var.base.scss';
+@use '../base/animation.base.scss';
+
+#home {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: var.$maxWidth;
+  padding: var.$space;
+  gap: var.$space;
+}
+
+#home > img {
+  padding-top: var.$space;
+}
+
+#home > header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var.$spaceLarge;
+  gap: var.$spaceLarge;
+}
+
+#home > main {
+  padding-bottom: var.$spaceLarge;
+}
+
+#home > footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  gap: var.$space;
+}
+
+#home > footer > div {
+  display: none;
+  flex-direction: column;
+  padding: var.$space;
+  flex: 1;
+  gap: var.$space;
+  min-height: calc(var.$size * 7);
+  height: fit-content;
+  background-blend-mode: var.$blend;
+  background: var(--container);
+}
+
+#home > footer > div > * {
+  text-align: start;
+}
+
+#home > footer > div:nth-child(2) {
+  display: flex;
+  flex: 1.5;
+  min-height: calc(var.$size * 10);
+}
+
+@media screen and (min-width: var.$mobileWidth) {
+  #home > footer > div:nth-child(1) {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: var.$tabletWidth) {
+  #home > footer > div {
+    display: flex;
+  }
+}

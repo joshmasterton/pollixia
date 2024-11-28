@@ -1,0 +1,160 @@
+@use '../base/var.base.scss';
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var.$space;
+  width: 100%;
+  z-index: 3;
+}
+
+nav > div > header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: var.$spaceSmall;
+  height: var.$size;
+  flex: 1;
+  z-index: 1;
+}
+
+nav > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  height: calc(var.$size * 2);
+  gap: var.$space;
+  padding: var.$space;
+}
+
+nav > div > span {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var.$size * 2);
+  background: var(--container);
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  z-index: 0;
+}
+
+nav.active > div > span {
+  display: flex;
+  align-items: start;
+  height: calc(var.$spaceSmall * 26);
+}
+
+nav > div > main {
+  display: none;
+  justify-content: center;
+  gap: var.$space;
+  z-index: 1;
+}
+
+nav > div > div {
+  display: flex;
+  justify-content: end;
+  flex: 1;
+  height: var.$size;
+}
+
+nav > div > div > div {
+  display: flex;
+  justify-content: end;
+}
+
+nav > div > div > div > a,
+nav > div > div > div > .logout {
+  display: none;
+}
+
+nav > footer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  transform: translateY(-12rem);
+  z-index: 1;
+}
+
+nav.active > footer {
+  transform: translateY(calc(var.$spaceSmall * 7));
+}
+
+nav > footer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+  padding: var.$space;
+  padding-top: 0;
+  gap: var.$spaceSmall;
+}
+
+@media screen and (min-width: var.$mobileWidth) {
+  nav.main {
+    left: calc(var.$spaceSmall * 25);
+    width: calc(100% - (var.$spaceSmall * 25));
+  }
+
+  nav > div {
+    border-radius: 0;
+  }
+
+  nav > div > main {
+    display: flex;
+    flex: 0;
+  }
+
+  nav.main > div > header > .img {
+    display: none;
+  }
+
+  nav.main > div > main {
+    justify-content: start;
+    width: calc(100% - (var.$spaceSmall * 3));
+  }
+
+  nav.main > div > div {
+    display: none;
+  }
+
+  nav.main > div > div > div {
+    display: none;
+  }
+
+  nav > div > div > div > a,
+  nav > div > div > div > .logout {
+    display: flex;
+  }
+
+  nav > div > div > div > button.menu {
+    display: none;
+  }
+
+  nav > footer {
+    display: none;
+  }
+
+  nav > div > span {
+    display: flex;
+    align-items: start;
+    left: calc(var.$spaceSmall * 25);
+    width: calc(100% - (var.$spaceSmall * 25));
+    height: calc(var.$size * 2);
+  }
+
+  nav.active > div > span {
+    display: flex;
+    align-items: start;
+    left: calc(var.$spaceSmall * 25);
+    width: calc(100% - (var.$spaceSmall * 25));
+    height: calc(var.$size * 2);
+  }
+}

@@ -1,0 +1,99 @@
+@use './comps/Link.comp.scss';
+@use './comps/Nav.comp.scss';
+@use './comps/Slider.comp.style.scss';
+@use './comps/Img.comp.scss';
+@use './comps/Poll.comp.scss';
+@use './comps/Button.comp.scss';
+@use './comps/Input.comp.scss';
+@use './comps/Error.comp.scss';
+@use './comps/Side.comp.style.scss';
+@use './comps/List.comp.scss';
+@use './pages/Home.page.scss';
+@use './pages/Auth.page.scss';
+@use './pages/Create.page.scss';
+@use './base/var.base.scss';
+@use './base/theme.base.scss';
+@use './utilities/Loading.utilities.scss';
+@use './utilities/Animation.utilities.scss';
+@use 'node_modules/modern-normalize/modern-normalize.css';
+@use '@fontsource/inter';
+
+* {
+  font-family: 'inter';
+  text-align: center;
+  resize: none;
+  text-decoration: none;
+  border-style: none;
+  padding: 0;
+  margin: 0;
+  outline-offset: 0;
+  list-style: none;
+  border-radius: var.$round;
+}
+
+.padding {
+  padding: var.$spaceSmall;
+}
+
+.paddingSmall {
+  padding: var.$spaceXSmall;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+*:focus {
+  outline: 2px solid var(--primary);
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--background);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 0.75rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+div,
+p,
+svg {
+  margin: 0;
+  color: var(--color);
+}
+
+textarea {
+  text-align: start;
+}
+
+#root {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  z-index: 1;
+}
+
+#background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: var.$blend;
+  background: var(--backgroundGradient);
+}
