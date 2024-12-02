@@ -3,15 +3,19 @@ export type User = {
   displayName: string;
   email: string;
   photoURL: string;
+  idToken: string;
 };
 
-export type Poll = {
+export type PollType = {
   pid: number;
   question: string;
   category: string;
-  lengthActive: number;
+  created_at: Date;
+  expires_at: Date;
   options: {
-    value: string;
+    oid: number;
+    text: string;
+    votes: number;
   }[];
 };
 

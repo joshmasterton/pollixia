@@ -9,12 +9,29 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  tableConfig.updateTableConfig(
+  tableConfig.updatePollTableConfig(
     `test_polls_${Date.now()}_${crypto.randomBytes(8).toString('hex')}`,
   );
-  await createTables(tableConfig.getTableConfig().pollTable);
+
+  tableConfig.updateVoteTableConfig(
+    `test_votes_${Date.now()}_${crypto.randomBytes(8).toString('hex')}`,
+  );
+
+  tableConfig.updateOptionsTableConfig(
+    `test_options_${Date.now()}_${crypto.randomBytes(8).toString('hex')}`,
+  );
+
+  await createTables(
+    tableConfig.getTableConfig().pollTable,
+    tableConfig.getTableConfig().voteTable,
+    tableConfig.getTableConfig().optionsTable,
+  );
 });
 
 afterEach(async () => {
-  await dropTables(tableConfig.getTableConfig().pollTable);
+  await dropTables(
+    tableConfig.getTableConfig().pollTable,
+    tableConfig.getTableConfig().voteTable,
+    tableConfig.getTableConfig().optionsTable,
+  );
 });

@@ -105,8 +105,7 @@ export const Create = () => {
   }, [category]);
 
   const createPoll = async (data: CreateFormData) => {
-    const createdPoll = await axios.post(`${API_URL}/createPoll`, data);
-    console.log(createdPoll);
+    await axios.post(`${API_URL}/createPoll`, data);
   };
 
   return (

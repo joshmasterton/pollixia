@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Poll } from '../types/slice.types';
+import { PollType } from '../types/slice.types';
 
 // Initial state
 const initialState: {
-  poll: Poll | undefined;
+  poll: PollType | undefined;
+  polls: PollType[] | undefined;
 } = {
   poll: undefined,
+  polls: undefined,
 };
 
 // Reducers
@@ -19,8 +21,14 @@ const pollSlice = createSlice({
     clearPoll: (state) => {
       state.poll = undefined;
     },
+    setPolls: (state, action) => {
+      state.polls = action.payload;
+    },
+    clearPolls: (state) => {
+      state.polls = undefined;
+    },
   },
 });
 
-export const { setPoll, clearPoll } = pollSlice.actions;
+export const { setPoll, setPolls, clearPoll, clearPolls } = pollSlice.actions;
 export default pollSlice.reducer;

@@ -1,8 +1,36 @@
 import { NavLink } from 'react-router-dom';
-import { Poll } from '../comps/Poll.comp';
 import logo from '../assets/loopza.png';
+import axios from 'axios';
+import { API_URL } from '../utilities/Api.utilitities';
+import { PollType } from '../types/slice.types';
+import { useAppDispatch, useAppSelector } from '../store';
+import { setPoll } from '../features/pollSlice.feature';
+import { useEffect } from 'react';
+import { Poll } from '../comps/Poll.comp';
 
 export const Home = () => {
+  const dispatch = useAppDispatch();
+  const { poll } = useAppSelector((state) => state.poll);
+
+  const getRandomPoll = async () => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/getPoll?fetchSingle=${true}`,
+      );
+
+      const poll: PollType = response.data;
+      dispatch(setPoll(poll));
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
+    }
+  };
+
+  useEffect(() => {
+    getRandomPoll();
+  }, []);
+
   return (
     <>
       <div id="home">
@@ -29,7 +57,7 @@ export const Home = () => {
               Explore results with real-time analytics and make data-driven
               choices confidently
             </div>
-            <Poll />
+            {poll && <Poll poll={poll} />}
           </div>
           <div>
             <h2>Decisions made easy</h2>

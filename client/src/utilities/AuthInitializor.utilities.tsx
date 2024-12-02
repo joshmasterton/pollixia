@@ -12,14 +12,17 @@ export const AuthInitializor = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setLoading(true);
 
-    const onStateChange = onAuthStateChanged(auth, (user) => {
+    const onStateChange = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const idToken = await user.getIdToken();
+
         dispatch(
           setUser({
             uid: user.uid,
             displayName: user.displayName,
             email: user.email,
             photoURL: user.photoURL,
+            idToken,
           }),
         );
       } else {

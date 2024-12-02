@@ -20,7 +20,10 @@ describe('/createPoll', () => {
         ],
       });
 
-    expect(createPoll.body.pid).toBe(1);
-    expect(createPoll.body.question).toBe('What is your favourite pet?');
+    expect(createPoll.body.createdPoll.pid).toBe(1);
+    expect(createPoll.body.createdPoll.question).toBe(
+      'What is your favourite pet?',
+    );
+    expect(createPoll.body.createdOptions).toHaveLength(2);
   });
 });

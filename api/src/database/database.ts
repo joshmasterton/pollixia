@@ -5,6 +5,7 @@ dotenv.config({ path: `${process.cwd()}/dev.env` });
 const { POSTGRES_USERNAME, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT } =
   process.env;
 
+// Test if database is ready to use
 export const waitForDatabase = async () => {
   let connected = false;
   while (!connected) {

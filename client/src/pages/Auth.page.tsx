@@ -22,12 +22,15 @@ export const Auth = () => {
       );
 
       if (result.user) {
+        const idToken = await result.user.getIdToken();
+
         dispatch(
           setUser({
             uid: result.user.uid,
             displayName: result.user.displayName,
             email: result.user.email,
             photoURL: result.user.photoURL,
+            idToken,
           }),
         );
       } else {

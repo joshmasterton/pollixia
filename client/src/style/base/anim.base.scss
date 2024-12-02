@@ -1,3 +1,17 @@
+$anim: 0.4s ease;
+
+@keyframes sway {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 @keyframes skip {
   0% {
     transform: translateX(-100%);

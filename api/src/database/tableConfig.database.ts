@@ -1,14 +1,30 @@
 export class TableConfig {
   pollTable;
-  constructor(pollTable: string) {
+  voteTable;
+  optionsTable;
+  constructor(pollTable: string, voteTable: string, optionsTable: string) {
     this.pollTable = pollTable;
+    this.voteTable = voteTable;
+    this.optionsTable = optionsTable;
   }
 
-  updateTableConfig(name: string) {
-    this.pollTable = name;
+  updatePollTableConfig(value: string) {
+    this.pollTable = value;
+  }
+
+  updateVoteTableConfig(value: string) {
+    this.voteTable = value;
+  }
+
+  updateOptionsTableConfig(value: string) {
+    this.optionsTable = value;
   }
 
   getTableConfig() {
-    return { pollTable: this.pollTable };
+    return {
+      pollTable: this.pollTable,
+      voteTable: this.voteTable,
+      optionsTable: this.optionsTable,
+    };
   }
 }

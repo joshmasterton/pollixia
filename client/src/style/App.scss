@@ -8,13 +8,15 @@
 @use './comps/Error.comp.scss';
 @use './comps/Side.comp.style.scss';
 @use './comps/List.comp.scss';
+@use './comps/CountdownTimer.comp.scss';
 @use './pages/Home.page.scss';
 @use './pages/Auth.page.scss';
+@use './pages/Polls.page.scss';
 @use './pages/Create.page.scss';
 @use './base/var.base.scss';
 @use './base/theme.base.scss';
+@use './base/anim.base.scss';
 @use './utilities/Loading.utilities.scss';
-@use './utilities/Animation.utilities.scss';
 @use 'node_modules/modern-normalize/modern-normalize.css';
 @use '@fontsource/inter';
 
@@ -28,6 +30,7 @@
   margin: 0;
   outline-offset: 0;
   list-style: none;
+  outline: 2px solid transparent;
   border-radius: var.$round;
 }
 
@@ -45,6 +48,7 @@
 
 *:focus {
   outline: 2px solid var(--primary);
+  transition: outline-color anim.$anim;
 }
 
 html,

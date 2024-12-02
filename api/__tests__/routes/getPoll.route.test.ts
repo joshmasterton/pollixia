@@ -45,6 +45,6 @@ describe('/getPoll', () => {
     });
 
     expect(getPoll.body.length).toBe(2);
-    expect(getPollSingle.body.pid).toBe(1);
+    expect(getPollSingle.body.pid).toBe(2);
   });
 });

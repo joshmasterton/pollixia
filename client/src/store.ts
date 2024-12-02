@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import userReducer from './features/userSlice.feature';
+import pollReducer from './features/pollSlice.feature';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    poll: pollReducer,
   },
 });
 

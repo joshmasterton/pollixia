@@ -6,6 +6,7 @@ import { store } from './store';
 import { AuthInitializor } from './utilities/AuthInitializor.utilities';
 import { Protected, Public } from './utilities/RouteGuards';
 import { Create } from './pages/Create.page';
+import { Polls } from './pages/Polls.page';
 import './style/App.scss';
 
 export const routes = [
@@ -21,7 +22,7 @@ export const routes = [
     path: '/polls',
     element: (
       <Protected>
-        <Create />
+        <Polls />
       </Protected>
     ),
   },
