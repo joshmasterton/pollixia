@@ -7,6 +7,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { routes } from './src/App';
 
+// Mock firebase globally
 vitest.mock('firebase/auth', async () => {
   const actual = await vitest.importActual('firebase/auth');
   return {
@@ -14,6 +15,16 @@ vitest.mock('firebase/auth', async () => {
     onAuthStateChanged: vitest.fn(),
   };
 });
+
+// Mock axios globally
+vitest.mock('axios', () => ({
+  default: {
+    get: vitest.fn().mockResolvedValue({ data: {} }),
+    post: vitest.fn().mockResolvedValue({ data: {} }),
+    put: vitest.fn().mockResolvedValue({ data: {} }),
+    delete: vitest.fn().mockResolvedValue({ data: {} }),
+  },
+}));
 
 beforeEach(() => {
   vitest.clearAllMocks();

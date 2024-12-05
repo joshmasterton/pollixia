@@ -9,16 +9,20 @@ import {
 import { clearUser, setUser } from '../features/userSlice.feature';
 import { useAppDispatch } from '../store';
 import { FirebaseError } from 'firebase/app';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   // Login with google
   const handleLogin = async (type: 'google' | 'github') => {
     try {
       const result = await signInWithPopup(
         auth,
-        type === 'google' ? googleProvider : githubProvider,
+        type === 'google'
+          ? googleProvider.setCustomParameters({ prompt: 'select_account' })
+          : githubProvider,
       );
 
       if (result.user) {
@@ -33,6 +37,8 @@ export const Auth = () => {
             idToken,
           }),
         );
+
+        navigate('/polls');
       } else {
         dispatch(clearUser());
       }

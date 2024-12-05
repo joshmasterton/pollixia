@@ -1,10 +1,28 @@
-import { afterEach, beforeAll, beforeEach } from 'vitest';
+import { afterEach, beforeAll, beforeEach, vitest } from 'vitest';
 import { waitForDatabase } from './src/database/database';
 import { createTables, dropTables } from './src/database/tables.database';
 import { tableConfig } from './src/app';
+import { mockDocodedToken } from './__tests__/utilities/mocks';
 import crypto from 'crypto';
 
+vitest.mock('firebase-admin', async () => {
+  const actual = await import('firebase-admin');
+
+  return {
+    default: {
+      ...actual,
+      auth: () => ({
+        verifyIdToken: vitest.fn().mockResolvedValue(mockDocodedToken),
+      }),
+    },
+    initializeApp: vitest.fn(),
+    credential: actual.credential,
+    app: actual.app,
+  };
+});
+
 beforeAll(async () => {
+  vitest.clearAllMocks();
   await waitForDatabase();
 });
 

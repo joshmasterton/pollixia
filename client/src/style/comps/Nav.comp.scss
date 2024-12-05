@@ -12,6 +12,15 @@ nav {
   z-index: 3;
 }
 
+nav > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  gap: var.$space;
+  padding: var.$space;
+}
+
 nav > div > header {
   display: flex;
   justify-content: start;
@@ -22,26 +31,17 @@ nav > div > header {
   z-index: 1;
 }
 
-nav > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-  height: calc(var.$size * 2);
-  gap: var.$space;
-  padding: var.$space;
-}
-
 nav > div > span {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(var.$size * 2);
+  height: calc(var.$spaceXSmall * 11);
   background: var(--container);
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
   z-index: 0;
+  box-shadow: var(--shadow);
 }
 
 nav.active > div > span {
@@ -147,7 +147,7 @@ nav > footer > div {
     align-items: start;
     left: calc(var.$spaceSmall * 25);
     width: calc(100% - (var.$spaceSmall * 25));
-    height: calc(var.$size * 2);
+    height: calc(var.$spaceXSmall * 11);
   }
 
   nav.active > div > span {
@@ -155,6 +155,6 @@ nav > footer > div {
     align-items: start;
     left: calc(var.$spaceSmall * 25);
     width: calc(100% - (var.$spaceSmall * 25));
-    height: calc(var.$size * 2);
+    height: calc(var.$spaceXSmall * 11);
   }
 }

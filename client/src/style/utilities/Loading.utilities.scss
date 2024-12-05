@@ -13,16 +13,16 @@
 .loading > div {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 100% !important;
   overflow: hidden;
   max-width: calc(var.$size * 3);
-  height: var.$spaceSmall;
+  height: var.$spaceSmall !important;
   background: var(--container);
 }
 
 .loading > div > div {
-  height: var.$spaceSmall;
-  width: var.$size;
+  height: var.$spaceSmall !important;
+  width: var.$size !important;
   animation: 1s infinite sway ease;
   background: var(--primary);
 }

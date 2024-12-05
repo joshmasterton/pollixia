@@ -8,22 +8,23 @@ import { Protected, Public } from './utilities/RouteGuards';
 import { Create } from './pages/Create.page';
 import { Polls } from './pages/Polls.page';
 import './style/App.scss';
+import { Results } from './pages/Results.page';
 
 export const routes = [
   {
     path: '/',
     element: (
-      <Protected>
+      <Public>
         <Home />
-      </Protected>
+      </Public>
     ),
   },
   {
     path: '/polls',
     element: (
-      <Protected>
+      <Public>
         <Polls />
-      </Protected>
+      </Public>
     ),
   },
   {
@@ -37,9 +38,17 @@ export const routes = [
   {
     path: '/vote',
     element: (
-      <Protected>
-        <Create />
-      </Protected>
+      <Public>
+        <Polls />
+      </Public>
+    ),
+  },
+  {
+    path: '/results',
+    element: (
+      <Public>
+        <Results />
+      </Public>
     ),
   },
   {

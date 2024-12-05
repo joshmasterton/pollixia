@@ -6,7 +6,7 @@ import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
 import { Loading } from '../utilities/Loading.utilities';
 
-export const Polls = () => {
+export const Results = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
   const { polls, pollsLoading, pollsPage } = useAppSelector(
@@ -14,7 +14,7 @@ export const Polls = () => {
   );
 
   useEffect(() => {
-    getPolls(dispatch, pollsPage, user?.uid);
+    getPolls(dispatch, pollsPage, user?.uid, false, false);
   }, [user]);
 
   return (

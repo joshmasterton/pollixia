@@ -1,11 +1,14 @@
 import { describe, expect, test } from 'vitest';
 import { app } from '../../src/app';
 import request from 'supertest';
+import { mockIdToken } from '../utilities/mocks';
 
 describe('/createPoll', () => {
   test('Should create new poll', async () => {
     const createPoll = await request(app)
       .post('/createPoll')
+      .set('Authorization', `Bearer ${mockIdToken}`)
+
       .send({
         question: 'What is your favourite pet?',
         category: 'Lifestyle',

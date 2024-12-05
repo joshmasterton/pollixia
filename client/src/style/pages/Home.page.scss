@@ -13,7 +13,7 @@
 }
 
 #home > img {
-  padding-top: var.$space;
+  margin-top: var.$space;
 }
 
 #home > header {
@@ -47,6 +47,7 @@
   height: fit-content;
   background-blend-mode: var.$blend;
   background: var(--container);
+  box-shadow: var(--shadow);
 }
 
 #home > footer > div > * {

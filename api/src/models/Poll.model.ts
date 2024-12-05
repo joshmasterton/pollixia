@@ -1,7 +1,6 @@
-import postgres from 'postgres';
 import { tableConfig } from '../app';
 import { sql } from '../database/database';
-import { PollType } from '../types/models.types';
+import { PollType } from '../types/model.types';
 
 export class Poll {
   question;
@@ -36,7 +35,7 @@ export class Poll {
 
     // Calculate poll time till expire
     const expireTime = new Date();
-    expireTime.setHours(expireTime.getHours() + this.lengthActive);
+    expireTime.setMinutes(expireTime.getMinutes() + this.lengthActive);
 
     const createdPoll = await sql`
 			INSERT INTO ${sql(tableConfig.getTableConfig().pollTable)} (
@@ -61,24 +60,22 @@ export class Poll {
     };
   }
 
-  async get(fetchSingle: boolean, pid?: number) {
-    let pollFromDatabase: postgres.RowList<postgres.Row[]>;
-    if (pid) {
-      pollFromDatabase = await sql`
-				SELECT p.*, o.*	
-				FROM ${sql(tableConfig.getTableConfig().pollTable)} p
-				LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
-				WHERE p.pid = ${pid}
-				ORDER BY created_at DESC, p.pid, o.oid
-			`;
-    } else {
-      pollFromDatabase = await sql`
-				SELECT p.*, o.*	
-				FROM ${sql(tableConfig.getTableConfig().pollTable)} p
-				LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
-				ORDER BY created_at DESC, p.pid, o.oid
-			`;
-    }
+  async get(
+    fetchSingle: boolean,
+    pid?: number,
+    uid?: string,
+    page = 0,
+    isActive = true,
+  ) {
+    const pollFromDatabase = await sql`
+			SELECT p.*, o.*, v.oid as user_vote	
+			FROM (SELECT * FROM ${sql(tableConfig.getTableConfig().pollTable)} ORDER BY created_at DESC LIMIT ${10} OFFSET ${page * 10}) p
+			LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
+			LEFT JOIN ${sql(tableConfig.getTableConfig().voteTable)} v ON v.pid = p.pid ${uid ? sql`AND v.uid = ${uid}` : sql``}
+			${pid ? sql`WHERE p.pid = ${pid}` : sql``}
+			${isActive ? (pid ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql`WHERE expires_at > CURRENT_TIMESTAMP`) : pid ? sql`AND expires_at < CURRENT_TIMESTAMP` : sql`WHERE expires_at < CURRENT_TIMESTAMP`}
+			ORDER BY created_at DESC, p.pid, o.oid
+		`;
 
     if (pollFromDatabase.length === 0) {
       throw new Error('No polls found');
@@ -103,6 +100,7 @@ export class Poll {
         oid: row.oid,
         text: row.text,
         votes: row.votes,
+        isSelected: row.user_vote === row.oid,
       });
 
       return acc;
@@ -115,32 +113,67 @@ export class Poll {
     }
   }
 
-  async vote(oid: number, pid: number, uid?: string) {
-    if (uid) {
-      await sql`
-			INSERT INTO ${sql(tableConfig.getTableConfig().voteTable)} (
-				pid, oid, uid
-			) VALUES (
-				${pid},
-				${oid},
-				${uid}
-			)
+  async vote(oid: number, pid: number, uid: string) {
+    const poll = await sql`
+			SELECT expires_at
+			FROM ${sql(tableConfig.getTableConfig().pollTable)}
+			WHERE pid = ${pid}
 		`;
-    } else {
-      await sql`
-			INSERT INTO ${sql(tableConfig.getTableConfig().voteTable)} (
-				pid, oid
-			) VALUES (
-				${pid},
-				${oid}
-			)
-		`;
+
+    if (poll.length === 0) {
+      throw new Error('No poll found');
     }
 
-    await sql`
-			UPDATE ${sql(tableConfig.getTableConfig().optionsTable)}
-			SET votes = votes + 1
-			WHERE oid = ${oid}
+    const expires_at = new Date(poll[0].expires_at);
+    const current_date = new Date();
+
+    if (current_date > expires_at) {
+      throw new Error('This poll has expired and you can no longer vote');
+    }
+
+    const existingVote = await sql`
+			SELECT * FROM ${sql(tableConfig.getTableConfig().voteTable)}
+			WHERE pid = ${pid}
+			AND uid = ${uid}
 		`;
+
+    if (existingVote[0]) {
+      if (existingVote[0].oid !== oid) {
+        await sql`
+					UPDATE ${sql(tableConfig.getTableConfig().optionsTable)}
+					SET votes = votes - 1
+					WHERE oid = ${existingVote[0].oid}
+				`;
+
+        await sql`
+					UPDATE ${sql(tableConfig.getTableConfig().optionsTable)}
+					SET votes = votes + 1
+					WHERE oid = ${oid}
+				`;
+
+        await sql`
+					UPDATE ${sql(tableConfig.getTableConfig().voteTable)}
+					SET oid = ${oid}
+					WHERE pid = ${pid}
+					AND uid = ${uid}
+				`;
+      }
+    } else {
+      await sql`
+				INSERT INTO ${sql(tableConfig.getTableConfig().voteTable)} (
+					pid, oid, uid
+				) VALUES (
+					${pid},
+					${oid},
+					${uid}
+				)
+			`;
+
+      await sql`
+				UPDATE ${sql(tableConfig.getTableConfig().optionsTable)}
+				SET votes = votes + 1
+				WHERE oid = ${oid}
+			`;
+    }
   }
 }

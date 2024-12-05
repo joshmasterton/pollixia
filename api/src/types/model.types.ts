@@ -1,3 +1,11 @@
+export type User = {
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL: string;
+  idToken: string;
+};
+
 export type PollType = {
   pid: number;
   question: string;
@@ -9,11 +17,4 @@ export type PollType = {
     text: string;
     votes: number;
   }[];
-};
-
-export type OptionsType = {
-  oid: number;
-  pid: number;
-  text: string;
-  votes: number;
 };

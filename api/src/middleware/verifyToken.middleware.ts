@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import admin from 'firebase-admin';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import admin from 'firebase-admin';
 
-const verifyToken = async (
-  req: Request & DecodedIdToken,
+export const verifyToken = async (
+  req: Request & { user?: DecodedIdToken },
   res: Response,
   next: NextFunction,
 ) => {
@@ -17,7 +17,11 @@ const verifyToken = async (
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     req.user = decodedToken;
     next();
-  } catch {
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(401).json({ error: error.message });
+    }
+
     return res.status(401).json({ error: 'Invalid or expired ID token' });
   }
 };

@@ -10,6 +10,8 @@ import { Side } from '../comps/Side.comp';
 import { Slider } from '../comps/Slider.comp';
 import axios from 'axios';
 import { API_URL } from '../utilities/Api.utilitities';
+import { useAppSelector } from '../store';
+import { useNavigate } from 'react-router-dom';
 
 // Validation schema for creating poll
 const createSchema = yup.object().shape({
@@ -38,6 +40,9 @@ const createSchema = yup.object().shape({
 });
 
 export const Create = () => {
+  const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.user);
+
   const categories = [
     'Entertainment',
     'Sports',
@@ -105,7 +110,13 @@ export const Create = () => {
   }, [category]);
 
   const createPoll = async (data: CreateFormData) => {
-    await axios.post(`${API_URL}/createPoll`, data);
+    await axios.post(`${API_URL}/createPoll`, data, {
+      headers: {
+        Authorization: `Bearer ${user?.idToken}`,
+      },
+    });
+
+    navigate('/polls');
   };
 
   return (

@@ -1,11 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { PollType } from '../types/slice.types';
+import { API_URL } from '../utilities/Api.utilitities';
+import axios from 'axios';
 
 // Initial state
 const initialState: {
+  pollPage: number;
+  pollsPage: number;
+  pollLoading: boolean;
+  pollsLoading: boolean;
   poll: PollType | undefined;
   polls: PollType[] | undefined;
 } = {
+  pollPage: 0,
+  pollsPage: 0,
+  pollLoading: true,
+  pollsLoading: true,
   poll: undefined,
   polls: undefined,
 };
@@ -15,6 +25,24 @@ const pollSlice = createSlice({
   name: 'poll',
   initialState,
   reducers: {
+    setPollPage: (state, action) => {
+      state.pollPage = action.payload;
+    },
+    setPollsPage: (state, action) => {
+      state.pollsPage = action.payload;
+    },
+    setPollLoading: (state) => {
+      state.pollLoading = true;
+    },
+    clearPollLoading: (state) => {
+      state.pollLoading = false;
+    },
+    setPollsLoading: (state) => {
+      state.pollsLoading = true;
+    },
+    clearPollsLoading: (state) => {
+      state.pollsLoading = false;
+    },
     setPoll: (state, action) => {
       state.poll = action.payload;
     },
@@ -30,5 +58,72 @@ const pollSlice = createSlice({
   },
 });
 
-export const { setPoll, setPolls, clearPoll, clearPolls } = pollSlice.actions;
+export const {
+  setPollPage,
+  setPollsPage,
+  setPoll,
+  setPolls,
+  setPollLoading,
+  setPollsLoading,
+  clearPoll,
+  clearPolls,
+  clearPollLoading,
+  clearPollsLoading,
+} = pollSlice.actions;
 export default pollSlice.reducer;
+
+export const getPoll = async (
+  dispatch: Dispatch,
+  page: number,
+  uid?: string,
+  incrementPage = false,
+  isActive = true,
+) => {
+  try {
+    dispatch(clearPoll());
+    dispatch(setPollLoading());
+    const response = await axios.get(
+      `${API_URL}/getPoll?fetchSingle=${true}&uid=${uid}&page=${page}&isActive=${isActive}`,
+    );
+
+    const poll: PollType = response.data;
+    dispatch(setPoll(poll));
+    if (incrementPage) {
+      dispatch(setPollPage(page + 1));
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+    }
+  } finally {
+    dispatch(clearPollLoading());
+  }
+};
+
+export const getPolls = async (
+  dispatch: Dispatch,
+  page: number,
+  uid?: string,
+  incrementPage = false,
+  isActive = true,
+) => {
+  try {
+    dispatch(clearPolls());
+    dispatch(setPollsLoading());
+    const response = await axios.get(
+      `${API_URL}/getPoll?fetchSingle=${false}&uid=${uid}&page=${page}&isActive=${isActive}`,
+    );
+
+    const polls: PollType[] = response.data;
+    dispatch(setPolls(polls));
+    if (incrementPage) {
+      dispatch(setPollsPage(page + 1));
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+    }
+  } finally {
+    dispatch(clearPollsLoading());
+  }
+};

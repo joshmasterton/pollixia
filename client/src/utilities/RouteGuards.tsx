@@ -16,14 +16,5 @@ export const Protected = ({ children }: { children: ReactNode }) => {
 };
 
 export const Public = ({ children }: { children: ReactNode }) => {
-  const navigate = useNavigate();
-  const { user } = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [user]);
-
   return <>{children}</>;
 };

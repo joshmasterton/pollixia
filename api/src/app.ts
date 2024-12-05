@@ -2,14 +2,14 @@ import { createPollRoute } from './routes/createPoll.route';
 import { createTables } from './database/tables.database';
 import { TableConfig } from './database/tableConfig.database';
 import { getPollRoute } from './routes/getPoll.route';
+import { votePollRoute } from './routes/votePoll.route';
 import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
-import { votePollRoute } from './routes/votePoll.route';
-dotenv.config({ path: `${process.cwd()}/dev.env` });
-
 export const app = express();
 export const tableConfig = new TableConfig('polls', 'votes', 'options');
+dotenv.config({ path: `${process.cwd()}/dev.env` });
+import './utilities/firebaseAdmin';
 
 const { PORT, API_URL, TEST } = process.env;
 
@@ -27,8 +27,7 @@ if (!TEST) {
   //   tableConfig.getTableConfig().pollTable,
   //   tableConfig.getTableConfig().voteTable,
   //   tableConfig.getTableConfig().optionsTable,
-  // ).then(() => {
-  // });
+  // ).then(() => {});
 
   createTables(
     tableConfig.getTableConfig().pollTable,

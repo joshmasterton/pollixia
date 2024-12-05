@@ -4,14 +4,17 @@ import { API_URL } from '../utilities/Api.utilitities';
 import { useAppSelector } from '../store';
 import { useEffect, useState } from 'react';
 import { CountdownTimer } from './CountdownTimer.comp';
+import { Loading } from '../utilities/Loading.utilities';
 
 export const Poll = ({ poll }: { poll: PollType }) => {
-  const [pollState, setPollState] = useState(poll);
   const { user } = useAppSelector((state) => state.user);
+  const [loadingOptionId, setLoadingOptionId] = useState<number | null>(null);
+  const [pollState, setPollState] = useState(poll);
   const [totalVotes, setTotalVotes] = useState(0);
 
   const vote = async (oid: number) => {
     try {
+      setLoadingOptionId(oid);
       const response = await axios.post(
         `${API_URL}/votePoll`,
         {
@@ -33,6 +36,8 @@ export const Poll = ({ poll }: { poll: PollType }) => {
       if (error instanceof Error) {
         throw error;
       }
+    } finally {
+      setLoadingOptionId(null);
     }
   };
 
@@ -46,6 +51,7 @@ export const Poll = ({ poll }: { poll: PollType }) => {
     <div className="poll">
       <header>
         <h3>{pollState?.question}</h3>
+        <div>{pollState.category}</div>
       </header>
       <div>
         <div>{`Total votes: ${totalVotes}`}</div>
@@ -53,12 +59,15 @@ export const Poll = ({ poll }: { poll: PollType }) => {
       </div>
       <main>
         {pollState &&
-          pollState?.options.map((option) => (
+          pollState?.options?.map((option) => (
             <button
               key={option?.text}
               onClick={async () => await vote(option.oid)}
               type="button"
-              className="progressBar"
+              className={`progressBar ${option.isSelected ? 'primaryBox' : ''}`}
+              disabled={
+                loadingOptionId !== null && loadingOptionId !== option.oid
+              }
             >
               <div>
                 <div>
@@ -67,17 +76,21 @@ export const Poll = ({ poll }: { poll: PollType }) => {
                 <div>{option?.text}</div>
                 <p>{option?.votes}</p>
               </div>
-              <div className="percent">
-                <div
-                  style={{
-                    width: `${
-                      totalVotes !== 0
-                        ? Math.round((option?.votes / totalVotes) * 100)
-                        : 0
-                    }%`,
-                  }}
-                />
-              </div>
+              {loadingOptionId === option.oid ? (
+                <Loading />
+              ) : (
+                <div className="percent">
+                  <div
+                    style={{
+                      width: `${
+                        totalVotes !== 0
+                          ? Math.round((option?.votes / totalVotes) * 100)
+                          : 0
+                      }%`,
+                    }}
+                  />
+                </div>
+              )}
             </button>
           ))}
       </main>

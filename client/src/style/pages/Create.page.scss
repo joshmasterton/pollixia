@@ -8,7 +8,7 @@
   width: 100%;
   padding: var.$space;
   gap: var.$space;
-  padding-top: calc(var.$spaceSmall * 9);
+  padding-top: calc(var.$spaceXSmall * 14);
 }
 
 #create > form {
@@ -20,6 +20,7 @@
   align-items: start;
   padding: var.$space;
   gap: var.$spaceLarge;
+  box-shadow: var(--shadow);
   background: var(--container);
 }
 
@@ -36,7 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: var.$spaceSmall;
+  gap: var.$space;
 }
 
 #create > form > main > button {

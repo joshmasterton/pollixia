@@ -13,6 +13,7 @@
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
   border-right: var(--outline);
+  box-shadow: var(--shadow);
 }
 
 @media screen and (min-width: var.$mobileWidth) {

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as yup from 'yup';
 import { Poll } from '../models/Poll.model';
+import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 
 // Validation schema for voting on a poll
 const voteSchema = yup.object().shape({
@@ -9,14 +10,21 @@ const voteSchema = yup.object().shape({
   oid: yup.number().required(),
 });
 
-export const votePoll = async (req: Request, res: Response) => {
+export const votePoll = async (
+  req: Request & { user?: DecodedIdToken },
+  res: Response,
+) => {
   try {
-    const validaton = await voteSchema.validate(req.body);
+    const { user } = req;
 
-    await new Poll().vote(validaton.oid, validaton.pid, validaton.uid);
-    const poll = await new Poll().get(true, validaton.pid);
+    if (user) {
+      const validaton = await voteSchema.validate(req.body);
 
-    return res.status(200).json(poll);
+      await new Poll().vote(validaton.oid, validaton.pid, user.uid);
+      const poll = await new Poll().get(true, validaton.pid, user.uid);
+
+      return res.status(200).json(poll);
+    }
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({ error: error.message });

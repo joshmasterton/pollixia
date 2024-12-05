@@ -16,6 +16,7 @@ export type PollType = {
     oid: number;
     text: string;
     votes: number;
+    isSelected?: boolean;
   }[];
 };
 
