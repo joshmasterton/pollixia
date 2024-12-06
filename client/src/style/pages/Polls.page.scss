@@ -8,12 +8,13 @@
   flex: 1;
   padding: var.$space;
   gap: var.$space;
-  padding-top: calc(var.$spaceXSmall * 14);
+  padding-top: calc(var.$spaceXSmall * 12);
 }
 
 @media screen and (min-width: var.$mobileWidth) {
   #polls {
     margin-top: 0;
     padding-left: calc(var.$spaceSmall * 27);
+    padding-top: calc(var.$spaceXSmall * 14);
   }
 }

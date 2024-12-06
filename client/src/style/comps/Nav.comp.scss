@@ -37,11 +37,10 @@ nav > div > span {
   left: 0;
   width: 100%;
   height: calc(var.$spaceXSmall * 11);
-  background: var(--container);
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
+  border-radius: 0;
   z-index: 0;
-  box-shadow: var(--shadow);
 }
 
 nav.active > div > span {
@@ -69,7 +68,7 @@ nav > div > div > div {
   justify-content: end;
 }
 
-nav > div > div > div > a,
+nav > div > div > div > .login,
 nav > div > div > div > .logout {
   display: none;
 }
@@ -129,13 +128,13 @@ nav > footer > div {
     display: none;
   }
 
-  nav > div > div > div > a,
-  nav > div > div > div > .logout {
-    display: flex;
-  }
-
   nav > div > div > div > button.menu {
     display: none;
+  }
+
+  nav > div > div > div > .login,
+  nav > div > div > div > .logout {
+    display: flex;
   }
 
   nav > footer {
@@ -148,6 +147,8 @@ nav > footer > div {
     left: calc(var.$spaceSmall * 25);
     width: calc(100% - (var.$spaceSmall * 25));
     height: calc(var.$spaceXSmall * 11);
+    background: var(--container);
+    box-shadow: var(--shadow);
   }
 
   nav.active > div > span {

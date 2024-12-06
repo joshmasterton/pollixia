@@ -24,6 +24,7 @@
   padding: var.$spaceLarge;
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
+  box-shadow: var(--shadow);
   background: var(--container);
 }
 

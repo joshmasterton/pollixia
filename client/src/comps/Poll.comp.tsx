@@ -13,31 +13,33 @@ export const Poll = ({ poll }: { poll: PollType }) => {
   const [totalVotes, setTotalVotes] = useState(0);
 
   const vote = async (oid: number) => {
-    try {
-      setLoadingOptionId(oid);
-      const response = await axios.post(
-        `${API_URL}/votePoll`,
-        {
-          uid: user?.uid,
-          pid: pollState.pid,
-          oid,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user?.idToken}`,
+    if (loadingOptionId === null) {
+      try {
+        setLoadingOptionId(oid);
+        const response = await axios.post(
+          `${API_URL}/votePoll`,
+          {
+            uid: user?.uid,
+            pid: pollState.pid,
+            oid,
           },
-        },
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${user?.idToken}`,
+            },
+          },
+        );
 
-      if (response.data) {
-        setPollState(response.data);
+        if (response.data) {
+          setPollState(response.data);
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          throw error;
+        }
+      } finally {
+        setLoadingOptionId(null);
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        throw error;
-      }
-    } finally {
-      setLoadingOptionId(null);
     }
   };
 
@@ -65,9 +67,7 @@ export const Poll = ({ poll }: { poll: PollType }) => {
               onClick={async () => await vote(option.oid)}
               type="button"
               className={`progressBar ${option.isSelected ? 'primaryBox' : ''}`}
-              disabled={
-                loadingOptionId !== null && loadingOptionId !== option.oid
-              }
+              disabled={loadingOptionId !== null}
             >
               <div>
                 <div>

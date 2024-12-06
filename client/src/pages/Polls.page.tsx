@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../store';
-import { getPolls } from '../features/pollSlice.feature';
+import { clearPolls, getPolls } from '../features/pollSlice.feature';
 import { useEffect } from 'react';
 import { Poll } from '../comps/Poll.comp';
 import { Nav } from '../comps/Nav.comp';
@@ -15,6 +15,10 @@ export const Polls = () => {
 
   useEffect(() => {
     getPolls(dispatch, pollsPage, user?.uid);
+
+    return () => {
+      dispatch(clearPolls());
+    };
   }, [user]);
 
   return (
