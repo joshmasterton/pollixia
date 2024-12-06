@@ -38,7 +38,7 @@
 #auth > div > header > div {
   display: flex;
   flex-direction: column;
-  gap: var.$spaceXSmall;
+  gap: var.$spaceSmall;
 }
 
 #auth > div > main {
@@ -47,5 +47,5 @@
   justify-content: center;
   gap: var.$spaceSmall;
   width: 100%;
-  padding-top: var.$space + var.$sizeLarge;
+  padding-top: var.$space + var.$size;
 }

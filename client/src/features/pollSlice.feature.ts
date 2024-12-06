@@ -80,7 +80,6 @@ export const getPoll = async (
   isActive = true,
 ) => {
   try {
-    dispatch(clearPoll());
     dispatch(setPollLoading());
     const response = await axios.get(
       `${API_URL}/getPoll?fetchSingle=${true}&uid=${uid}&page=${page}&isActive=${isActive}`,
@@ -108,7 +107,6 @@ export const getPolls = async (
   isActive = true,
 ) => {
   try {
-    dispatch(clearPolls());
     dispatch(setPollsLoading());
     const response = await axios.get(
       `${API_URL}/getPoll?fetchSingle=${false}&uid=${uid}&page=${page}&isActive=${isActive}`,

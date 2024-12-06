@@ -29,12 +29,12 @@ export const CountdownTimer = ({ expiresAt }: { expiresAt: Date }) => {
   }, [expiresAt]);
 
   if (timeLeft.total <= 0) {
-    return <div className="countdown">Poll has expired</div>;
+    return <p className="countdown">Poll has expired</p>;
   }
 
   return (
-    <div className="countdown">
+    <p className="countdown">
       {`Time Left: ${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
-    </div>
+    </p>
   );
 };

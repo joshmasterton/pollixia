@@ -20,6 +20,7 @@ export const Polls = () => {
   return (
     <>
       <Nav type="main" />
+
       <Side />
       <div id="polls">
         {pollsLoading ? (

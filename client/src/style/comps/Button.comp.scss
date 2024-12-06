@@ -44,6 +44,14 @@ button.end {
   justify-content: end;
 }
 
+button.end > svg {
+  padding-left: 0;
+}
+
+button.start > svg {
+  padding-right: 0;
+}
+
 button.large {
   min-height: var.$sizeLarge;
 }
@@ -63,7 +71,11 @@ button.primary {
 }
 
 button.primary > div,
-button.primary > p {
+button.primary > p,
+button.primary > svg,
+button.active > div,
+button.active > p,
+button.active > svg {
   color: white;
 }
 

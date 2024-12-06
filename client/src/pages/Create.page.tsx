@@ -4,7 +4,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Dropdown } from '../comps/Dropdown.comp';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CreateFormData } from '../types/comps.types';
 import { Side } from '../comps/Side.comp';
 import { Slider } from '../comps/Slider.comp';
@@ -12,6 +12,7 @@ import axios from 'axios';
 import { API_URL } from '../utilities/Api.utilitities';
 import { useAppSelector } from '../store';
 import { useNavigate } from 'react-router-dom';
+import { Loading } from '../utilities/Loading.utilities';
 
 // Validation schema for creating poll
 const createSchema = yup.object().shape({
@@ -41,6 +42,7 @@ const createSchema = yup.object().shape({
 
 export const Create = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { user } = useAppSelector((state) => state.user);
 
   const categories = [
@@ -70,7 +72,7 @@ export const Create = () => {
     mode: 'onChange',
     defaultValues: {
       question: '',
-      lengthActive: 1,
+      lengthActive: 61,
       options: [
         {
           value: '',
@@ -110,13 +112,24 @@ export const Create = () => {
   }, [category]);
 
   const createPoll = async (data: CreateFormData) => {
-    await axios.post(`${API_URL}/createPoll`, data, {
-      headers: {
-        Authorization: `Bearer ${user?.idToken}`,
-      },
-    });
+    try {
+      setLoading(true);
+      await axios.post(`${API_URL}/createPoll`, data, {
+        headers: {
+          Authorization: `Bearer ${user?.idToken}`,
+        },
+      });
 
-    navigate('/polls');
+      navigate('/polls');
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      }
+
+      console.error('Create poll error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -188,8 +201,8 @@ export const Create = () => {
             {errors.options && (
               <p className="error">{errors.options.message}</p>
             )}
-            <button type="submit" className="primary full">
-              <div>Create poll</div>
+            <button disabled={loading} type="submit" className="primary full">
+              {loading ? <Loading /> : <div>Create poll</div>}
             </button>
           </footer>
         </form>

@@ -51,10 +51,10 @@ export const Poll = ({ poll }: { poll: PollType }) => {
     <div className="poll">
       <header>
         <h3>{pollState?.question}</h3>
-        <div>{pollState.category}</div>
+        {/* <div>{pollState.category}</div> */}
       </header>
       <div>
-        <div>{`Total votes: ${totalVotes}`}</div>
+        <p>{`Total votes: ${totalVotes}`}</p>
         <CountdownTimer expiresAt={pollState.expires_at} />
       </div>
       <main>

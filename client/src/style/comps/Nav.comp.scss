@@ -47,7 +47,7 @@ nav > div > span {
 nav.active > div > span {
   display: flex;
   align-items: start;
-  height: calc(var.$spaceSmall * 26);
+  height: calc(var.$spaceXSmall * 54);
 }
 
 nav > div > main {
@@ -79,7 +79,7 @@ nav > footer {
   top: 0;
   right: 0;
   width: 100%;
-  transform: translateY(-12rem);
+  transform: translateY(-15rem);
   z-index: 1;
 }
 
@@ -93,8 +93,8 @@ nav > footer > div {
   justify-content: start;
   align-items: end;
   padding: var.$space;
-  padding-top: 0;
-  gap: var.$spaceSmall;
+  padding-top: var.$spaceXSmall;
+  gap: var.$space;
 }
 
 @media screen and (min-width: var.$mobileWidth) {

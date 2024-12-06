@@ -6,9 +6,11 @@ import { auth } from '../config/firebase.config';
 import { clearUser } from '../features/userSlice.feature';
 import { CiMenuFries } from 'react-icons/ci';
 import { BiLogIn, BiLogOut, BiPoll } from 'react-icons/bi';
-import { LuVote } from 'react-icons/lu';
 import { PiTrolleySuitcase } from 'react-icons/pi';
 import logo from '../assets/loopza.png';
+import { GrGraphQl } from 'react-icons/gr';
+import { Theme } from './Theme.comp';
+import { CgClose } from 'react-icons/cg';
 
 export const Nav = ({ type }: { type: 'home' | 'main' }) => {
   const dispatch = useAppDispatch();
@@ -42,7 +44,11 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
             </div>
           ) : (
             <div className="img">
-              <img alt="logo" src={logo} className="full end blur" />
+              <img
+                alt="logo"
+                src={logo}
+                className="full paddingSmall end blur"
+              />
             </div>
           )}
           <h4 className="padding">{title}</h4>
@@ -53,9 +59,6 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
           </NavLink>
           <NavLink to="/create" className="end">
             <div>Create</div>
-          </NavLink>
-          <NavLink to="/vote" className="end">
-            <div>Vote</div>
           </NavLink>
           <NavLink to="/results" className="end">
             <div>Results</div>
@@ -81,7 +84,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
               className="menu"
               onClick={() => setIsMenu(!isMenu)}
             >
-              <CiMenuFries />
+              {isMenu ? <CgClose /> : <CiMenuFries />}
             </button>
           </div>
         </div>
@@ -96,25 +99,29 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
             <div>Create</div>
             <PiTrolleySuitcase />
           </NavLink>
-          <NavLink to="/vote" className="full end">
-            <div>Vote</div>
-            <LuVote />
+          <NavLink to="/results" className="full end">
+            <div>Results</div>
+            <GrGraphQl />
           </NavLink>
           {user ? (
             <button
               type="button"
               className="logout full end"
-              onClick={async () => await handleLogout()}
+              onClick={async () => {
+                await handleLogout();
+                setIsMenu(false);
+              }}
             >
               <div>Logout</div>
               <BiLogOut />
             </button>
           ) : (
-            <NavLink to="/auth full end">
+            <NavLink to="/auth" className="full end">
               <div>Login</div>
               <BiLogIn />
             </NavLink>
           )}
+          <Theme />
         </div>
       </footer>
     </nav>

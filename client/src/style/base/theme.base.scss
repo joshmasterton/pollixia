@@ -2,8 +2,9 @@
   --color: white;
   --colorSwitch: black;
   --switch: rgba(255, 255, 255, 1);
-  --outline: rgba(200, 200, 255, 0.15) 0.1rem solid;
+  --outline: rgb(60, 60, 75) 0.1rem solid;
   --primaryOutline: #5933af 0.1rem solid;
+  --primaryShadow: 0 0 0.05rem 0.2rem #6948ffa7;
   --primary: #5933af;
   --primaryOpac: #5833af62;
   --container: rgba(0, 0, 0, 0.25);
@@ -18,8 +19,9 @@
   --color: black;
   --colorSwitch: white;
   --switch: rgba(24, 28, 32, 1);
-  --outline: rgba(0, 0, 50, 0.1) 0.1rem solid;
+  --outline: rgba(215, 215, 225, 1) 0.1rem solid;
   --primaryOutline: #6948ff 0.1rem solid;
+  --primaryShadow: 0 0 0.05rem 0.2rem #6948ffa7;
   --primary: #6948ff;
   --primaryOpac: #6948ff1e;
   --container: rgba(255, 255, 255, 0.5);

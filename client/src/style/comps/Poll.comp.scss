@@ -32,31 +32,34 @@
 .poll > div {
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: var.$space;
 }
 
-.poll > div > div {
+.poll > div > div,
+.poll > div > p {
   display: flex;
   flex-direction: column;
   text-align: end;
 }
 
-.poll > main {
-  display: flex;
-  flex-direction: column;
-  gap: var.$space;
-  flex: 1;
-  width: 100%;
-}
-
 .poll > header {
   display: flex;
   justify-content: space-between;
+  height: var.$sizeLarge;
 }
 
 .poll > header > h3 {
   text-align: start;
-  padding-bottom: var.$spaceLarge;
+}
+
+.poll > main {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: var.$space;
+  width: 100%;
+  flex: 1;
 }
 
 .poll > main > .progressBar {
@@ -67,6 +70,8 @@
   padding: var.$spaceSmall;
   width: 100%;
   min-height: calc(var.$spaceSmall * 7);
+  height: calc(var.$spaceSmall * 7);
+  max-height: calc(var.$spaceSmall * 7);
   border: var(--outline);
   flex: 1;
 }
@@ -102,7 +107,7 @@
 
 .poll > main > .progressBar > .percent {
   width: 100%;
-  outline: var(--outline);
+  background: var(--container);
 }
 
 .poll > main > .progressBar > .percent > div {

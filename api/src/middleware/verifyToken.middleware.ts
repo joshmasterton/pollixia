@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { DecodedIdToken } from 'firebase-admin/auth';
 import admin from 'firebase-admin';
 
 export const verifyToken = async (

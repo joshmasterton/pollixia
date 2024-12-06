@@ -1,0 +1,25 @@
+@use '../base/var.base.scss';
+@use '../base/anim.base.scss';
+
+.theme {
+  display: flex;
+  padding: var.$spaceXXSmall;
+  gap: var.$spaceXXSmall;
+  outline: var(--outline);
+  background: var(--container);
+}
+
+.theme > button {
+  outline: none;
+  box-shadow: none;
+}
+
+.theme > button div {
+  display: none;
+}
+
+@media screen and (min-width: calc(var.$mobileWidth / 2)) {
+  .theme > button div {
+    display: block;
+  }
+}

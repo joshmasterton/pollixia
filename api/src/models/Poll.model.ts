@@ -35,7 +35,9 @@ export class Poll {
 
     // Calculate poll time till expire
     const expireTime = new Date();
-    expireTime.setMinutes(expireTime.getMinutes() + this.lengthActive);
+    expireTime.setMinutes(
+      expireTime.getMinutes() + Math.round(this.lengthActive / 15) * 15,
+    );
 
     const createdPoll = await sql`
 			INSERT INTO ${sql(tableConfig.getTableConfig().pollTable)} (

@@ -22,7 +22,13 @@ export const Slider = <T extends string>({
       </div>
       <main>
         <span style={{ width: `${(value / 1425) * 100 + 1}%` }}></span>
-        <input type="range" {...register} min={1} max={1400} defaultValue={1} />
+        <input
+          type="range"
+          {...register}
+          min={1}
+          max={1400}
+          defaultValue={60}
+        />
       </main>
     </div>
   );

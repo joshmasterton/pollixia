@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/loopza.png';
 import { PiTrolleySuitcase } from 'react-icons/pi';
-import { LuVote } from 'react-icons/lu';
 import { BiLogIn, BiLogOut, BiPoll } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../store';
 import { signOut } from 'firebase/auth';
 import { clearUser } from '../features/userSlice.feature';
 import { auth } from '../config/firebase.config';
 import { GrGraphQl } from 'react-icons/gr';
+import { Theme } from './Theme.comp';
 
 export const Side = () => {
   const dispatch = useAppDispatch();
@@ -47,10 +47,6 @@ export const Side = () => {
             <BiPoll />
             <div>Polls</div>
           </NavLink>
-          <NavLink to="/vote" className="full start">
-            <LuVote />
-            <div>Vote</div>
-          </NavLink>
           <NavLink to="/results" className=" full start">
             <GrGraphQl />
             <div>Results</div>
@@ -77,6 +73,10 @@ export const Side = () => {
             <PiTrolleySuitcase />
             <div>Create</div>
           </NavLink>
+        </div>
+        <div>
+          <h4>Settings</h4>
+          <Theme />
         </div>
       </ul>
     </div>

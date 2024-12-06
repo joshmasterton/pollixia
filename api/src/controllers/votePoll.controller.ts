@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as yup from 'yup';
 import { Poll } from '../models/Poll.model';
-import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { DecodedIdToken } from 'firebase-admin/auth';
 
 // Validation schema for voting on a poll
 const voteSchema = yup.object().shape({

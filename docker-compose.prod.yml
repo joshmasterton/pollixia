@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: dev.Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - './api/src:/app/src'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
