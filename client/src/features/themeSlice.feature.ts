@@ -32,7 +32,10 @@ export const getTheme = (dispatch: Dispatch) => {
   } else {
     dispatch(setTheme(localTheme));
     document.documentElement.setAttribute('data-theme', localTheme);
-    metaThemeColor?.setAttribute('content', 'rgb(220, 220, 235)');
+    metaThemeColor?.setAttribute(
+      'content',
+      localTheme === 'dark' ? 'rgb(37, 34, 46)' : 'rgb(220, 220, 235)',
+    );
     return localTheme;
   }
 };

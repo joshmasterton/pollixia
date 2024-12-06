@@ -11,7 +11,7 @@ describe('/getPoll', () => {
       .send({
         question: 'What is your favourite pet?',
         category: 'Lifestyle',
-        lengthActive: 1,
+        lengthActive: 100,
         options: [
           {
             value: 'Cats',
@@ -28,7 +28,7 @@ describe('/getPoll', () => {
       .send({
         question: 'What is your favourite color?',
         category: 'Lifestyle',
-        lengthActive: 1,
+        lengthActive: 100,
         options: [
           {
             value: 'Red',

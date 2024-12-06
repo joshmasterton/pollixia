@@ -11,7 +11,7 @@ describe('/votePoll', () => {
       .send({
         question: 'What is your favourite pet?',
         category: 'Lifestyle',
-        lengthActive: 1,
+        lengthActive: 100,
         options: [
           {
             value: 'Cats',
@@ -40,7 +40,7 @@ describe('/votePoll', () => {
       .send({
         question: 'What is your favourite pet?',
         category: 'Lifestyle',
-        lengthActive: 1,
+        lengthActive: 100,
         options: [
           {
             value: 'Cats',
