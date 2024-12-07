@@ -8,12 +8,10 @@
   --primary: #5933af;
   --danger: rgb(255, 53, 53);
   --primaryOpac: #5833af62;
-  --container: rgba(0, 0, 0, 0.25);
-  --shadow: rgba(0, 0, 0, 0.3) 0px 1px 6px 0px;
-  --backgroundGradient: linear-gradient(90deg, #282a3d 0%, #2d263f 100%),
-    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.15) 100%),
-    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
-  --background: rgb(37, 34, 46);
+  --container: rgba(0, 0, 0, 0.15);
+  --shadow: rgba(0, 0, 0, 0.4) 0px 1px 6px 0px;
+  --backgroundGradient: rgb(47, 47, 58);
+  --background: rgb(47, 47, 58);
 }
 
 [data-theme='light'] {
@@ -28,12 +26,6 @@
   --primaryOpac: #6948ff1e;
   --container: rgba(255, 255, 255, 0.5);
   --shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
-  --backgroundGradient: linear-gradient(
-      90deg,
-      rgb(235, 235, 250) 0%,
-      rgb(235, 235, 245) 100%
-    ),
-    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%),
-    radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
-  --background: rgba(220, 220, 235, 1);
+  --backgroundGradient: rgb(220, 220, 235);
+  --background: rgb(220, 220, 235);
 }

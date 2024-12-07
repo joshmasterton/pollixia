@@ -26,7 +26,7 @@ export const getTheme = (dispatch: Dispatch) => {
   if (!localTheme) {
     localStorage.setItem('pollixia_theme', 'dark');
     document.documentElement.setAttribute('data-theme', 'dark');
-    metaThemeColor?.setAttribute('content', 'rgb(37, 34, 46)');
+    metaThemeColor?.setAttribute('content', 'rgb(47, 47, 58)');
     dispatch(setTheme('dark'));
     return 'dark';
   } else {
@@ -34,7 +34,7 @@ export const getTheme = (dispatch: Dispatch) => {
     document.documentElement.setAttribute('data-theme', localTheme);
     metaThemeColor?.setAttribute(
       'content',
-      localTheme === 'dark' ? 'rgb(37, 34, 46)' : 'rgb(220, 220, 235)',
+      localTheme === 'dark' ? 'rgb(47, 47, 58)' : 'rgb(220, 220, 235)',
     );
     return localTheme;
   }

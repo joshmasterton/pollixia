@@ -29,8 +29,10 @@ export const Polls = () => {
       <div id="polls">
         {pollsLoading ? (
           <Loading />
+        ) : polls ? (
+          polls.map((poll) => <Poll key={poll.pid} poll={poll} />)
         ) : (
-          polls && polls.map((poll) => <Poll key={poll.pid} poll={poll} />)
+          <div className="box">No active polls right now</div>
         )}
       </div>
     </>
