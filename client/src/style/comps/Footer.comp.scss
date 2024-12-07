@@ -1,0 +1,35 @@
+@use '../base/var.base.scss';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var.$space;
+  padding: var.$space;
+  box-shadow: var(--shadow);
+  background: var(--container);
+}
+
+#home .footer {
+  background-color: transparent;
+}
+
+.footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var.$space;
+}
+
+.footer > main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var.$space;
+}
+
+.footer > footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

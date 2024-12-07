@@ -5,6 +5,7 @@ import { Poll } from '../comps/Poll.comp';
 import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
 import { Loading } from '../utilities/Loading.utilities';
+import { Footer } from '../comps/Footer.comp';
 
 export const Polls = () => {
   const dispatch = useAppDispatch();
@@ -34,6 +35,7 @@ export const Polls = () => {
         ) : (
           <div className="box">No active polls right now</div>
         )}
+        <Footer />
       </div>
     </>
   );

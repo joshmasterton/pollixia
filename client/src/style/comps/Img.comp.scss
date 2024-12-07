@@ -11,6 +11,10 @@
   padding: var.$spaceXSmall;
 }
 
+.img.outline {
+  outline: var(--outline);
+}
+
 img {
   width: 100%;
   height: 100%;
@@ -25,7 +29,8 @@ img.blur {
   -webkit-backdrop-filter: var.$filter;
 }
 
-img.outline {
+img.outline,
+svg.outline {
   border: var(--outline);
 }
 

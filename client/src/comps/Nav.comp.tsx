@@ -46,21 +46,12 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
   return (
     <nav className={`${type} ${isMenu ? `active` : ``}`}>
       <div>
+        <span />
         <header>
-          {user ? (
-            <div className="img">
-              <img alt="user" src={user.photoURL} className="full end blur" />
-            </div>
-          ) : (
-            <div className="img">
-              <img
-                alt="logo"
-                src={logo}
-                className="full paddingSmall end blur"
-              />
-            </div>
-          )}
-          <h3 className="padding">{title}</h3>
+          <div className="img">
+            <img alt="logo" src={logo} className="full paddingSmall end" />
+          </div>
+          <h4 className="padding">{title}</h4>
         </header>
         <main>
           <NavLink to="/polls" className="end">

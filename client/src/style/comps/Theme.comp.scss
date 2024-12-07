@@ -5,7 +5,7 @@
   display: flex;
   padding: var.$spaceXSmall;
   gap: var.$spaceXSmall;
-  outline: var(--outline);
+  box-shadow: var(--shadow);
   background: var(--container);
 }
 

@@ -1,5 +1,4 @@
 @use '../base/var.base.scss';
-@use '../base/anim.base.scss';
 
 nav {
   position: fixed;
@@ -14,20 +13,13 @@ nav {
 }
 
 nav > div {
-  position: fixed;
-  top: var.$space;
-  left: var.$space;
-  width: calc(100% - (var.$space * 2));
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex: 1;
+  height: calc(var.$spaceXSmall * 11);
   gap: var.$space;
   padding: var.$space;
-  backdrop-filter: var.$filter;
-  -webkit-backdrop-filter: var.$filter;
-  background: var(--container);
-  box-shadow: var(--shadow);
 }
 
 nav > div > header {
@@ -38,6 +30,24 @@ nav > div > header {
   height: var.$size;
   flex: 1;
   z-index: 1;
+}
+
+nav > div > span {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var.$spaceXSmall * 11);
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  border-radius: 0;
+  z-index: 0;
+}
+
+nav.active > div > span {
+  display: flex;
+  align-items: start;
+  height: calc(var.$spaceXSmall * 55);
 }
 
 nav > div > main {
@@ -67,19 +77,14 @@ nav > div > div > div > .logout {
 nav > footer {
   position: fixed;
   top: 0;
-  left: var.$space;
-  width: calc(100% - (var.$space * 2));
-  transform: translateY(-17.5rem);
+  right: 0;
+  width: 100%;
+  transform: translateY(-17rem);
   z-index: 1;
-  transition: transform anim.$anim;
-  backdrop-filter: var.$filter;
-  -webkit-backdrop-filter: var.$filter;
-  background: var(--container);
-  box-shadow: var(--shadow);
 }
 
 nav.active > footer {
-  transform: translateY(calc(var.$spaceXSmall * 17));
+  transform: translateY(calc(var.$spaceSmall * 7));
 }
 
 nav > footer > div {
@@ -88,6 +93,7 @@ nav > footer > div {
   justify-content: start;
   align-items: end;
   padding: var.$space;
+  padding-top: var.$spaceXSmall;
   gap: var.$space;
 }
 
@@ -97,36 +103,21 @@ nav > footer > div {
     width: calc(100% - (var.$spaceSmall * 25));
   }
 
-  nav.main > div {
-    justify-content: start;
-    left: calc(var.$spaceSmall * 27);
-    width: calc(100% - (var.$spaceSmall * 29));
+  nav > div > span {
+    left: calc(var.$spaceXXSmall * 75);
+    height: calc(var.$spaceXSmall * 11);
   }
 
-  nav > div > main {
-    display: flex;
-    flex: 0;
-  }
-
-  nav.main > div > header > .img {
+  nav > div > header .img {
     display: none;
   }
 
-  nav.main > div > div {
+  nav > div > div button {
     display: none;
   }
 
-  nav.main > div > div > div {
-    display: none;
-  }
-
-  nav > div > div > div > button.menu {
-    display: none;
-  }
-
-  nav > div > div > div > .login,
-  nav > div > div > div > .logout {
-    display: flex;
+  nav.active > div > span {
+    height: calc(var.$spaceXSmall * 11);
   }
 
   nav > footer {

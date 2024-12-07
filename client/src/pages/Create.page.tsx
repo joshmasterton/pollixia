@@ -13,6 +13,7 @@ import { API_URL } from '../utilities/Api.utilitities';
 import { useAppSelector } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../utilities/Loading.utilities';
+import { Footer } from '../comps/Footer.comp';
 
 // Validation schema for creating poll
 const createSchema = yup.object().shape({
@@ -206,6 +207,7 @@ export const Create = () => {
             </button>
           </footer>
         </form>
+        <Footer />
       </div>
     </>
   );

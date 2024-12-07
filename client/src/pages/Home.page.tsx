@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Poll } from '../comps/Poll.comp';
 import logo from '../assets/loopza.png';
 import { Loading } from '../utilities/Loading.utilities';
+import { Footer } from '../comps/Footer.comp';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
@@ -48,6 +49,7 @@ export const Home = () => {
             <div>Connect with others through meaningful insights</div>
           </div>
         </footer>
+        <Footer />
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import { Poll } from '../comps/Poll.comp';
 import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
 import { Loading } from '../utilities/Loading.utilities';
+import { Footer } from '../comps/Footer.comp';
 
 export const Results = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +32,7 @@ export const Results = () => {
         ) : (
           polls && polls.map((poll) => <Poll key={poll.pid} poll={poll} />)
         )}
+        <Footer />
       </div>
     </>
   );

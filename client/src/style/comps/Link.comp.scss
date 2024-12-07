@@ -14,7 +14,8 @@ a.blur {
   -webkit-backdrop-filter: var.$filter;
 }
 
-a > div {
+a > div,
+a > p {
   padding: var.$spaceSmall;
 }
 
@@ -34,6 +35,11 @@ a.container {
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
+}
+
+a.container > div,
+a.container > svg {
+  color: var(--color);
 }
 
 a.primary {
