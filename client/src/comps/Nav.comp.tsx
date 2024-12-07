@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebase.config';
@@ -33,10 +33,19 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
     }
   };
 
+  const handleScroll = () => {
+    setIsMenu(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <nav className={`${type} ${isMenu ? `active` : ``}`}>
       <div>
-        <span />
         <header>
           {user ? (
             <div className="img">
@@ -51,7 +60,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
               />
             </div>
           )}
-          <h4 className="padding">{title}</h4>
+          <h3 className="padding">{title}</h3>
         </header>
         <main>
           <NavLink to="/polls" className="end">

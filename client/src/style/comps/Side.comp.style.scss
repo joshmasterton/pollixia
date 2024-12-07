@@ -12,8 +12,8 @@
   border-radius: 0;
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
-  border-right: var(--outline);
   box-shadow: var(--shadow);
+  z-index: 3;
 }
 
 @media screen and (min-width: var.$mobileWidth) {

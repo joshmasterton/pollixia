@@ -12,7 +12,7 @@ export const Home = () => {
   const { poll, pollLoading, pollPage } = useAppSelector((state) => state.poll);
 
   useEffect(() => {
-    getPoll(dispatch, pollPage, user?.uid);
+    getPoll(dispatch, pollPage, user?.uid, false, false);
   }, []);
 
   return (

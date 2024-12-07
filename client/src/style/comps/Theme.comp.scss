@@ -3,15 +3,10 @@
 
 .theme {
   display: flex;
-  padding: var.$spaceXXSmall;
+  padding: var.$spaceXSmall;
   gap: var.$spaceXSmall;
   outline: var(--outline);
   background: var(--container);
-}
-
-.theme > button {
-  outline: none;
-  box-shadow: none;
 }
 
 .theme > button div {
