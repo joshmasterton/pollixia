@@ -26,6 +26,7 @@
   -webkit-backdrop-filter: var.$filter;
   box-shadow: var(--shadow);
   background: var(--container);
+  background-blend-mode: var.$blend;
 }
 
 #auth > div > header {

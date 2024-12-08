@@ -13,6 +13,8 @@
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
   box-shadow: var(--shadow);
+  background-blend-mode: var.$blend;
+  border-right: var(--outline);
   z-index: 3;
 }
 

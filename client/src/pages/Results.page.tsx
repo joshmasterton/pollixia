@@ -6,6 +6,7 @@ import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
 import { Loading } from '../utilities/Loading.utilities';
 import { Footer } from '../comps/Footer.comp';
+import { NavLink } from 'react-router-dom';
 
 export const Results = () => {
   const dispatch = useAppDispatch();
@@ -29,10 +30,25 @@ export const Results = () => {
       <div id="polls">
         {pollsLoading ? (
           <Loading />
+        ) : polls ? (
+          <>
+            {polls.map((poll) => (
+              <Poll key={poll.pid} poll={poll} />
+            ))}
+            {polls.length === 1 && <div className="box" />}
+            <Footer />
+          </>
         ) : (
-          polls && polls.map((poll) => <Poll key={poll.pid} poll={poll} />)
+          <>
+            <div className="box">
+              <div>No results right now</div>
+              <NavLink to="/create" className="primary">
+                <div>Create a poll</div>
+              </NavLink>
+            </div>
+            <Footer />
+          </>
         )}
-        <Footer />
       </div>
     </>
   );

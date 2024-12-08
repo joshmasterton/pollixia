@@ -2,31 +2,46 @@
   --color: white;
   --colorSwitch: black;
   --switch: rgba(255, 255, 255, 1);
-  --outline: rgb(60, 60, 75) 0.1rem solid;
+  --outline: rgba(30, 30, 40, 1) 0.1rem solid;
   --primaryOutline: #5933af 0.1rem solid;
   --primaryShadow: 0 0 0.05rem 0.2rem #6948ffa7;
   --primary: #5933af;
   --danger: rgb(255, 53, 53);
   --primaryOpac: #5833af62;
-  --container: rgba(0, 0, 0, 0.2);
-  --shadow: rgba(0, 0, 0, 0.2) 0px 0px 2px 0px;
+  --container: linear-gradient(
+      90deg,
+      rgba(37, 39, 71, 0.2) 0%,
+      rgba(43, 33, 61, 0.2) 100%
+    ),
+    radial-gradient(
+      at top right,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    radial-gradient(
+      at bottom left,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(0, 0, 0, 0.2) 63%
+    );
+  --shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 0px;
   --backgroundGradient: linear-gradient(90deg, #282a3d 0%, #2d263f 100%),
     radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.15) 100%),
     radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
-  --background: rgb(37, 37, 48);
+  --background: rgb(15, 15, 20);
+  --backgroundOpac: rgba(15, 15, 20, 0.75);
 }
 
 [data-theme='light'] {
   --color: black;
   --colorSwitch: white;
   --switch: rgba(24, 28, 32, 1);
-  --outline: rgba(215, 215, 225, 1) 0.1rem solid;
+  --outline: rgba(205, 205, 220) 0.1rem solid;
   --primaryOutline: #6948ff 0.1rem solid;
   --primaryShadow: 0 0 0.05rem 0.2rem #6948ffa7;
   --primary: #6948ff;
   --danger: rgb(217, 52, 52);
-  --primaryOpac: #6948ff1e;
-  --container: rgba(255, 255, 255, 0.5);
+  --primaryOpac: #6948ff47;
+  --container: rgba(255, 255, 255, 0.35);
   --shadow: rgba(99, 99, 99, 0.1) 0px 0px 8px 0px;
   --backgroundGradient: linear-gradient(
       90deg,
@@ -35,5 +50,6 @@
     ),
     radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%),
     radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
-  --background: rgba(220, 220, 235, 1);
+  --background: rgba(220, 220, 235);
+  --backgroundOpac: rgba(220, 220, 235, 0.75);
 }

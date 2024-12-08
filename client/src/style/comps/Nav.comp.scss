@@ -42,6 +42,7 @@ nav > div > span {
   -webkit-backdrop-filter: var.$filter;
   border-radius: 0;
   z-index: 0;
+  background: var(--background);
 }
 
 nav.active > div > span {

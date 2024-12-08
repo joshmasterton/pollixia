@@ -7,6 +7,8 @@
   gap: var.$spaceXSmall;
   box-shadow: var(--shadow);
   background: var(--container);
+  background-blend-mode: var.$blend;
+  outline: var(--outline);
 }
 
 .theme > button div {

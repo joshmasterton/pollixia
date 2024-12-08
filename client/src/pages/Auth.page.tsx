@@ -76,7 +76,7 @@ export const Auth = () => {
             onClick={() => handleLogin('google')}
           >
             <FcGoogle className="group" />
-            <div>Sign in with Google</div>
+            <p>Sign in with Google</p>
           </button>
         </main>
       </div>

@@ -108,14 +108,20 @@ textarea {
 
 .box {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
   flex: 1;
+  padding: var.$space;
+  background-blend-mode: var.$blend;
+  gap: var.$space;
+  outline: var(--outline);
+  box-shadow: var(--shadow);
   background: var(--container);
 }
 
 .primaryBox {
-  background: var(--primaryOpac);
+  background: var(--primaryOpac) !important;
 }

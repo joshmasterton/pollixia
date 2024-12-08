@@ -4,6 +4,7 @@ import { auth } from '../config/firebase.config';
 import { clearUser, setUser } from '../features/userSlice.feature';
 import { useAppDispatch } from '../store';
 import { Loading } from './Loading.utilities';
+import { getTheme } from '../features/themeSlice.feature';
 
 export const AuthInitializor = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
@@ -34,6 +35,10 @@ export const AuthInitializor = ({ children }: { children: ReactNode }) => {
 
     return () => onStateChange();
   }, [dispatch]);
+
+  useEffect(() => {
+    getTheme(dispatch);
+  }, []);
 
   if (loading) {
     return <Loading />;

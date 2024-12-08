@@ -8,10 +8,14 @@
   padding: var.$space;
   box-shadow: var(--shadow);
   background: var(--container);
+  background-blend-mode: var.$blend;
+  outline: var(--outline);
 }
 
 #home .footer {
-  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  background: transparent;
 }
 
 .footer > div {

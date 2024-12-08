@@ -38,7 +38,8 @@ a.container {
 }
 
 a.container > div,
-a.container > svg {
+a.container > svg,
+a.container > p {
   color: var(--color);
 }
 
@@ -49,7 +50,8 @@ a.primary {
 }
 
 a.primary > div,
-a.primary > svg {
+a.primary > svg,
+a.primary > p {
   color: white;
 }
 
@@ -71,6 +73,7 @@ a.active {
 }
 
 a.active > div,
-a.active > svg {
+a.active > svg,
+a.active > p {
   color: white;
 }

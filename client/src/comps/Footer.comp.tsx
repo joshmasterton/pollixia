@@ -19,13 +19,13 @@ export const Footer = () => {
         </NavLink>
       </div>
       <main>
-        <NavLink to="/polls" className="">
+        <NavLink to="/polls">
           <p>Polls</p>
         </NavLink>
-        <NavLink to="/create" className="">
+        <NavLink to="/create">
           <p>Create</p>
         </NavLink>
-        <NavLink to="/results" className="">
+        <NavLink to="/results">
           <p>Results</p>
         </NavLink>
       </main>

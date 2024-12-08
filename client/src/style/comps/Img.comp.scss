@@ -2,6 +2,7 @@
 
 .img {
   width: var.$size;
+  min-width: var.$size;
   max-width: var.$size;
   height: var.$size;
   max-height: var.$size;

@@ -5,8 +5,9 @@ ul {
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  flex: 1;
+  min-height: 100%;
   height: fit-content;
+  flex: 1;
   gap: var.$space;
   padding: var.$space;
 }
@@ -26,4 +27,11 @@ ul > div {
   justify-content: start;
   align-items: start;
   gap: var.$spaceSmall;
+}
+
+ul > div:last-of-type {
+  display: flex;
+  justify-content: end;
+  height: 100%;
+  flex: 1;
 }

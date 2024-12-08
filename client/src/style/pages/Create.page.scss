@@ -8,7 +8,7 @@
   width: 100%;
   padding: var.$space;
   gap: var.$space;
-  padding-top: calc(var.$spaceXSmall * 11.25);
+  padding-top: calc(var.$spaceXSmall * 11.5);
 }
 
 #create > form {
@@ -20,15 +20,17 @@
   align-items: start;
   padding: var.$space;
   gap: var.$spaceLarge;
+  outline: var(--outline);
   box-shadow: var(--shadow);
   background: var(--container);
+  background-blend-mode: var.$blend;
 }
 
 #create > form > header {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: var.$spaceSmall;
+  gap: var.$space;
   width: 100%;
 }
 
@@ -52,7 +54,7 @@
 }
 
 #create > form > div > h3 {
-  padding-bottom: var.$spaceSmall;
+  padding-bottom: var.$space;
 }
 
 #create > form > footer {

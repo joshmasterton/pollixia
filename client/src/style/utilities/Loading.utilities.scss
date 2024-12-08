@@ -20,6 +20,9 @@
   max-width: calc(var.$size * 3);
   height: var.$spaceSmall !important;
   background: var(--container);
+  background-blend-mode: var.$blend;
+  background-size: var.$filterSize;
+  outline: var(--outline);
 }
 
 .progressBar .loading > div {

@@ -60,13 +60,17 @@
   min-height: calc(var.$size * 10);
 }
 
-@media screen and (min-width: var.$mobileWidth) {
+#home > footer > div > div {
+  flex: 1;
+}
+
+@media screen and (min-width: var.$mobileWidthSmall) {
   #home > footer > div:nth-child(1) {
     display: flex;
   }
 }
 
-@media screen and (min-width: var.$tabletWidth) {
+@media screen and (min-width: var.$tabletWidthSmall) {
   #home > footer > div {
     display: flex;
   }

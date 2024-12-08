@@ -194,7 +194,7 @@ export const Create = () => {
                 )}
               </div>
             ))}
-            <button type="button" className="container" onClick={addOption}>
+            <button type="button" className="background" onClick={addOption}>
               <div>Add option</div>
             </button>
           </main>

@@ -13,6 +13,8 @@
   -webkit-backdrop-filter: var.$filter;
   box-shadow: var(--shadow);
   background: var(--container);
+  outline: var(--outline);
+  background-blend-mode: var.$blend;
 }
 
 .poll img {
@@ -73,6 +75,7 @@
   height: calc(var.$spaceSmall * 7);
   max-height: calc(var.$spaceSmall * 7);
   border: var(--outline);
+  background: var(--backgroundOpac);
   flex: 1;
 }
 
@@ -108,6 +111,8 @@
 .poll > main > .progressBar > .percent {
   width: 100%;
   background: var(--container);
+  background-blend-mode: var.$blend;
+  outline: var(--outline);
 }
 
 .poll > main > .progressBar > .percent > div {

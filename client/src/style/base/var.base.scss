@@ -14,9 +14,12 @@ $spaceXXSmall: calc($spaceXSmall / 2);
 // Color
 $blend: multiply, screen;
 $filter: blur(1rem);
+$filterSize: 100% 5rem;
 
 // Width
+$mobileWidthSmall: 35rem;
 $mobileWidth: 55rem;
+$tabletWidthSmall: 55em;
 $tabletWidth: 70em;
 $maxWidthSmall: 70rem;
 $maxWidth: 85rem;

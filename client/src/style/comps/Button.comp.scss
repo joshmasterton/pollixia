@@ -31,9 +31,16 @@ button > svg {
 }
 
 button.container {
+  outline: var(--outline);
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
+  background-blend-mode: var.$blend;
+}
+
+button.background {
+  border: var(--outline);
+  background: var(--background);
 }
 
 button.full {

@@ -8,7 +8,9 @@
   align-items: start;
   gap: var.$spaceSmall;
   padding: var.$spaceSmall;
-  background: var(--container);
+  background: var(--background);
+  background-blend-mode: var.$blend;
+  outline: var(--outline);
 }
 
 .slider > main {
@@ -24,7 +26,9 @@
   appearance: none;
   height: var.$space;
   padding: 0;
-  outline: none;
+  background: var(--container);
+  background-blend-mode: var.$blend;
+  background-size: var.$filterSize;
 }
 
 .slider > main > span {
