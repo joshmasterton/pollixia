@@ -3,12 +3,20 @@
 #polls {
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  text-align: start;
   width: 100%;
   min-height: 100%;
   flex: 1;
   padding: var.$space;
   gap: var.$space;
-  padding-top: calc(var.$spaceXSmall * 11.5);
+  padding-top: calc(var.$spaceXSmall * 11);
+}
+
+#polls > header {
+  display: flex;
+  gap: var.$space;
 }
 
 @media screen and (min-width: var.$mobileWidth) {

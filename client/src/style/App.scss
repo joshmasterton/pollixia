@@ -26,7 +26,9 @@
 * {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  // font-family: 'inter';
   text-align: center;
+  font-weight: normal;
   resize: none;
   text-decoration: none;
   border-style: none;
@@ -39,8 +41,13 @@
   border-radius: var.$round;
 }
 
+::placeholder {
+  opacity: 45%;
+  color: var(--color);
+}
+
 .padding {
-  padding: var.$spaceSmall;
+  padding: var.$space;
 }
 
 .paddingSmall {
@@ -81,6 +88,7 @@ h4,
 div,
 p,
 svg {
+  text-align: start;
   margin: 0;
   color: var(--color);
 }
@@ -117,13 +125,11 @@ textarea {
   height: 100%;
   flex: 1;
   padding: var.$space;
-  background-blend-mode: var.$blend;
   gap: var.$space;
-  outline: var(--outline);
-  box-shadow: var(--shadow);
-  background: var(--container);
 }
 
 .primaryBox {
   background: var(--primaryOpac) !important;
+  background-blend-mode: var.$blend;
+  box-shadow: var(--shadow);
 }

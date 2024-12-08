@@ -6,6 +6,7 @@ a {
   align-items: center;
   height: var.$size;
   max-height: var.$size;
+  background-blend-mode: var.$blend;
   text-decoration: none;
 }
 

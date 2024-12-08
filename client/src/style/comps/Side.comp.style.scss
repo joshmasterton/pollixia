@@ -9,12 +9,11 @@
   width: calc(var.$spaceSmall * 25);
   height: 100%;
   backdrop-filter: var.$filter;
-  border-radius: 0;
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
+  border-radius: 0;
   box-shadow: var(--shadow);
   background-blend-mode: var.$blend;
-  border-right: var(--outline);
   z-index: 3;
 }
 

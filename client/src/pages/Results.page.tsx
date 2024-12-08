@@ -7,6 +7,8 @@ import { Side } from '../comps/Side.comp';
 import { Loading } from '../utilities/Loading.utilities';
 import { Footer } from '../comps/Footer.comp';
 import { NavLink } from 'react-router-dom';
+import { BsFire } from 'react-icons/bs';
+import { BiNews, BiPoll } from 'react-icons/bi';
 
 export const Results = () => {
   const dispatch = useAppDispatch();
@@ -28,10 +30,26 @@ export const Results = () => {
       <Nav type="main" />
       <Side />
       <div id="polls">
+        <h2>Lets see the results!</h2>
+
         {pollsLoading ? (
           <Loading />
         ) : polls ? (
           <>
+            <header>
+              <button type="button" className="container start">
+                <BiNews />
+                <div>Latest</div>
+              </button>
+              <button type="button" className="container start">
+                <BsFire />
+                <div>Trending</div>
+              </button>
+              <button type="button" className="container start">
+                <BiPoll />
+                <div>All</div>
+              </button>
+            </header>
             {polls.map((poll) => (
               <Poll key={poll.pid} poll={poll} />
             ))}

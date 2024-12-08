@@ -21,7 +21,7 @@ export const Slider = <T extends string>({
         {displayTime} {displayType}
       </div>
       <main>
-        <span style={{ width: `${(value / 1440) * 100 + 2}%` }}></span>
+        <span style={{ width: `${(value / 1440) * 100 + 1.5}%` }}></span>
         <input
           type="range"
           {...register}

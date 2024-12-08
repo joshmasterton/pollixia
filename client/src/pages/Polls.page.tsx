@@ -7,6 +7,8 @@ import { Side } from '../comps/Side.comp';
 import { Loading } from '../utilities/Loading.utilities';
 import { Footer } from '../comps/Footer.comp';
 import { NavLink } from 'react-router-dom';
+import { BiNews, BiPoll } from 'react-icons/bi';
+import { BsFire } from 'react-icons/bs';
 
 export const Polls = () => {
   const dispatch = useAppDispatch();
@@ -29,25 +31,44 @@ export const Polls = () => {
 
       <Side />
       <div id="polls">
+        <h2>Lets get started voting!</h2>
         {pollsLoading ? (
           <Loading />
-        ) : polls ? (
-          <>
-            {polls.map((poll) => (
-              <Poll key={poll.pid} poll={poll} />
-            ))}
-            {polls.length === 1 && <div className="box" />}
-            <Footer />
-          </>
         ) : (
           <>
-            <div className="box">
-              <div>No active polls right now</div>
-              <NavLink to="/create" className="primary">
-                <div>Create a poll</div>
-              </NavLink>
-            </div>
-            <Footer />
+            {polls ? (
+              <>
+                <header>
+                  <button type="button" className="container start">
+                    <BiNews />
+                    <div>Latest</div>
+                  </button>
+                  <button type="button" className="container start">
+                    <BsFire />
+                    <div>Trending</div>
+                  </button>
+                  <button type="button" className="container start">
+                    <BiPoll />
+                    <div>All</div>
+                  </button>
+                </header>
+                {polls.map((poll) => (
+                  <Poll key={poll.pid} poll={poll} />
+                ))}
+                {polls.length === 1 && <div className="box" />}
+                <Footer />
+              </>
+            ) : (
+              <>
+                <div className="box">
+                  <div>No active polls right now</div>
+                  <NavLink to="/create" className="primary">
+                    <div>Create a poll</div>
+                  </NavLink>
+                </div>
+                <Footer />
+              </>
+            )}
           </>
         )}
       </div>

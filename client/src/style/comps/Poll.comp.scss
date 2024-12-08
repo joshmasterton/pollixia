@@ -13,7 +13,6 @@
   -webkit-backdrop-filter: var.$filter;
   box-shadow: var(--shadow);
   background: var(--container);
-  outline: var(--outline);
   background-blend-mode: var.$blend;
 }
 
@@ -85,7 +84,6 @@
   min-height: calc(var.$spaceSmall * 7);
   height: calc(var.$spaceSmall * 7);
   max-height: calc(var.$spaceSmall * 7);
-  border: var(--outline);
   background: var(--backgroundOpac);
   flex: 1;
 }
@@ -106,7 +104,6 @@
   width: var.$sizeSmall;
   height: var.$sizeSmall;
   padding: var.$spaceXXSmall;
-  outline: var(--outline);
 }
 
 .poll > main > .progressBar > div:first-of-type > div:first-of-type > div {
@@ -123,9 +120,9 @@
 .poll > main > .progressBar > .percent {
   width: 100%;
   background: var(--container);
+  box-shadow: var(--shadow);
   background-size: var.$filterSize;
   background-blend-mode: var.$blend;
-  outline: var(--outline);
   min-height: var.$spaceSmall;
   max-height: var.$spaceSmall;
 }
@@ -134,5 +131,6 @@
   height: var.$spaceSmall;
   width: 50%;
   background: var(--primary);
+  background-blend-mode: var.$blend;
   transition: anim.$anim width;
 }

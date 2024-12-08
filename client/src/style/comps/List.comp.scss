@@ -18,6 +18,9 @@ ul > header {
   width: 100%;
   gap: var.$spaceXXSmall;
   padding-bottom: 0;
+  min-height: var.$size;
+  height: var.$size;
+  max-height: var.$size;
 }
 
 ul > div {

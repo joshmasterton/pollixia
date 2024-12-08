@@ -5,9 +5,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--background);
+  box-shadow: var(--shadow);
+  background: var(--container);
   background-blend-mode: var.$blend;
-  outline: var(--outline);
 }
 
 .dropdown button {
@@ -35,10 +35,10 @@
   padding: var.$spaceXXSmall;
   margin-top: var.$spaceSmall;
   gap: 0;
+  box-shadow: var(--shadow);
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
-  outline: var(--outline);
-  background: var(--background);
+  background: var(--container);
   background-blend-mode: var.$blend;
 }
 
@@ -73,8 +73,8 @@ input {
   height: var.$size;
   padding: var.$spaceSmall;
   text-align: start;
-  outline: var(--outline);
-  background: var(--background);
+  box-shadow: var(--shadow);
+  background: var(--container);
   background-blend-mode: var.$blend;
 }
 
@@ -82,7 +82,7 @@ textarea {
   width: 100%;
   color: var(--color);
   padding: var.$spaceSmall;
-  background: var(--background);
+  background: var(--container);
+  box-shadow: var(--shadow);
   background-blend-mode: var.$blend;
-  outline: var(--outline);
 }

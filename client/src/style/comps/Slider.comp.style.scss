@@ -8,9 +8,9 @@
   align-items: start;
   gap: var.$spaceSmall;
   padding: var.$spaceSmall;
-  background: var(--background);
+  box-shadow: var(--shadow);
+  background: var(--container);
   background-blend-mode: var.$blend;
-  outline: var(--outline);
 }
 
 .slider > main {
@@ -27,18 +27,17 @@
   appearance: none;
   height: var.$space;
   padding: 0;
-  outline: none;
-  background: var(--container);
-  background-blend-mode: var.$blend;
-  background-size: var.$filterSize;
+  box-shadow: none;
+  background: transparent;
 }
 
 .slider > main > span {
   position: absolute;
   width: 100%;
   height: var.$space;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   background: var(--primary);
+  background-blend-mode: var.$blend;
 }
 
 .slider > main > ::-webkit-slider-thumb {
@@ -50,4 +49,5 @@
   border-radius: var.$round;
   box-shadow: var(--shadow);
   background: var(--primary);
+  background-blend-mode: var.$blend;
 }

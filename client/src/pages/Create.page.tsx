@@ -138,6 +138,7 @@ export const Create = () => {
       <Nav type="main" />
       <Side />
       <div id="create">
+        <h2>Lets create a poll!</h2>
         <form
           method="post"
           autoComplete="off"
@@ -194,7 +195,7 @@ export const Create = () => {
                 )}
               </div>
             ))}
-            <button type="button" className="background" onClick={addOption}>
+            <button type="button" className="container" onClick={addOption}>
               <div>Add option</div>
             </button>
           </main>

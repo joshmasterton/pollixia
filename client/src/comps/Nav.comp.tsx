@@ -51,7 +51,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
           <div className="img">
             <img alt="logo" src={logo} className="full paddingSmall end" />
           </div>
-          <h4 className="padding">{title}</h4>
+          <h3>{title}</h3>
         </header>
         <main>
           <NavLink to="/polls" className="end">

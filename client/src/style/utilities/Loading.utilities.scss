@@ -21,6 +21,7 @@
   height: var.$spaceSmall !important;
   min-height: var.$spaceSmall !important;
   max-height: var.$spaceSmall !important;
+  box-shadow: var(--shadow);
   background: var(--container);
   background-blend-mode: var.$blend;
   background-size: var.$filterSize;
@@ -35,6 +36,7 @@
   width: 35% !important;
   animation: 0.85s infinite sway ease;
   background: var(--primary);
+  background-blend-mode: var.$blend;
 }
 
 .progressBar .loading > div > div {
