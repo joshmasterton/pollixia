@@ -29,7 +29,7 @@ export const votePoll = async (
     if (error instanceof Error) {
       return res.status(500).json({ error: error.message });
     } else {
-      return res.status(500).json({ error: 'Create poll server error' });
+      return res.status(500).json({ error: 'Vote poll server error' });
     }
   }
 };

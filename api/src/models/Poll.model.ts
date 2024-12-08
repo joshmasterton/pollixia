@@ -67,7 +67,7 @@ export class Poll {
     pid?: number,
     uid?: string,
     page = 0,
-    isActive = true,
+    isActive: boolean = true,
   ) {
     const pollFromDatabase = await sql`
 			SELECT p.*, o.*, v.oid as user_vote	
@@ -75,7 +75,7 @@ export class Poll {
 			LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
 			LEFT JOIN ${sql(tableConfig.getTableConfig().voteTable)} v ON v.pid = p.pid ${uid ? sql`AND v.uid = ${uid}` : sql``}
 			${pid ? sql`WHERE p.pid = ${pid}` : sql``}
-			${isActive ? (pid ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql`WHERE expires_at > CURRENT_TIMESTAMP`) : pid ? sql`AND expires_at < CURRENT_TIMESTAMP` : sql`WHERE expires_at < CURRENT_TIMESTAMP`}
+			${isActive ? (pid ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql`WHERE expires_at > CURRENT_TIMESTAMP`) : sql``}
 			ORDER BY created_at DESC, p.pid, o.oid
 		`;
 

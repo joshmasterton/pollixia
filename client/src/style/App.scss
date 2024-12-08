@@ -15,6 +15,7 @@
 @use './pages/Auth.page.scss';
 @use './pages/Polls.page.scss';
 @use './pages/Create.page.scss';
+@use './pages/PollPage.page.scss';
 @use './base/var.base.scss';
 @use './base/theme.base.scss';
 @use './base/anim.base.scss';
@@ -23,7 +24,8 @@
 @use '@fontsource/inter';
 
 * {
-  font-family: 'inter';
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-align: center;
   resize: none;
   text-decoration: none;

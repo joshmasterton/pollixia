@@ -1,0 +1,19 @@
+@use '../base/var.base.scss';
+
+#poll {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  flex: 1;
+  padding: var.$space;
+  gap: var.$space;
+  padding-top: calc(var.$spaceXSmall * 11.5);
+}
+
+@media screen and (min-width: var.$mobileWidth) {
+  #poll {
+    margin-top: 0;
+    padding-left: calc(var.$spaceSmall * 27);
+  }
+}

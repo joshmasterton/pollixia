@@ -9,6 +9,7 @@ import { Create } from './pages/Create.page';
 import { Polls } from './pages/Polls.page';
 import { Results } from './pages/Results.page';
 import './style/App.scss';
+import { PollPage } from './pages/Poll.page';
 
 export const routes = [
   {
@@ -24,6 +25,14 @@ export const routes = [
     element: (
       <Public>
         <Polls />
+      </Public>
+    ),
+  },
+  {
+    path: '/poll/:pollId',
+    element: (
+      <Public>
+        <PollPage />
       </Public>
     ),
   },

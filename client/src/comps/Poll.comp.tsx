@@ -5,6 +5,7 @@ import { useAppSelector } from '../store';
 import { useEffect, useState } from 'react';
 import { CountdownTimer } from './CountdownTimer.comp';
 import { Loading } from '../utilities/Loading.utilities';
+import { NavLink } from 'react-router-dom';
 
 export const Poll = ({ poll }: { poll: PollType }) => {
   const { user } = useAppSelector((state) => state.user);
@@ -51,9 +52,9 @@ export const Poll = ({ poll }: { poll: PollType }) => {
 
   return (
     <div className="poll">
+      <NavLink to={`/poll/${poll.pid}`} />
       <header>
         <h3>{pollState?.question}</h3>
-        {/* <div>{pollState.category}</div> */}
       </header>
       <div>
         <p>{`Total votes: ${totalVotes}`}</p>

@@ -72,7 +72,7 @@ export const Auth = () => {
         <main>
           <button
             type="button"
-            className="outline large full"
+            className="background large full"
             onClick={() => handleLogin('google')}
           >
             <FcGoogle className="group" />

@@ -7,7 +7,8 @@ const getPollSchema = yup.object().shape({
   fetchSingle: yup.boolean().required('Fetch single required'),
   uid: yup.string().optional(),
   page: yup.number().required(),
-  isActive: yup.boolean().required(),
+  isActive: yup.boolean().optional(),
+  pid: yup.number().optional(),
 });
 
 export const getPoll = async (req: Request, res: Response) => {
@@ -15,7 +16,7 @@ export const getPoll = async (req: Request, res: Response) => {
     const validaton = await getPollSchema.validate(req.query);
     const poll = await new Poll().get(
       validaton.fetchSingle,
-      undefined,
+      validaton.pid,
       validaton.uid,
       validaton.page,
       validaton.isActive,
@@ -26,7 +27,7 @@ export const getPoll = async (req: Request, res: Response) => {
     if (error instanceof Error) {
       return res.status(500).json({ error: error.message });
     } else {
-      return res.status(500).json({ error: 'Create poll server error' });
+      return res.status(500).json({ error: 'Get poll server error' });
     }
   }
 };

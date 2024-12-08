@@ -18,6 +18,7 @@
   display: flex;
   height: var.$space;
   width: 100%;
+  overflow: hidden;
 }
 
 .slider > main > input {
@@ -26,6 +27,7 @@
   appearance: none;
   height: var.$space;
   padding: 0;
+  outline: none;
   background: var(--container);
   background-blend-mode: var.$blend;
   background-size: var.$filterSize;
@@ -35,6 +37,7 @@
   position: absolute;
   width: 100%;
   height: var.$space;
+  border-radius: 0.5rem;
   background: var(--primary);
 }
 

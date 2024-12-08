@@ -17,6 +17,17 @@
   background-blend-mode: var.$blend;
 }
 
+.poll > a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: calc(100% - (var.$spaceSmall * 19));
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .poll img {
   position: absolute;
   top: 0;
@@ -84,6 +95,7 @@
   align-items: center;
   width: 100%;
   gap: var.$spaceXSmall;
+  height: var.$space;
   padding: 0;
 }
 
@@ -111,8 +123,11 @@
 .poll > main > .progressBar > .percent {
   width: 100%;
   background: var(--container);
+  background-size: var.$filterSize;
   background-blend-mode: var.$blend;
   outline: var(--outline);
+  min-height: var.$spaceSmall;
+  max-height: var.$spaceSmall;
 }
 
 .poll > main > .progressBar > .percent > div {

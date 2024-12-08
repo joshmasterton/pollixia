@@ -29,9 +29,6 @@ export const Home = () => {
               Explore results with real-time analytics and make data-driven
               choices confidently
             </div>
-            <NavLink to="/create" className="primary">
-              <div>Create a poll</div>
-            </NavLink>
           </div>
           <div>
             <h2>Decisions made easy</h2>
