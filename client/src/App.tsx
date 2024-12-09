@@ -8,9 +8,8 @@ import { Protected, Public } from './utilities/RouteGuards';
 import { Create } from './pages/Create.page';
 import { Polls } from './pages/Polls.page';
 import { Results } from './pages/Results.page';
-import './style/App.scss';
 import { PollPage } from './pages/PollPage.page';
-import { Loading } from './utilities/Loading.utilities';
+import './style/App.scss';
 
 export const routes = [
   {
@@ -68,11 +67,6 @@ export const routes = [
         <Auth />
       </Public>
     ),
-  },
-  {
-    path: '/__/auth/*',
-    element: <Loading />,
-    errorElement: <Loading />,
   },
 ];
 
