@@ -1,0 +1,46 @@
+@use '../base/var.base.scss';
+
+.pollPie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var.$space;
+  padding: var.$space;
+  height: 20rem;
+  box-shadow: var(--shadow);
+  background: var(--container);
+  background-blend-mode: var.$blend;
+}
+
+.pollPie svg {
+  display: flex;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  max-height: 100%;
+  stroke-opacity: 0%;
+}
+
+.pollPie > main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var.$space;
+}
+
+.pollPie > main > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var.$spaceSmall;
+  padding: var.$spaceSmall;
+  background: var(--backgroundOpac);
+}
+
+.pollPie > main > div > span {
+  width: var.$sizeSmall;
+  height: var.$sizeSmall;
+  background: var(--backgroundOpac);
+}

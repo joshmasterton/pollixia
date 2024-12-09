@@ -21,7 +21,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: calc(100% - (var.$spaceSmall * 19));
+  min-height: calc(var.$size * 4);
   outline: none;
   background: transparent;
   box-shadow: none;
@@ -46,6 +46,7 @@
   flex-direction: column;
   justify-content: end;
   gap: var.$spaceSmall;
+  flex: 1;
 }
 
 .poll > div > div,
@@ -71,7 +72,6 @@
   justify-content: end;
   gap: var.$space;
   width: 100%;
-  flex: 1;
 }
 
 .poll > main > .progressBar {

@@ -73,7 +73,7 @@ export const Create = () => {
     mode: 'onChange',
     defaultValues: {
       question: '',
-      lengthActive: 61,
+      lengthActive: 1,
       options: [
         {
           value: '',
@@ -144,8 +144,9 @@ export const Create = () => {
           autoComplete="off"
           onSubmit={handleSubmit(createPoll)}
         >
+          <h3>Please choose a question</h3>
           <header>
-            <h3>Question</h3>
+            <h4>Question</h4>
             <label htmlFor="question" className="textarea">
               <textarea
                 maxLength={200}
@@ -158,23 +159,26 @@ export const Create = () => {
               )}
             </label>
           </header>
+          <h3>Choose a category</h3>
           <div>
-            <h3>Category</h3>
+            <h4>Category</h4>
             <Dropdown options={categories} setValue={setValue} />
             {errors.category && (
               <p className="error">{errors.category.message}</p>
             )}
           </div>
+          <h3>How long will the poll be?</h3>
           <div>
-            <h3>Length of poll</h3>
+            <h4>Length of poll</h4>
             <Slider
               register={register('lengthActive')}
               type={`${active}hr`}
               value={active}
             />
           </div>
+          <h3>Provide options for the poll?</h3>
           <main>
-            <h3>Options</h3>
+            <h4>Options</h4>
             {fields.map((field, index) => (
               <div key={field.id} className="label">
                 <label htmlFor={`options.${index}.value`}>
@@ -195,7 +199,7 @@ export const Create = () => {
                 )}
               </div>
             ))}
-            <button type="button" className="container" onClick={addOption}>
+            <button type="button" className="background" onClick={addOption}>
               <div>Add option</div>
             </button>
           </main>

@@ -14,6 +14,11 @@ button {
   color: var(--color);
 }
 
+button.fit {
+  min-width: fit-content;
+  width: fit-content;
+}
+
 button.blur {
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;

@@ -8,9 +8,7 @@
   align-items: start;
   gap: var.$spaceSmall;
   padding: var.$spaceSmall;
-  box-shadow: var(--shadow);
-  background: var(--container);
-  background-blend-mode: var.$blend;
+  background: var(--background);
 }
 
 .slider > main {
@@ -18,7 +16,6 @@
   display: flex;
   height: var.$space;
   width: 100%;
-  overflow: hidden;
 }
 
 .slider > main > input {
@@ -29,13 +26,13 @@
   padding: 0;
   box-shadow: none;
   background: transparent;
+  background: var(--container);
 }
 
 .slider > main > span {
+  display: none;
   position: absolute;
-  width: 100%;
   height: var.$space;
-  border-radius: 0.25rem;
   background: var(--primary);
   background-blend-mode: var.$blend;
 }
@@ -48,6 +45,6 @@
   height: var.$space;
   border-radius: var.$round;
   box-shadow: var(--shadow);
-  background: var(--primary);
   background-blend-mode: var.$blend;
+  background: var(--primary);
 }

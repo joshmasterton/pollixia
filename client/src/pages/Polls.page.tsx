@@ -39,15 +39,15 @@ export const Polls = () => {
             {polls ? (
               <>
                 <header>
-                  <button type="button" className="container start">
+                  <button type="button" className="container start fit">
                     <BiNews />
                     <div>Latest</div>
                   </button>
-                  <button type="button" className="container start">
+                  <button type="button" className="container start fit">
                     <BsFire />
                     <div>Trending</div>
                   </button>
-                  <button type="button" className="container start">
+                  <button type="button" className="container start fit">
                     <BiPoll />
                     <div>All</div>
                   </button>

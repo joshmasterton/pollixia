@@ -3,9 +3,10 @@ import { Poll } from '../comps/Poll.comp';
 import { useAppDispatch, useAppSelector } from '../store';
 import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
-import { getPoll } from '../features/pollSlice.feature';
+import { clearPoll, getPoll } from '../features/pollSlice.feature';
 import { Loading } from '../utilities/Loading.utilities';
 import { useLocation } from 'react-router-dom';
+import { Footer } from '../comps/Footer.comp';
 
 export const PollPage = () => {
   const dispatch = useAppDispatch();
@@ -18,17 +19,41 @@ export const PollPage = () => {
     if (pid) {
       getPoll(dispatch, 0, user?.uid, parseInt(pid), false, false);
     }
+
+    return () => {
+      dispatch(clearPoll());
+    };
   }, [pid]);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (pid) {
+        await getPoll(
+          dispatch,
+          0,
+          user?.uid,
+          parseInt(pid),
+          false,
+          false,
+          false,
+        );
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       <Nav type="main" />
       <Side />
-      {pollLoading ? (
-        <Loading />
-      ) : (
-        <div id="poll">{poll && <Poll poll={poll} />}</div>
-      )}
+      <div id="poll">
+        <h2>{`Lets check out the poll!`}</h2>
+        <main>
+          {pollLoading ? <Loading /> : poll && <Poll poll={poll} isPoll />}
+        </main>
+        <Footer />
+      </div>
     </>
   );
 };

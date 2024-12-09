@@ -79,9 +79,13 @@ export const getPoll = async (
   pid?: number,
   incrementPage = false,
   isActive = true,
+  isLoading = true,
 ) => {
   try {
-    dispatch(setPollLoading());
+    if (isLoading) {
+      dispatch(setPollLoading());
+    }
+
     const response = await axios.get(
       `${API_URL}/getPoll?fetchSingle=${true}&uid=${uid}&page=${page}&isActive=${isActive}&pid=${pid}`,
     );

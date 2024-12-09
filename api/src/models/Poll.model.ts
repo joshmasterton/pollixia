@@ -35,9 +35,7 @@ export class Poll {
 
     // Calculate poll time till expire
     const expireTime = new Date();
-    expireTime.setMinutes(
-      expireTime.getMinutes() + Math.round(this.lengthActive / 15) * 15,
-    );
+    expireTime.setHours(expireTime.getHours() + Math.round(this.lengthActive));
 
     const createdPoll = await sql`
 			INSERT INTO ${sql(tableConfig.getTableConfig().pollTable)} (
@@ -158,6 +156,17 @@ export class Poll {
 					SET oid = ${oid}
 					WHERE pid = ${pid}
 					AND uid = ${uid}
+				`;
+      } else {
+        await sql`
+					UPDATE ${sql(tableConfig.getTableConfig().optionsTable)}
+					SET votes = votes - 1
+					WHERE oid = ${existingVote[0].oid}
+				`;
+
+        await sql`
+					DELETE FROM ${sql(tableConfig.getTableConfig().voteTable)}
+					WHERE vid = ${existingVote[0].vid}
 				`;
       }
     } else {

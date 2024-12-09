@@ -8,6 +8,7 @@
 @use './comps/Error.comp.scss';
 @use './comps/Footer.comp.scss';
 @use './comps/Side.comp.style.scss';
+@use './comps/PollPie.comp.scss';
 @use './comps/List.comp.scss';
 @use './comps/Theme.comp.scss';
 @use './comps/CountdownTimer.comp.scss';
@@ -42,8 +43,7 @@
 }
 
 ::placeholder {
-  opacity: 45%;
-  color: var(--color);
+  color: var(--colorPlaceholder);
 }
 
 .padding {
@@ -71,6 +71,7 @@ body {
 
 h1 {
   font-size: 3rem;
+  padding-bottom: var.$space;
 }
 
 h2 {

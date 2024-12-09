@@ -8,11 +8,19 @@
   flex: 1;
   padding: var.$space;
   gap: var.$space;
-  padding-top: calc(var.$spaceXSmall * 11.5);
+  padding-top: calc(var.$spaceXSmall * 11);
+}
+
+#poll > main {
+  display: flex;
+  flex-direction: column;
+  gap: var.$space;
+  flex: 1;
 }
 
 @media screen and (min-width: var.$mobileWidth) {
   #poll {
+    display: flex;
     margin-top: 0;
     padding-left: calc(var.$spaceSmall * 27);
   }

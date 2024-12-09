@@ -6,8 +6,15 @@ import { useEffect, useState } from 'react';
 import { CountdownTimer } from './CountdownTimer.comp';
 import { Loading } from '../utilities/Loading.utilities';
 import { NavLink } from 'react-router-dom';
+import { PollPie } from './PollPie';
 
-export const Poll = ({ poll }: { poll: PollType }) => {
+export const Poll = ({
+  poll,
+  isPoll = false,
+}: {
+  poll: PollType;
+  isPoll?: boolean;
+}) => {
   const { user } = useAppSelector((state) => state.user);
   const [loadingOptionId, setLoadingOptionId] = useState<number | null>(null);
   const [pollState, setPollState] = useState(poll);
@@ -51,50 +58,53 @@ export const Poll = ({ poll }: { poll: PollType }) => {
   }, [poll, pollState]);
 
   return (
-    <div className="poll">
-      <NavLink to={`/poll/${poll.pid}`} />
-      <header>
-        <h3>{pollState?.question}</h3>
-      </header>
-      <div>
-        <p>{`Total votes: ${totalVotes}`}</p>
-        <CountdownTimer expiresAt={pollState.expires_at} />
-      </div>
-      <main>
-        {pollState &&
-          pollState?.options?.map((option) => (
-            <button
-              key={option?.text}
-              onClick={async () => await vote(option.oid)}
-              type="button"
-              className={`progressBar ${option.isSelected ? 'primaryBox' : ''}`}
-              disabled={loadingOptionId !== null}
-            >
-              <div>
+    <>
+      <div className="poll">
+        <NavLink to={`/poll/${poll.pid}`} />
+        <header>
+          <h3>{pollState?.question}</h3>
+        </header>
+        <div>
+          <p>{`Total votes: ${totalVotes}`}</p>
+          <CountdownTimer expiresAt={pollState.expires_at} />
+        </div>
+        <main>
+          {pollState &&
+            pollState?.options?.map((option) => (
+              <button
+                key={option?.text}
+                onClick={async () => await vote(option.oid)}
+                type="button"
+                className={`progressBar ${option.isSelected ? 'primaryBox' : ''}`}
+                disabled={loadingOptionId !== null}
+              >
                 <div>
-                  <div />
+                  <div>
+                    <div />
+                  </div>
+                  <div>{option?.text}</div>
+                  <p>{option?.votes}</p>
                 </div>
-                <div>{option?.text}</div>
-                <p>{option?.votes}</p>
-              </div>
-              {loadingOptionId === option.oid ? (
-                <Loading />
-              ) : (
-                <div className="percent">
-                  <div
-                    style={{
-                      width: `${
-                        totalVotes !== 0
-                          ? Math.round((option?.votes / totalVotes) * 100)
-                          : 0
-                      }%`,
-                    }}
-                  />
-                </div>
-              )}
-            </button>
-          ))}
-      </main>
-    </div>
+                {loadingOptionId === option.oid ? (
+                  <Loading />
+                ) : (
+                  <div className="percent">
+                    <div
+                      style={{
+                        width: `${
+                          totalVotes !== 0
+                            ? Math.round((option?.votes / totalVotes) * 100)
+                            : 0
+                        }%`,
+                      }}
+                    />
+                  </div>
+                )}
+              </button>
+            ))}
+        </main>
+      </div>
+      {isPoll && <PollPie poll={pollState} />}
+    </>
   );
 };

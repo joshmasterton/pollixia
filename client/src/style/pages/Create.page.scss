@@ -27,7 +27,11 @@
   flex-direction: column;
   align-items: start;
   gap: var.$space;
+  padding: var.$space;
   width: 100%;
+  box-shadow: var(--shadow);
+  background: var(--container);
+  background-blend-mode: var.$blend;
 }
 
 #create > form > main {
@@ -36,6 +40,10 @@
   flex-direction: column;
   align-items: start;
   gap: var.$space;
+  padding: var.$space;
+  box-shadow: var(--shadow);
+  background: var(--container);
+  background-blend-mode: var.$blend;
 }
 
 #create > form > main > button {
@@ -47,10 +55,11 @@
   flex-direction: column;
   align-items: start;
   width: 100%;
-}
-
-#create > form > div > h3 {
-  padding-bottom: var.$space;
+  gap: var.$space;
+  padding: var.$space;
+  box-shadow: var(--shadow);
+  background: var(--container);
+  background-blend-mode: var.$blend;
 }
 
 #create > form > footer {

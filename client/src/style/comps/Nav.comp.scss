@@ -41,6 +41,7 @@ nav > div > span {
   height: calc(var.$spaceXSmall * 11);
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
+  background: var(--backgroundOpac);
   border-radius: 0;
   z-index: 0;
 }

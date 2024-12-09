@@ -11,10 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.13.5",
     "@fontsource/inter": "^5.1.0",
     "@hookform/resolvers": "^3.9.1",
+    "@mui/x-charts": "^7.23.1",
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.8",
+    "d3": "^7.9.0",
     "firebase": "^11.0.2",
     "modern-normalize": "^3.0.1",
     "react": "^18.3.1",
@@ -29,6 +32,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
+    "@types/d3": "^7.4.3",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",

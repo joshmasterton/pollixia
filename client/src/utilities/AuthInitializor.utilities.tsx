@@ -37,6 +37,17 @@ export const AuthInitializor = ({ children }: { children: ReactNode }) => {
   }, [dispatch]);
 
   useEffect(() => {
+    const interval = setInterval(async () => {
+      const user = auth.currentUser;
+      if (user) {
+        await user.getIdToken(true);
+      }
+    }, 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
     getTheme(dispatch);
   }, []);
 

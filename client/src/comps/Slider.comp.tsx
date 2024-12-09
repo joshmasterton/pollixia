@@ -5,29 +5,18 @@ export const Slider = <T extends string>({
   value,
   type,
 }: SliderProps<T>) => {
-  let displayTime = value;
-  let displayType = type;
-
-  if (value > 60) {
-    displayTime = Math.floor(value / 60);
-    displayType = 'hr';
-  } else {
-    displayType = 'min';
-  }
-
   return (
     <div className="slider">
-      <div>
-        {displayTime} {displayType}
-      </div>
+      <div>{type}</div>
       <main>
-        <span style={{ width: `${(value / 1440) * 100 + 1.5}%` }}></span>
+        <span style={{ width: `${((value - 1) / (24 - 1)) * 100}%` }}></span>
         <input
           type="range"
           {...register}
           min={1}
-          max={1400}
-          defaultValue={60}
+          max={24}
+          defaultValue={1}
+          step={1}
         />
       </main>
     </div>

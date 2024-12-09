@@ -9,7 +9,7 @@ import { Create } from './pages/Create.page';
 import { Polls } from './pages/Polls.page';
 import { Results } from './pages/Results.page';
 import './style/App.scss';
-import { PollPage } from './pages/Poll.page';
+import { PollPage } from './pages/PollPage.page';
 
 export const routes = [
   {
