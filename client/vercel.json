@@ -3,10 +3,6 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    },
-    {
-      "source": "/__/auth/:path*",
-      "destination": "https://pollixia.com/__/auth/:path*"
     }
   ]
 }
