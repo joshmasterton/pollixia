@@ -6,7 +6,7 @@
     },
     {
       "source": "/__/auth/:path*",
-      "destination": "https://pollixia-b9bdb.firebaseapp.com/__/auth/:path*"
+      "destination": "https://pollixia.com/__/auth/:path*"
     }
   ]
 }
