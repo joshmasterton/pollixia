@@ -18,12 +18,13 @@
   display: flex;
   overflow: scroll;
   width: 100%;
+  padding: var.$spaceXXSmall;
   gap: var.$space;
 }
 
 @media screen and (min-width: var.$mobileWidth) {
   #polls {
     margin-top: 0;
-    padding-left: calc(var.$spaceSmall * 27);
+    padding-left: calc(var.$spaceSmall * 30);
   }
 }

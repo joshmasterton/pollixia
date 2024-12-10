@@ -11,6 +11,10 @@
   box-shadow: var(--shadow);
 }
 
+.side .theme {
+  align-self: end;
+}
+
 .theme > button div {
   display: none;
 }

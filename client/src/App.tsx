@@ -24,7 +24,7 @@ export const routes = [
   },
   {
     path: '/__/auth/handler',
-    element: <div>Redirecting...</div>, // Placeholder or null
+    element: <div id="redirect">Redirecting...</div>,
   },
   {
     path: '/polls',

@@ -9,5 +9,10 @@
   width: 100%;
   padding: var.$space;
   gap: var.$space;
-  background: red;
+}
+
+#error svg {
+  min-height: calc(var.$size * 3);
+  min-width: calc(var.$size * 3);
+  padding: 0;
 }

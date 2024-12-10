@@ -75,7 +75,6 @@ export const Side = () => {
           </NavLink>
         </div>
         <div>
-          <h4>Settings</h4>
           <Theme />
         </div>
       </ul>

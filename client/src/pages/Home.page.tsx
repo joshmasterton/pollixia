@@ -26,8 +26,9 @@ export const Home = () => {
           <div>
             <h2>Everyone has a voice</h2>
             <div>
-              Explore results with real-time analytics and make data-driven
-              choices confidently
+              Pollixia allows you to create, share, and engage with polls in
+              real time. Dive into dynamic analytics, explore results instantly,
+              and make confident, data-driven decisions.
             </div>
           </div>
           <div>

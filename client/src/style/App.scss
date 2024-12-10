@@ -37,7 +37,7 @@
   padding: 0;
   margin: 0;
   outline-offset: 0;
-  line-height: 1;
+  line-height: 1.2;
   list-style: none;
   outline: 2px solid transparent;
   border-radius: var.$round;
@@ -126,6 +126,15 @@ textarea {
   height: 100%;
   flex: 1;
   gap: var.$space;
+}
+
+#redirect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
 
 .primaryBox {

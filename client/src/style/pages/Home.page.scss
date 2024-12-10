@@ -21,8 +21,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var.$spaceLarge;
+  justify-content: center;
+  padding-bottom: var.$spaceLarge;
   gap: var.$spaceLarge;
+}
+
+#home > header > * {
+  text-align: center;
 }
 
 #home > main {

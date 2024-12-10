@@ -6,13 +6,14 @@
   overflow: scroll;
   left: 0;
   top: 0;
-  width: calc(var.$spaceSmall * 25);
+  width: calc(var.$spaceSmall * 28);
   height: 100%;
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
-  border-radius: 0;
   box-shadow: var(--shadow);
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
   background-blend-mode: var.$blend;
   z-index: 3;
 }
