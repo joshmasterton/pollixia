@@ -10,6 +10,7 @@ import { Polls } from './pages/Polls.page';
 import { Results } from './pages/Results.page';
 import { PollPage } from './pages/PollPage.page';
 import './style/App.scss';
+import { Error } from './comps/Error.comp';
 
 export const routes = [
   {
@@ -19,6 +20,7 @@ export const routes = [
         <Home />
       </Public>
     ),
+    errorElement: <Error />,
   },
   {
     path: '/polls',
@@ -27,6 +29,7 @@ export const routes = [
         <Polls />
       </Public>
     ),
+    errorElement: <Error />,
   },
   {
     path: '/poll/:pollId',
@@ -35,6 +38,7 @@ export const routes = [
         <PollPage />
       </Public>
     ),
+    errorElement: <Error />,
   },
   {
     path: '/create',
@@ -43,6 +47,7 @@ export const routes = [
         <Create />
       </Protected>
     ),
+    errorElement: <Error />,
   },
   {
     path: '/vote',
@@ -51,6 +56,7 @@ export const routes = [
         <Polls />
       </Public>
     ),
+    errorElement: <Error />,
   },
   {
     path: '/results',
@@ -59,6 +65,7 @@ export const routes = [
         <Results />
       </Public>
     ),
+    errorElement: <Error />,
   },
   {
     path: '/auth',
@@ -67,6 +74,7 @@ export const routes = [
         <Auth />
       </Public>
     ),
+    errorElement: <Error />,
   },
 ];
 

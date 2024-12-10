@@ -15,6 +15,7 @@
 @use './pages/Home.page.scss';
 @use './pages/Auth.page.scss';
 @use './pages/Polls.page.scss';
+@use './pages/ErrorPage.page.scss';
 @use './pages/Create.page.scss';
 @use './pages/PollPage.page.scss';
 @use './base/var.base.scss';
@@ -71,7 +72,6 @@ body {
 
 h1 {
   font-size: 3rem;
-  padding-bottom: var.$space;
 }
 
 h2 {
@@ -120,12 +120,11 @@ textarea {
 .box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   width: 100%;
   height: 100%;
   flex: 1;
-  padding: var.$space;
   gap: var.$space;
 }
 

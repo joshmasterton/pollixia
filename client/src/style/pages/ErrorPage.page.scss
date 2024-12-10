@@ -1,0 +1,13 @@
+@use '../base/var.base.scss';
+
+#error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  padding: var.$space;
+  gap: var.$space;
+  background: red;
+}
