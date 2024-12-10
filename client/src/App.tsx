@@ -9,8 +9,8 @@ import { Create } from './pages/Create.page';
 import { Polls } from './pages/Polls.page';
 import { Results } from './pages/Results.page';
 import { PollPage } from './pages/PollPage.page';
-import './style/App.scss';
 import { Error } from './comps/Error.comp';
+import './style/App.scss';
 
 export const routes = [
   {
@@ -21,6 +21,10 @@ export const routes = [
       </Public>
     ),
     errorElement: <Error />,
+  },
+  {
+    path: '/__/auth/handler',
+    element: <div>Redirecting...</div>, // Placeholder or null
   },
   {
     path: '/polls',

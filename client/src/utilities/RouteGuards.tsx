@@ -8,7 +8,7 @@ export const Protected = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/auth');
+      navigate('/login');
     }
   }, [user]);
 
