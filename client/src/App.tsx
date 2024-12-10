@@ -68,7 +68,7 @@ export const routes = [
     errorElement: <Error />,
   },
   {
-    path: '/auth',
+    path: '/login',
     element: (
       <Public>
         <Auth />

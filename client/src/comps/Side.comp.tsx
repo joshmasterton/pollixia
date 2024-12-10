@@ -61,7 +61,7 @@ export const Side = () => {
               <div>Logout</div>
             </button>
           ) : (
-            <NavLink to="/auth" className="full start">
+            <NavLink to="/login" className="full start">
               <BiLogIn />
               <div>Login</div>
             </NavLink>

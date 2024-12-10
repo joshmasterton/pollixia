@@ -75,7 +75,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
                 <div>Logout</div>
               </button>
             ) : (
-              <NavLink to="/auth" className="full end login">
+              <NavLink to="/login" className="full end login">
                 <div>Login</div>
               </NavLink>
             )}
@@ -116,7 +116,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
               <BiLogOut />
             </button>
           ) : (
-            <NavLink to="/auth" className="full end">
+            <NavLink to="/login" className="full end">
               <div>Login</div>
               <BiLogIn />
             </NavLink>
