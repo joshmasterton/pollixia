@@ -11,11 +11,11 @@ export const PollPie = ({ poll }: { poll: PollType }) => {
   const { localTheme } = useAppSelector((state) => state.theme);
   const [chartData, setChartData] = useState<ChartDataType>([]);
   const optionColors = [
-    'rgba(231, 201, 43, 0.75)',
-    'rgba(231, 146, 39, 0.75)',
     'rgba(59, 84, 226, 0.75)',
     'rgba(98, 62, 208, 0.75)',
     'rgba(85, 51, 173, 0.75)',
+    'rgba(231, 201, 43, 0.75)',
+    'rgba(231, 146, 39, 0.75)',
   ];
 
   useEffect(() => {

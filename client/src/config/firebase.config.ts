@@ -5,7 +5,7 @@ import { getAuth, GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyAeQNQ2jPkyJ_88G1BYNpZg62EToIX5Tg4',
-  authDomain: 'pollixia-b9bdb.firebaseapp.com',
+  authDomain: 'www.pollixia.com',
   projectId: 'pollixia-b9bdb',
   storageBucket: 'pollixia-b9bdb.firebasestorage.app',
   messagingSenderId: '71110692201',
