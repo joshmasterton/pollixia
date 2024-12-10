@@ -3,6 +3,7 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
+    },
+    { "source": "/__/auth/handler", "destination": "/__/auth/handler" }
   ]
 }
