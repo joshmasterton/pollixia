@@ -20,6 +20,12 @@ export type PollType = {
   }[];
 };
 
+export type PopupType = {
+  id: string;
+  text: string;
+  title?: string;
+};
+
 export type CreateFormData = {
   question: string;
   category: string;

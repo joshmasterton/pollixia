@@ -15,7 +15,10 @@ import { CgClose } from 'react-icons/cg';
 export const Nav = ({ type }: { type: 'home' | 'main' }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const currentPage = location.pathname.split('/').pop();
+  const currentPage =
+    location.pathname.split('/').length === 3
+      ? location.pathname.split('/').splice(1, 1)[0]
+      : location.pathname.split('/').pop();
   const title = currentPage
     ? currentPage?.charAt(0).toUpperCase() + currentPage?.slice(1)
     : '';

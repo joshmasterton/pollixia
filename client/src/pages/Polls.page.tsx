@@ -28,7 +28,6 @@ export const Polls = () => {
   return (
     <>
       <Nav type="main" />
-
       <Side />
       <div id="polls">
         <h2>Lets get started voting!</h2>

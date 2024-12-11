@@ -10,10 +10,11 @@ import { Side } from '../comps/Side.comp';
 import { Slider } from '../comps/Slider.comp';
 import axios from 'axios';
 import { API_URL } from '../utilities/Api.utilitities';
-import { useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../utilities/Loading.utilities';
 import { Footer } from '../comps/Footer.comp';
+import { activatePopup } from '../features/popupSlice.feature';
 
 // Validation schema for creating poll
 const createSchema = yup.object().shape({
@@ -43,6 +44,7 @@ const createSchema = yup.object().shape({
 
 export const Create = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const { user } = useAppSelector((state) => state.user);
 
@@ -124,10 +126,10 @@ export const Create = () => {
       navigate('/polls');
     } catch (error) {
       if (error instanceof Error) {
-        console.error(error.message);
+        activatePopup(dispatch, error.message, '');
+      } else {
+        activatePopup(dispatch, 'Error signing in', '');
       }
-
-      console.error('Create poll error');
     } finally {
       setLoading(false);
     }

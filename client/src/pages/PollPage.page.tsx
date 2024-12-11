@@ -23,25 +23,7 @@ export const PollPage = () => {
     return () => {
       dispatch(clearPoll());
     };
-  }, [pid]);
-
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      if (pid) {
-        await getPoll(
-          dispatch,
-          0,
-          user?.uid,
-          parseInt(pid),
-          false,
-          false,
-          false,
-        );
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  }, [pid, user?.uid, dispatch]);
 
   return (
     <>
@@ -50,7 +32,7 @@ export const PollPage = () => {
       <div id="poll">
         <h2>{`Lets check out the poll!`}</h2>
         <main>
-          {pollLoading ? <Loading /> : poll && <Poll poll={poll} isPoll />}
+          {pollLoading ? <Loading /> : poll && <Poll poll={poll} isPie />}
         </main>
         <Footer />
       </div>

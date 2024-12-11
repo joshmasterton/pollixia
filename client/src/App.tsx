@@ -11,6 +11,8 @@ import { Results } from './pages/Results.page';
 import { PollPage } from './pages/PollPage.page';
 import { Error } from './comps/Error.comp';
 import './style/App.scss';
+import { Privacy } from './pages/Privacy.page';
+import { Popup } from './comps/Popup.comp';
 
 export const routes = [
   {
@@ -80,6 +82,15 @@ export const routes = [
     ),
     errorElement: <Error />,
   },
+  {
+    path: '/privacy',
+    element: (
+      <Public>
+        <Privacy />
+      </Public>
+    ),
+    errorElement: <Error />,
+  },
 ];
 
 const router = createBrowserRouter(routes, {
@@ -96,6 +107,7 @@ export const App = () => {
   return (
     <Provider store={store}>
       <AuthInitializor>
+        <Popup />
         <RouterProvider
           future={{
             v7_startTransition: true,

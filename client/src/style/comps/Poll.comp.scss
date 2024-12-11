@@ -74,6 +74,10 @@
   width: 100%;
 }
 
+.poll > main > a {
+  align-self: end;
+}
+
 .poll > main > .progressBar {
   position: relative;
   display: flex;

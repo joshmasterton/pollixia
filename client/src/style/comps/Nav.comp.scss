@@ -1,4 +1,5 @@
 @use '../base/var.base.scss';
+@use '../base/anim.base.scss';
 
 nav {
   position: fixed;
@@ -43,6 +44,7 @@ nav > div > span {
   -webkit-backdrop-filter: var.$filter;
   background: var(--backgroundOpac);
   border-radius: 0;
+  transition: height anim.$anim;
   z-index: 0;
 }
 
@@ -81,14 +83,23 @@ nav > footer {
   top: 0;
   right: 0;
   width: 100%;
-  transform: translateY(-17rem);
+  transform: translateY(-12.25rem);
   z-index: 1;
+  opacity: 0%;
+  transition:
+    opacity anim.$anim 0.2s,
+    transform anim.$anim;
   visibility: hidden;
 }
 
 nav.active > footer {
   visibility: visible;
-  transform: translateY(calc(var.$spaceSmall * 7));
+  opacity: 100%;
+  transition:
+    opacity anim.$anim 0.2s,
+    transform anim.$anim,
+    visibility;
+  transform: translateY(calc(var.$spaceSmall * 6));
 }
 
 nav > footer > div {
@@ -125,7 +136,30 @@ nav > footer > div {
   }
 
   nav > footer {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(-12.25rem);
+    z-index: 1;
+    opacity: 0%;
+    transition:
+      opacity anim.$anim 0.2s,
+      transform anim.$anim;
+    visibility: hidden;
+  }
+
+  nav.active > footer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(-12.25rem);
+    z-index: 1;
+    opacity: 0%;
+    transition:
+      opacity anim.$anim 0.2s,
+      transform anim.$anim;
     visibility: hidden;
   }
 }

@@ -20,6 +20,11 @@ a > p {
   padding: var.$spaceSmall;
 }
 
+a.fit {
+  min-width: fit-content;
+  width: fit-content;
+}
+
 a.end > svg {
   padding-left: 0;
 }

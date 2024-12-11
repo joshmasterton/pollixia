@@ -28,6 +28,9 @@ export const Footer = () => {
         <NavLink to="/results">
           <p>Results</p>
         </NavLink>
+        <NavLink to="/privacy">
+          <p>Privacy</p>
+        </NavLink>
       </main>
       <footer>
         <div className="img">

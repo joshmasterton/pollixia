@@ -1,0 +1,44 @@
+@use '../base/var.base.scss';
+@use '../base/anim.base.scss';
+
+#popups {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: calc(100% - (var.$space * 2));
+  bottom: var.$space;
+  gap: var.$space;
+  right: var.$space;
+  z-index: 4;
+}
+
+#popups > div > * {
+  color: white;
+}
+
+#popups > div {
+  display: flex;
+  flex-direction: column;
+  padding: var.$space;
+  gap: var.$space;
+  animation: popupEntrance anim.$anim;
+  backdrop-filter: var.$filter;
+  -webkit-backdrop-filter: var.$filter;
+  background-blend-mode: var.$blend;
+  background: var(--primary);
+  box-shadow: var(--shadow);
+}
+
+@keyframes popupEntrance {
+  from {
+    transform: translateY(10rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}
+
+#popups > div > button {
+  align-self: end;
+}

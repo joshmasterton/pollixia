@@ -7,6 +7,7 @@
 @use './comps/Input.comp.scss';
 @use './comps/Error.comp.scss';
 @use './comps/Footer.comp.scss';
+@use './comps/Popup.comp.scss';
 @use './comps/Side.comp.style.scss';
 @use './comps/PollPie.comp.scss';
 @use './comps/List.comp.scss';
@@ -14,6 +15,7 @@
 @use './comps/CountdownTimer.comp.scss';
 @use './pages/Home.page.scss';
 @use './pages/Auth.page.scss';
+@use './pages/Privacy.page.scss';
 @use './pages/Polls.page.scss';
 @use './pages/ErrorPage.page.scss';
 @use './pages/Create.page.scss';

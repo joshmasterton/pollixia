@@ -1,24 +1,49 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { PollType } from '../types/slice.types';
 import { API_URL } from '../utilities/Api.utilitities';
-import { useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { useEffect, useState } from 'react';
 import { CountdownTimer } from './CountdownTimer.comp';
 import { Loading } from '../utilities/Loading.utilities';
 import { NavLink } from 'react-router-dom';
 import { PollPie } from './PollPie';
+import { activatePopup } from '../features/popupSlice.feature';
+import { getPoll } from '../features/pollSlice.feature';
 
 export const Poll = ({
   poll,
-  isPoll = false,
+  isPie = false,
 }: {
   poll: PollType;
-  isPoll?: boolean;
+  isPie?: boolean;
 }) => {
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
   const [loadingOptionId, setLoadingOptionId] = useState<number | null>(null);
   const [pollState, setPollState] = useState(poll);
   const [totalVotes, setTotalVotes] = useState(0);
+
+  useEffect(() => {
+    if (poll.pid && isPie) {
+      const interval = setInterval(async () => {
+        const updatedPoll = await getPoll(
+          dispatch,
+          0,
+          user?.uid,
+          poll.pid,
+          false,
+          false,
+          false,
+        );
+
+        if (updatedPoll) {
+          setPollState(updatedPoll);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, []);
 
   const vote = async (oid: number) => {
     if (loadingOptionId === null) {
@@ -42,8 +67,12 @@ export const Poll = ({
           setPollState(response.data);
         }
       } catch (error) {
-        if (error instanceof Error) {
-          throw error;
+        if (error instanceof AxiosError) {
+          activatePopup(dispatch, error.response?.data.error, '');
+        } else if (error instanceof Error) {
+          activatePopup(dispatch, error.message, '');
+        } else {
+          activatePopup(dispatch, 'Error signing in', '');
         }
       } finally {
         setLoadingOptionId(null);
@@ -60,7 +89,6 @@ export const Poll = ({
   return (
     <>
       <div className="poll">
-        <NavLink to={`/poll/${poll.pid}`} />
         <header>
           <h3>{pollState?.question}</h3>
         </header>
@@ -102,9 +130,12 @@ export const Poll = ({
                 )}
               </button>
             ))}
+          <NavLink to={`/poll/${poll.pid}`} className="primary fit">
+            <div>Live results</div>
+          </NavLink>
         </main>
       </div>
-      {isPoll && <PollPie poll={pollState} />}
+      {isPie && <PollPie poll={pollState} />}
     </>
   );
 };

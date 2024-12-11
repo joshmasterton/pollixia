@@ -8,8 +8,8 @@ import {
 } from '../config/firebase.config';
 import { clearUser, setUser } from '../features/userSlice.feature';
 import { useAppDispatch } from '../store';
-import { FirebaseError } from 'firebase/app';
 import { useNavigate } from 'react-router-dom';
+import { activatePopup } from '../features/popupSlice.feature';
 
 export const Auth = () => {
   const dispatch = useAppDispatch();
@@ -43,18 +43,10 @@ export const Auth = () => {
         dispatch(clearUser());
       }
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        if (error.code === 'auth/account-exists-with-different-credential') {
-          const email = error.customData?.email as string;
-
-          window.close();
-
-          setTimeout(() => {
-            alert(
-              `${email} already associated with an account, please log in with ${type === 'google' ? 'github' : 'google'}`,
-            );
-          }, 500);
-        }
+      if (error instanceof Error) {
+        activatePopup(dispatch, error.message, '');
+      } else {
+        activatePopup(dispatch, 'Error signing in', '');
       }
     }
   };

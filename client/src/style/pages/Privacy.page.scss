@@ -1,0 +1,31 @@
+@use '../base/var.base.scss';
+
+#privacy {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  text-align: start;
+  width: 100%;
+  min-height: 100%;
+  flex: 1;
+  padding: var.$space;
+  gap: var.$space;
+  padding-top: calc(var.$spaceXSmall * 11);
+}
+
+#privacy > main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  padding: var.$spaceXXSmall;
+  gap: var.$space;
+}
+
+@media screen and (min-width: var.$mobileWidth) {
+  #privacy {
+    margin-top: 0;
+    padding-left: calc(var.$spaceSmall * 30);
+  }
+}

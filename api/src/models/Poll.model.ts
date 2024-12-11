@@ -78,7 +78,7 @@ export class Poll {
 		`;
 
     if (pollFromDatabase.length === 0) {
-      throw new Error('No polls found');
+      return;
     }
 
     const polls = pollFromDatabase.reduce((acc, row) => {

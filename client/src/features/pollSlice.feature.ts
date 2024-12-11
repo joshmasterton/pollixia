@@ -1,7 +1,8 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { PollType } from '../types/slice.types';
 import { API_URL } from '../utilities/Api.utilitities';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+import { activatePopup } from './popupSlice.feature';
 
 // Initial state
 const initialState: {
@@ -91,13 +92,21 @@ export const getPoll = async (
     );
 
     const poll: PollType = response.data;
+
     dispatch(setPoll(poll));
     if (incrementPage) {
       dispatch(setPollPage(page + 1));
     }
+
+    return poll;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
+    if (error instanceof AxiosError) {
+      console.log(error);
+      activatePopup(dispatch, error.response?.data.error, '');
+    } else if (error instanceof Error) {
+      activatePopup(dispatch, error.message, '');
+    } else {
+      activatePopup(dispatch, 'Error signing in', '');
     }
   } finally {
     dispatch(clearPollLoading());
@@ -123,8 +132,13 @@ export const getPolls = async (
       dispatch(setPollsPage(page + 1));
     }
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
+    if (error instanceof AxiosError) {
+      console.log(error);
+      activatePopup(dispatch, error.response?.data.error, '');
+    } else if (error instanceof Error) {
+      activatePopup(dispatch, error.message, '');
+    } else {
+      activatePopup(dispatch, 'Error signing in', '');
     }
   } finally {
     dispatch(clearPollsLoading());
