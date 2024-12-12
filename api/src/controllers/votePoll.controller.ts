@@ -8,6 +8,7 @@ const voteSchema = yup.object().shape({
   uid: yup.string().optional(),
   pid: yup.number().required(),
   oid: yup.number().required(),
+  cpid: yup.string().required(),
 });
 
 export const votePoll = async (
@@ -21,7 +22,7 @@ export const votePoll = async (
       const validaton = await voteSchema.validate(req.body);
 
       await new Poll().vote(validaton.oid, validaton.pid, user.uid);
-      const poll = await new Poll().get(true, validaton.pid, user.uid);
+      const poll = await new Poll().get(true, validaton.cpid, user.uid);
 
       return res.status(200).json(poll);
     }

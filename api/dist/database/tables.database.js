@@ -6,7 +6,8 @@ const createPollTable = async (name) => {
 		question VARCHAR(200) NOT NULL,
 		category VARCHAR(50) NOT NULL,
 		created_at TIMESTAMPTZ DEFAULT NOW(),
-		expires_at TIMESTAMPTZ NOT NULL
+		expires_at TIMESTAMPTZ NOT NULL,
+		cpid VARCHAR(100) DEFAULT ''
 	)`;
 };
 // Options table

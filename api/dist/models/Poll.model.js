@@ -21,7 +21,7 @@ export class Poll {
         }
         // Calculate poll time till expire
         const expireTime = new Date();
-        expireTime.setMinutes(expireTime.getMinutes() + Math.round(this.lengthActive / 15) * 15);
+        expireTime.setHours(expireTime.getHours() + Math.round(this.lengthActive));
         const createdPoll = await sql `
 			INSERT INTO ${sql(tableConfig.getTableConfig().pollTable)} (
 				question,
@@ -32,13 +32,23 @@ export class Poll {
 				${this.category},
 				${expireTime}
 			) RETURNING *`;
+        const pid = createdPoll[0].pid;
+        const randomString = () => Math.random().toString(36).substr(2, 6);
+        const cpid = `${randomString()}${pid}${randomString()}`;
+        const updatedPoll = await sql `
+			UPDATE ${sql(tableConfig.getTableConfig().pollTable)}
+			SET cpid = ${cpid}
+			WHERE pid = ${pid}
+			RETURNING *
+		`;
         const createdOptions = await sql `
 			INSERT INTO ${sql(tableConfig.getTableConfig().optionsTable)} (
 				pid, text
 			) VALUES ${sql(this.options.map((option) => [createdPoll[0].pid, option.value]))} RETURNING *
 		`;
+        console.log(updatedPoll[0]);
         return {
-            createdPoll: createdPoll[0],
+            createdPoll: updatedPoll[0],
             createdOptions: createdOptions,
         };
     }
@@ -48,17 +58,19 @@ export class Poll {
 			FROM (SELECT * FROM ${sql(tableConfig.getTableConfig().pollTable)} ORDER BY created_at DESC LIMIT ${10} OFFSET ${page * 10}) p
 			LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
 			LEFT JOIN ${sql(tableConfig.getTableConfig().voteTable)} v ON v.pid = p.pid ${uid ? sql `AND v.uid = ${uid}` : sql ``}
-			${pid ? sql `WHERE p.pid = ${pid}` : sql ``}
-			${isActive ? (pid ? sql `AND expires_at > CURRENT_TIMESTAMP` : sql `WHERE expires_at > CURRENT_TIMESTAMP`) : pid ? sql `AND expires_at < CURRENT_TIMESTAMP` : sql `WHERE expires_at < CURRENT_TIMESTAMP`}
+			${pid ? sql `WHERE p.cpid = ${pid}` : sql ``}
+			${isActive ? (pid ? sql `AND expires_at > CURRENT_TIMESTAMP` : sql `WHERE expires_at > CURRENT_TIMESTAMP`) : sql ``}
 			ORDER BY created_at DESC, p.pid, o.oid
+			LIMIT 10 OFFSET ${page * 10}
 		`;
         if (pollFromDatabase.length === 0) {
-            throw new Error('No polls found');
+            return;
         }
         const polls = pollFromDatabase.reduce((acc, row) => {
             let existingPoll = acc.find((poll) => poll.pid === row.pid);
             if (!existingPoll) {
                 existingPoll = {
+                    cpid: row.cpid,
                     pid: row.pid,
                     question: row.question,
                     category: row.category,
@@ -119,6 +131,17 @@ export class Poll {
 					SET oid = ${oid}
 					WHERE pid = ${pid}
 					AND uid = ${uid}
+				`;
+            }
+            else {
+                await sql `
+					UPDATE ${sql(tableConfig.getTableConfig().optionsTable)}
+					SET votes = votes - 1
+					WHERE oid = ${existingVote[0].oid}
+				`;
+                await sql `
+					DELETE FROM ${sql(tableConfig.getTableConfig().voteTable)}
+					WHERE vid = ${existingVote[0].vid}
 				`;
             }
         }

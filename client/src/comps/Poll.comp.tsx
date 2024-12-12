@@ -65,6 +65,7 @@ export const Poll = ({
           {
             uid: user?.uid,
             pid: pollState.pid,
+            cpid: pollState.cpid,
             oid,
           },
           {

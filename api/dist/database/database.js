@@ -1,7 +1,7 @@
 import postgres from 'postgres';
 import dotenv from 'dotenv';
 dotenv.config({ path: `${process.cwd()}/dev.env` });
-const { POSTGRES_USERNAME, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT } = process.env;
+const { POSTGRES_URL } = process.env;
 // Test if database is ready to use
 export const waitForDatabase = async () => {
     let connected = false;
@@ -15,4 +15,4 @@ export const waitForDatabase = async () => {
         }
     }
 };
-export const sql = postgres(`postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}`);
+export const sql = postgres(`${POSTGRES_URL}`);
