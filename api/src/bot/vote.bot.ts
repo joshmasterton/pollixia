@@ -28,7 +28,7 @@ export const botVote = async () => {
       polls[randomValue].pid,
       `${Math.floor(Math.random() * 100)}`,
     );
-    const poll = await new Poll().get(true, polls[randomValue].pid, undefined);
+    const poll = await new Poll().get(true, polls[randomValue].cpid, undefined);
 
     return poll;
   } catch (error) {
