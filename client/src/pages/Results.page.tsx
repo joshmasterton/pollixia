@@ -1,5 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../store';
-import { clearPolls, getPolls } from '../features/pollSlice.feature';
+import {
+  clearPolls,
+  getPolls,
+  setPollsPage,
+} from '../features/pollSlice.feature';
 import { useEffect } from 'react';
 import { Poll } from '../comps/Poll.comp';
 import { Nav } from '../comps/Nav.comp';
@@ -9,6 +13,7 @@ import { Footer } from '../comps/Footer.comp';
 import { NavLink } from 'react-router-dom';
 import { BsFire } from 'react-icons/bs';
 import { BiNews, BiPoll } from 'react-icons/bi';
+import { Pagination } from '../comps/Pagination.comp';
 
 export const Results = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +23,8 @@ export const Results = () => {
   );
 
   useEffect(() => {
-    getPolls(dispatch, pollsPage, user?.uid, false, false);
+    dispatch(setPollsPage(0));
+    getPolls(dispatch, 0, user?.uid, false, false);
 
     return () => {
       dispatch(clearPolls());
@@ -54,6 +60,7 @@ export const Results = () => {
               <Poll key={poll.pid} poll={poll} />
             ))}
             {polls.length === 1 && <div className="box" />}
+            <Pagination page={pollsPage} isActive={false} />
             <Footer />
           </>
         ) : (
@@ -64,6 +71,7 @@ export const Results = () => {
                 <div>Create a poll</div>
               </NavLink>
             </div>
+            <Pagination page={pollsPage} isActive={false} />
             <Footer />
           </>
         )}

@@ -3,7 +3,11 @@ import { Poll } from '../comps/Poll.comp';
 import { useAppDispatch, useAppSelector } from '../store';
 import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
-import { clearPoll, getPoll } from '../features/pollSlice.feature';
+import {
+  clearPoll,
+  getPoll,
+  setPollsPage,
+} from '../features/pollSlice.feature';
 import { Loading } from '../utilities/Loading.utilities';
 import { useLocation } from 'react-router-dom';
 import { Footer } from '../comps/Footer.comp';
@@ -17,7 +21,8 @@ export const PollPage = () => {
 
   useEffect(() => {
     if (pid) {
-      getPoll(dispatch, 0, user?.uid, parseInt(pid), false, false);
+      dispatch(setPollsPage(0));
+      getPoll(dispatch, 0, user?.uid, pid, false);
     }
 
     return () => {

@@ -1,0 +1,8 @@
+@use '../base/var.base.scss';
+
+#pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: var.$space;
+}

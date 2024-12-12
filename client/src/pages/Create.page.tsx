@@ -117,13 +117,13 @@ export const Create = () => {
   const createPoll = async (data: CreateFormData) => {
     try {
       setLoading(true);
-      await axios.post(`${API_URL}/createPoll`, data, {
+      const response = await axios.post(`${API_URL}/createPoll`, data, {
         headers: {
           Authorization: `Bearer ${user?.idToken}`,
         },
       });
 
-      navigate('/polls');
+      navigate(`/poll/${response.data.createdPoll.cpid}`);
     } catch (error) {
       if (error instanceof Error) {
         activatePopup(dispatch, error.message, '');

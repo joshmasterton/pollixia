@@ -1,0 +1,44 @@
+@use '../base/var.base.scss';
+@use '../base/anim.base.scss';
+
+.message {
+  position: absolute;
+  right: 0;
+  top: 0 - calc(var.$spaceSmall * 5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: bottom;
+}
+
+.message.active {
+  transform: scale(1);
+  visibility: visible;
+}
+
+.message.hidden {
+  transform: scale(0);
+  visibility: hidden;
+}
+
+.message > p {
+  position: sticky;
+  padding: var.$spaceSmall;
+  background-blend-mode: var.$blend;
+  background: var(--primaryExtra);
+  background-attachment: fixed;
+  color: white;
+  z-index: 1;
+}
+
+.message > div {
+  position: absolute;
+  bottom: 0 - calc(var.$spaceXSmall);
+  right: var.$space;
+  height: var.$space;
+  width: var.$space;
+  border-radius: 0.25rem;
+  transform: rotate(45deg);
+  background: var(--primaryExtra);
+  background-attachment: fixed;
+  background-blend-mode: var.$blend;
+  z-index: 0;
+}

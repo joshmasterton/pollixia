@@ -3,12 +3,15 @@ import { PollType } from '../types/slice.types';
 import { API_URL } from '../utilities/Api.utilitities';
 import { useAppDispatch, useAppSelector } from '../store';
 import { useEffect, useState } from 'react';
-import { CountdownTimer } from './CountdownTimer.comp';
+import { CountdownTimer, getTimeRemaining } from './CountdownTimer.comp';
 import { Loading } from '../utilities/Loading.utilities';
 import { NavLink } from 'react-router-dom';
 import { PollPie } from './PollPie';
 import { activatePopup } from '../features/popupSlice.feature';
 import { getPoll } from '../features/pollSlice.feature';
+import { BiCopy } from 'react-icons/bi';
+import { Message } from './Message.comp';
+import { HiOutlineStatusOnline } from 'react-icons/hi';
 
 export const Poll = ({
   poll,
@@ -22,16 +25,16 @@ export const Poll = ({
   const [loadingOptionId, setLoadingOptionId] = useState<number | null>(null);
   const [pollState, setPollState] = useState(poll);
   const [totalVotes, setTotalVotes] = useState(0);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
-    if (poll.pid && isPie) {
+    if (poll.pid && isPie && getTimeRemaining(pollState.expires_at).total > 0) {
       const interval = setInterval(async () => {
         const updatedPoll = await getPoll(
           dispatch,
           0,
           user?.uid,
-          poll.pid,
-          false,
+          poll.cpid,
           false,
           false,
         );
@@ -44,6 +47,14 @@ export const Poll = ({
       return () => clearInterval(interval);
     }
   }, []);
+
+  useEffect(() => {
+    if (isCopied) {
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  }, [isCopied]);
 
   const vote = async (oid: number) => {
     if (loadingOptionId === null) {
@@ -91,6 +102,15 @@ export const Poll = ({
       <div className="poll">
         <header>
           <h3>{pollState?.question}</h3>
+          {poll.pid &&
+            isPie &&
+            getTimeRemaining(pollState.expires_at).total > 0 && (
+              <div>
+                <div />
+                <p>Live results</p>
+                <HiOutlineStatusOnline />
+              </div>
+            )}
         </header>
         <div>
           <p>{`Total votes: ${totalVotes}`}</p>
@@ -130,12 +150,44 @@ export const Poll = ({
                 )}
               </button>
             ))}
-          <NavLink to={`/poll/${poll.pid}`} className="primary fit">
-            <div>Live results</div>
-          </NavLink>
+          {!isPie && (
+            <NavLink to={`/poll/${poll.cpid}`} className="primary fit">
+              {getTimeRemaining(pollState.expires_at).total <= 0 ? (
+                <div>See results</div>
+              ) : (
+                <div>Live results</div>
+              )}
+            </NavLink>
+          )}
         </main>
       </div>
-      {isPie && <PollPie poll={pollState} />}
+      {isPie && (
+        <>
+          <h3>Share</h3>
+          <footer>
+            <h4>Share the link</h4>
+            <div>
+              <Message
+                className={isCopied ? 'active ' : 'hidden'}
+                text="Successfully copied"
+              />
+              <div>{location.href}</div>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsCopied(true);
+                  navigator.clipboard.writeText(location.href);
+                }}
+                className="primary"
+              >
+                <BiCopy />
+              </button>
+            </div>
+          </footer>
+          <h3>Pie chart</h3>
+          <PollPie poll={pollState} />
+        </>
+      )}
     </>
   );
 };

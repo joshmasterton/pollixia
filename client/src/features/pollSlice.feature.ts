@@ -75,10 +75,9 @@ export default pollSlice.reducer;
 
 export const getPoll = async (
   dispatch: Dispatch,
-  page: number,
+  page = 0,
   uid?: string,
-  pid?: number,
-  incrementPage = false,
+  pid?: string,
   isActive = true,
   isLoading = true,
 ) => {
@@ -88,15 +87,12 @@ export const getPoll = async (
     }
 
     const response = await axios.get(
-      `${API_URL}/getPoll?fetchSingle=${true}&uid=${uid}&page=${page}&isActive=${isActive}&pid=${pid}`,
+      `${API_URL}/getPoll?fetchSingle=${true}&uid=${uid}&page=${page}&isActive=${isActive}&pid=${pid}&page=${page}`,
     );
 
     const poll: PollType = response.data;
 
     dispatch(setPoll(poll));
-    if (incrementPage) {
-      dispatch(setPollPage(page + 1));
-    }
 
     return poll;
   } catch (error) {
@@ -115,7 +111,7 @@ export const getPoll = async (
 
 export const getPolls = async (
   dispatch: Dispatch,
-  page: number,
+  page = 0,
   uid?: string,
   incrementPage = false,
   isActive = true,
@@ -123,7 +119,7 @@ export const getPolls = async (
   try {
     dispatch(setPollsLoading());
     const response = await axios.get(
-      `${API_URL}/getPoll?fetchSingle=${false}&uid=${uid}&page=${page}&isActive=${isActive}`,
+      `${API_URL}/getPoll?fetchSingle=${false}&uid=${uid}&page=${page}&isActive=${isActive}&page=${page}`,
     );
 
     const polls: PollType[] = response.data;

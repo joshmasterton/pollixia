@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const getTimeRemaining = (expiryTime: Date) => {
+export const getTimeRemaining = (expiryTime: Date) => {
   const now = new Date().getTime();
   const total = new Date(expiryTime).getTime() - now;
 

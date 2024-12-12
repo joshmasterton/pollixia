@@ -9,6 +9,7 @@
   gap: var.$space;
   padding: var.$space;
   height: 20rem;
+  pointer-events: none;
   box-shadow: var(--shadow);
   background: var(--container);
   background-blend-mode: var.$blend;

@@ -37,12 +37,11 @@ export const PollPie = ({ poll }: { poll: PollType }) => {
             data: chartData,
             innerRadius: '25%',
             outerRadius: '100%',
-            paddingAngle: 5,
-            cornerRadius: 20,
+            paddingAngle: 2,
+            cornerRadius: 10,
             startAngle: 40,
             endAngle: 410,
             highlightScope: { fade: 'global', highlight: 'item' },
-            faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
           },
         ]}
         margin={{

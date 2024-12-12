@@ -48,21 +48,35 @@ export class Poll {
 				${expireTime}
 			) RETURNING *`;
 
+    const pid = createdPoll[0].pid;
+
+    const randomString = () => Math.random().toString(36).substr(2, 6);
+    const cpid = `${randomString()}${pid}${randomString()}`;
+
+    const updatedPoll = await sql`
+			UPDATE ${sql(tableConfig.getTableConfig().pollTable)}
+			SET cpid = ${cpid}
+			WHERE pid = ${pid}
+			RETURNING *
+		`;
+
     const createdOptions = await sql`
 			INSERT INTO ${sql(tableConfig.getTableConfig().optionsTable)} (
 				pid, text
 			) VALUES ${sql(this.options.map((option) => [createdPoll[0].pid, option.value]))} RETURNING *
 		`;
 
+    console.log(updatedPoll[0]);
+
     return {
-      createdPoll: createdPoll[0] as PollType,
+      createdPoll: updatedPoll[0] as PollType,
       createdOptions: createdOptions,
     };
   }
 
   async get(
     fetchSingle: boolean,
-    pid?: number,
+    pid?: string,
     uid?: string,
     page = 0,
     isActive: boolean = true,
@@ -72,9 +86,10 @@ export class Poll {
 			FROM (SELECT * FROM ${sql(tableConfig.getTableConfig().pollTable)} ORDER BY created_at DESC LIMIT ${10} OFFSET ${page * 10}) p
 			LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
 			LEFT JOIN ${sql(tableConfig.getTableConfig().voteTable)} v ON v.pid = p.pid ${uid ? sql`AND v.uid = ${uid}` : sql``}
-			${pid ? sql`WHERE p.pid = ${pid}` : sql``}
+			${pid ? sql`WHERE p.cpid = ${pid}` : sql``}
 			${isActive ? (pid ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql`WHERE expires_at > CURRENT_TIMESTAMP`) : sql``}
 			ORDER BY created_at DESC, p.pid, o.oid
+			LIMIT 10 OFFSET ${page * 10}
 		`;
 
     if (pollFromDatabase.length === 0) {
@@ -86,6 +101,7 @@ export class Poll {
 
       if (!existingPoll) {
         existingPoll = {
+          cpid: row.cpid,
           pid: row.pid,
           question: row.question,
           category: row.category,

@@ -7,6 +7,7 @@ export type User = {
 };
 
 export type PollType = {
+  cpid: string;
   pid: number;
   question: string;
   category: string;

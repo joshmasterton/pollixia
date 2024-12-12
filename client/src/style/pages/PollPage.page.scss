@@ -18,6 +18,26 @@
   flex: 1;
 }
 
+#poll > main > footer {
+  display: flex;
+  flex-direction: column;
+  padding: var.$space;
+  gap: var.$spaceSmall;
+  background: var(--container);
+  box-shadow: var(--shadow);
+  background-blend-mode: var.$blend;
+}
+
+#poll > main > footer > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var.$spaceSmall;
+  padding: var.$spaceSmall;
+  background: var(--backgroundOpac);
+}
+
 @media screen and (min-width: var.$mobileWidth) {
   #poll {
     display: flex;

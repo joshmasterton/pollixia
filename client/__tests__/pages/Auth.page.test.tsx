@@ -12,7 +12,7 @@ describe('Auth', () => {
     });
 
     await act(async () => {
-      render(<TestApp initalEntry="/auth" />);
+      render(<TestApp initalEntry="/login" />);
     });
 
     expect(
