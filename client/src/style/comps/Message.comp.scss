@@ -3,8 +3,8 @@
 
 .message {
   position: absolute;
-  right: 0;
-  top: 0 - calc(var.$spaceSmall * 5);
+  right: calc(var.$spaceXSmall);
+  top: 0 - calc(var.$spaceSmall);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-origin: bottom;
 }

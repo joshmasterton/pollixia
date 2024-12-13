@@ -9,9 +9,9 @@ import { NavLink } from 'react-router-dom';
 import { PollPie } from './PollPie';
 import { activatePopup } from '../features/popupSlice.feature';
 import { getPoll } from '../features/pollSlice.feature';
-import { BiCopy } from 'react-icons/bi';
 import { Message } from './Message.comp';
 import { HiOutlineStatusOnline } from 'react-icons/hi';
+import { BiLink } from 'react-icons/bi';
 
 export const Poll = ({
   poll,
@@ -167,23 +167,21 @@ export const Poll = ({
           <h3>Share</h3>
           <footer>
             <h4>Share the link</h4>
-            <div>
-              <Message
-                className={isCopied ? 'active ' : 'hidden'}
-                text="Successfully copied"
-              />
+            <Message
+              className={`${isCopied ? 'active ' : 'hidden'}`}
+              text="Successfully copied"
+            />
+            <button
+              type="button"
+              className="background"
+              onClick={() => {
+                setIsCopied(true);
+                navigator.clipboard.writeText(location.href);
+              }}
+            >
               <div>{location.href}</div>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsCopied(true);
-                  navigator.clipboard.writeText(location.href);
-                }}
-                className="primary"
-              >
-                <BiCopy />
-              </button>
-            </div>
+              <BiLink />
+            </button>
           </footer>
           <h3>Pie chart</h3>
           <PollPie poll={pollState} />

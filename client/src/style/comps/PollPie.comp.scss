@@ -37,11 +37,11 @@
   align-items: center;
   gap: var.$spaceSmall;
   padding: var.$spaceSmall;
-  background: var(--backgroundOpac);
+  background: var(--background);
 }
 
 .pollPie > main > div > span {
   width: var.$sizeSmall;
   height: var.$sizeSmall;
-  background: var(--backgroundOpac);
+  background: var(--background);
 }

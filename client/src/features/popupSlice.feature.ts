@@ -56,5 +56,7 @@ export const checkCookieNotify = (dispatch: Dispatch) => {
       'This site uses secure tokens for authentication. By continuing, you agree to our Privacy Policy.',
       'We value your privacy',
     );
+
+    localStorage.setItem('pollixia_cookie_notify', 'activated');
   }
 };

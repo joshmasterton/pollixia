@@ -28,14 +28,30 @@
   background-blend-mode: var.$blend;
 }
 
-#poll > main > footer > div {
+#poll > main > footer {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
-  gap: var.$spaceSmall;
-  padding: var.$spaceSmall;
-  background: var(--backgroundOpac);
+}
+
+#poll > main > footer > button {
+  position: relative;
+  justify-content: space-between;
+  width: 100%;
+  right: 0;
+  top: 0;
+  padding-right: calc(var.$spaceSmall * 3);
+  min-height: var.$size;
+}
+
+#poll > main > footer > button > div {
+  overflow: hidden;
+}
+
+#poll > main > footer > button > svg {
+  right: 0;
+  position: absolute;
 }
 
 @media screen and (min-width: var.$mobileWidth) {

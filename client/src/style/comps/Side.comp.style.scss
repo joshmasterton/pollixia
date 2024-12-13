@@ -12,7 +12,8 @@
   -webkit-backdrop-filter: var.$filter;
   background: var(--container);
   box-shadow: var(--shadow);
-  border-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   background-blend-mode: var.$blend;
   z-index: 3;
 }
