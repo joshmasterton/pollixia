@@ -12,6 +12,7 @@
   padding: var.$space;
   gap: var.$space;
   padding-top: calc(var.$spaceXSmall * 11);
+  z-index: 0;
 }
 
 #privacy > main {
@@ -26,6 +27,6 @@
 @media screen and (min-width: var.$mobileWidth) {
   #privacy {
     margin-top: 0;
-    padding-left: calc(var.$spaceSmall * 30);
+    padding-left: calc(var.$spaceXSmall * 46);
   }
 }

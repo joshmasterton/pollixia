@@ -4,6 +4,7 @@ import { sql } from './database';
 const createPollTable = async (name: string) => {
   await sql`CREATE TABLE IF NOT EXISTS ${sql(name)} (
 		pid SERIAL PRIMARY KEY,
+		uid VARCHAR(500),
 		question VARCHAR(200) NOT NULL,
 		category VARCHAR(50) NOT NULL,
 		created_at TIMESTAMPTZ DEFAULT NOW(),

@@ -1,5 +1,35 @@
 @use '../base/var.base.scss';
 
+.loading.small {
+  width: var.$size;
+}
+
+.loading.small > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  overflow: hidden;
+  min-height: calc(var.$size) !important;
+  height: 100% !important;
+  max-height: calc(var.$size) !important;
+  width: var.$spaceSmall !important;
+  min-width: var.$spaceSmall !important;
+  max-width: var.$spaceSmall !important;
+  box-shadow: var(--shadow);
+  background: var(--container);
+  background-blend-mode: var.$blend;
+  background-size: var.$filterSize;
+}
+
+.loading.small > div > div {
+  height: var.$spaceSmall !important;
+  width: 100% !important;
+  animation: 0.85s infinite swayUp ease;
+  background: var(--primary);
+  background-blend-mode: var.$blend;
+}
+
 .loading {
   display: flex;
   justify-content: center;

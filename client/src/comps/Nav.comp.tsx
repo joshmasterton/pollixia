@@ -6,11 +6,11 @@ import { auth } from '../config/firebase.config';
 import { clearUser } from '../features/userSlice.feature';
 import { CiMenuFries } from 'react-icons/ci';
 import { BiLogIn, BiLogOut, BiPoll } from 'react-icons/bi';
-import { PiTrolleySuitcase } from 'react-icons/pi';
-import logo from '../assets/loopza.png';
-import { GrGraphQl } from 'react-icons/gr';
 import { Theme } from './Theme.comp';
 import { CgClose } from 'react-icons/cg';
+import { MdOutlinePrivacyTip } from 'react-icons/md';
+import logo from '../assets/loopza.png';
+import { AiOutlineCoffee } from 'react-icons/ai';
 
 export const Nav = ({ type }: { type: 'home' | 'main' }) => {
   const dispatch = useAppDispatch();
@@ -63,8 +63,8 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
           <NavLink to="/create" className="end">
             <div>Create</div>
           </NavLink>
-          <NavLink to="/results" className="end">
-            <div>Results</div>
+          <NavLink to="/privacy" className="end">
+            <div>Privacy</div>
           </NavLink>
         </main>
         <div>
@@ -100,11 +100,11 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
           </NavLink>
           <NavLink to="/create" className="full end">
             <div>Create</div>
-            <PiTrolleySuitcase />
+            <AiOutlineCoffee />
           </NavLink>
-          <NavLink to="/results" className="full end">
-            <div>Results</div>
-            <GrGraphQl />
+          <NavLink to="/privacy" className="full end">
+            <div>Privacy</div>
+            <MdOutlinePrivacyTip />
           </NavLink>
           {user ? (
             <button

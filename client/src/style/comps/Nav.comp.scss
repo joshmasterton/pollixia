@@ -40,9 +40,7 @@ nav > div > span {
   left: 0;
   width: 100%;
   height: calc(var.$spaceXSmall * 11);
-  backdrop-filter: var.$filter;
-  -webkit-backdrop-filter: var.$filter;
-  background: var(--backgroundOpac);
+  background: var(--background);
   border-radius: 0;
   transition: height anim.$anim;
   z-index: 0;
@@ -114,7 +112,7 @@ nav > footer > div {
 
 @media screen and (min-width: var.$mobileWidth) {
   nav.main {
-    left: calc(var.$spaceSmall * 28);
+    left: calc(var.$spaceXSmall * 43);
     width: calc(100% - (var.$spaceSmall * 25));
   }
 

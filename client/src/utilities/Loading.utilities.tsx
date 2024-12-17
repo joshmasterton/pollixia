@@ -1,6 +1,6 @@
-export const Loading = () => {
+export const Loading = ({ isSmall = false }: { isSmall?: boolean }) => {
   return (
-    <div className="loading">
+    <div className={`loading ${isSmall && 'small'}`}>
       <div>
         <div />
       </div>

@@ -1,6 +1,7 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import * as yup from 'yup';
 import { Poll } from '../models/Poll.model';
+import { UserRequest } from '../types/request.types';
 
 // Validation schema for creating poll
 const createSchema = yup.object().shape({
@@ -13,6 +14,7 @@ const createSchema = yup.object().shape({
     .required('You must choose a category')
     .notOneOf([''], 'You must choose a category'),
   lengthActive: yup.number().required(),
+  uid: yup.string().optional(),
   options: yup
     .array()
     .of(
@@ -28,9 +30,10 @@ const createSchema = yup.object().shape({
     .required(),
 });
 
-export const createPoll = async (req: Request, res: Response) => {
+export const createPoll = async (req: UserRequest, res: Response) => {
   try {
     const validaton = await createSchema.validate(req.body);
+    const { uid } = req.user;
 
     // Create new poll class with details
     const poll = new Poll(
@@ -38,6 +41,7 @@ export const createPoll = async (req: Request, res: Response) => {
       validaton.category,
       validaton.lengthActive,
       validaton.options,
+      uid,
     );
 
     // Insert into database

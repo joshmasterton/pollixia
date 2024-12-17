@@ -12,6 +12,18 @@ $anim: 0.4s ease;
   }
 }
 
+@keyframes swayUp {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
 @keyframes skip {
   0% {
     transform: translateX(-100%);

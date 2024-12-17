@@ -7,12 +7,11 @@ import { AuthInitializor } from './utilities/AuthInitializor.utilities';
 import { Protected, Public } from './utilities/RouteGuards';
 import { Create } from './pages/Create.page';
 import { Polls } from './pages/Polls.page';
-import { Results } from './pages/Results.page';
 import { PollPage } from './pages/PollPage.page';
 import { Error } from './comps/Error.comp';
-import './style/App.scss';
 import { Privacy } from './pages/Privacy.page';
 import { Popup } from './comps/Popup.comp';
+import './style/App.scss';
 
 export const routes = [
   {
@@ -60,15 +59,6 @@ export const routes = [
     element: (
       <Public>
         <Polls />
-      </Public>
-    ),
-    errorElement: <Error />,
-  },
-  {
-    path: '/results',
-    element: (
-      <Public>
-        <Results />
       </Public>
     ),
     errorElement: <Error />,

@@ -3,7 +3,8 @@
   --colorPlaceholder: rgb(100, 100, 115);
   --colorSwitch: black;
   --switch: rgba(255, 255, 255, 1);
-  --outline: rgba(55, 55, 75, 1) 0.1rem solid;
+  --outline: rgba(45, 45, 60, 1) 0.1rem solid;
+  --side: rgba(45, 45, 60, 0.5);
   --primaryOutline: #7a4ee19b 0.1rem solid;
   --primaryExtra: rgb(91, 74, 184);
   --primary: linear-gradient(90deg, rgb(122, 78, 225) 0%, #6784da 100%),
@@ -58,7 +59,8 @@
   --colorPlaceholder: rgb(140, 140, 155);
   --colorSwitch: white;
   --switch: rgba(24, 28, 32, 1);
-  --outline: rgba(220, 220, 235) 0.1rem solid;
+  --outline: rgba(200, 200, 215) 0.1rem solid;
+  --side: rgba(200, 200, 215, 0.5);
   --primaryOutline: #804affd3 0.1rem solid;
   --primaryExtra: #7562f6;
   --primary: linear-gradient(90deg, #804affd3 0%, #5e73fed5 100%),

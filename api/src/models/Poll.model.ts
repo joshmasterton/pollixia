@@ -7,6 +7,7 @@ export class Poll {
   category;
   lengthActive;
   options;
+  uid;
 
   constructor(
     question?: string,
@@ -15,11 +16,13 @@ export class Poll {
     options?: {
       value: string;
     }[],
+    uid?: string,
   ) {
     this.question = question;
     this.category = category;
     this.lengthActive = lengthActive;
     this.options = options;
+    this.uid = uid;
   }
 
   async create() {
@@ -41,11 +44,13 @@ export class Poll {
 			INSERT INTO ${sql(tableConfig.getTableConfig().pollTable)} (
 				question,
 				category,
-				expires_at
+				expires_at,
+				uid
 			) VALUES (
 				${this.question},
 				${this.category},
-				${expireTime}
+				${expireTime},
+				${this.uid ?? ''}
 			) RETURNING *`;
 
     const pid = createdPoll[0].pid;
@@ -66,8 +71,6 @@ export class Poll {
 			) VALUES ${sql(this.options.map((option) => [createdPoll[0].pid, option.value]))} RETURNING *
 		`;
 
-    console.log(updatedPoll[0]);
-
     return {
       createdPoll: updatedPoll[0] as PollType,
       createdOptions: createdOptions,
@@ -80,16 +83,23 @@ export class Poll {
     uid?: string,
     page = 0,
     isActive: boolean = true,
+    isUser: boolean = false,
   ) {
     const pollFromDatabase = await sql`
-			SELECT p.*, o.*, v.oid as user_vote	
-			FROM (SELECT * FROM ${sql(tableConfig.getTableConfig().pollTable)} ORDER BY created_at DESC LIMIT ${10} OFFSET ${page * 10}) p
+			SELECT p.*, o.*, v.oid as user_vote
+			FROM (
+				SELECT * 
+				FROM ${sql(tableConfig.getTableConfig().pollTable)}
+				WHERE 1=1
+				${pid ? sql`AND cpid = ${pid}` : sql``}
+				${isActive ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql``}
+				${isUser && uid ? sql`AND uid = ${uid}` : sql``}
+				ORDER BY created_at DESC
+				LIMIT ${10} OFFSET ${page * 10}
+			) p
 			LEFT JOIN ${sql(tableConfig.getTableConfig().optionsTable)} o ON o.pid = p.pid
 			LEFT JOIN ${sql(tableConfig.getTableConfig().voteTable)} v ON v.pid = p.pid ${uid ? sql`AND v.uid = ${uid}` : sql``}
-			${pid ? sql`WHERE p.cpid = ${pid}` : sql``}
-			${isActive ? (pid ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql`WHERE expires_at > CURRENT_TIMESTAMP`) : sql``}
-			ORDER BY created_at DESC, p.pid, o.oid
-			LIMIT 10 OFFSET ${page * 10}
+			ORDER BY p.created_at DESC, p.pid, o.oid;
 		`;
 
     if (pollFromDatabase.length === 0) {

@@ -10,6 +10,7 @@ ul {
   flex: 1;
   gap: var.$space;
   padding: var.$space;
+  padding-right: 0;
 }
 
 ul > header {

@@ -8,13 +8,13 @@ export const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <NavLink to="/outside">
+        <NavLink to="/">
           <RxGithubLogo />
         </NavLink>
-        <NavLink to="/outside">
+        <NavLink to="/">
           <FaFacebook />
         </NavLink>
-        <NavLink to="/outside">
+        <NavLink to="/">
           <RiInstagramFill />
         </NavLink>
       </div>
@@ -24,9 +24,6 @@ export const Footer = () => {
         </NavLink>
         <NavLink to="/create">
           <p>Create</p>
-        </NavLink>
-        <NavLink to="/results">
-          <p>Results</p>
         </NavLink>
         <NavLink to="/privacy">
           <p>Privacy</p>

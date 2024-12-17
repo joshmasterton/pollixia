@@ -8,6 +8,7 @@ const getPollSchema = yup.object().shape({
   uid: yup.string().optional(),
   page: yup.number().required(),
   isActive: yup.boolean().optional(),
+  isUser: yup.boolean().optional(),
   pid: yup.string().optional(),
 });
 
@@ -20,6 +21,7 @@ export const getPoll = async (req: Request, res: Response) => {
       validaton.uid,
       validaton.page,
       validaton.isActive,
+      validaton.isUser,
     );
 
     return res.status(200).json(poll);
