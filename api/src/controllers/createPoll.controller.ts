@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Response, RequestHandler } from 'express';
 import * as yup from 'yup';
 import { Poll } from '../models/Poll.model';
 import { UserRequest } from '../types/request.types';
@@ -30,10 +30,11 @@ const createSchema = yup.object().shape({
     .required(),
 });
 
-export const createPoll = async (req: UserRequest, res: Response) => {
+export const createPoll: RequestHandler = async (req, res: Response) => {
   try {
+    const userRequest = req as unknown as UserRequest;
     const validaton = await createSchema.validate(req.body);
-    const { uid } = req.user;
+    const { uid } = userRequest.user;
 
     // Create new poll class with details
     const poll = new Poll(

@@ -11,6 +11,7 @@ const createSchema = yup.object().shape({
         .required('You must choose a category')
         .notOneOf([''], 'You must choose a category'),
     lengthActive: yup.number().required(),
+    uid: yup.string().optional(),
     options: yup
         .array()
         .of(yup.object().shape({
@@ -25,9 +26,11 @@ const createSchema = yup.object().shape({
 });
 export const createPoll = async (req, res) => {
     try {
+        const userRequest = req;
         const validaton = await createSchema.validate(req.body);
+        const { uid } = userRequest.user;
         // Create new poll class with details
-        const poll = new Poll(validaton.question, validaton.category, validaton.lengthActive, validaton.options);
+        const poll = new Poll(validaton.question, validaton.category, validaton.lengthActive, validaton.options, uid);
         // Insert into database
         const newPoll = await poll.create();
         // Return details to user

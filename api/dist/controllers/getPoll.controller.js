@@ -6,12 +6,13 @@ const getPollSchema = yup.object().shape({
     uid: yup.string().optional(),
     page: yup.number().required(),
     isActive: yup.boolean().optional(),
+    isUser: yup.boolean().optional(),
     pid: yup.string().optional(),
 });
 export const getPoll = async (req, res) => {
     try {
         const validaton = await getPollSchema.validate(req.query);
-        const poll = await new Poll().get(validaton.fetchSingle, validaton.pid, validaton.uid, validaton.page, validaton.isActive);
+        const poll = await new Poll().get(validaton.fetchSingle, validaton.pid, validaton.uid, validaton.page, validaton.isActive, validaton.isUser);
         return res.status(200).json(poll);
     }
     catch (error) {
