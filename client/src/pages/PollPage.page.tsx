@@ -32,7 +32,7 @@ export const PollPage = () => {
 
   return (
     <>
-      <Nav type="main" />
+      <Nav type="return" />
       <Side />
       <div id="poll">
         <h2>{`Lets check out the poll!`}</h2>

@@ -111,7 +111,7 @@ nav > footer > div {
 }
 
 @media screen and (min-width: var.$mobileWidth) {
-  nav.main {
+  nav {
     left: calc(var.$spaceXSmall * 43);
     width: calc(100% - (var.$spaceSmall * 25));
   }

@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  min-width: 100%;
   width: 100%;
   overflow: hidden;
   gap: var.$space;
@@ -13,12 +12,6 @@
   box-shadow: var(--shadow);
   background: var(--container);
   background-blend-mode: var.$blend;
-}
-
-@media screen and (min-width: var.$mobileWidth) {
-  .poll {
-    min-width: calc(var.$size * 14);
-  }
 }
 
 .poll > a {

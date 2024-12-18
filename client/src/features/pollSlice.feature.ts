@@ -8,35 +8,19 @@ import { activatePopup } from './popupSlice.feature';
 const initialState: {
   pollPage: number;
   pollsPage: number;
-  activePollsPage: number;
-  usersPollsPage: number;
   pollLoading: boolean;
   pollsLoading: boolean;
   pollsLoadingMore: boolean;
-  activePollsLoading: boolean;
-  activePollsLoadingMore: boolean;
-  usersPollsLoading: boolean;
-  usersPollsLoadingMore: boolean;
   poll: PollType | undefined;
   polls: PollType[] | undefined;
-  activePolls: PollType[] | undefined;
-  usersPolls: PollType[] | undefined;
 } = {
   pollPage: 0,
   pollsPage: 0,
-  activePollsPage: 0,
-  usersPollsPage: 0,
   pollLoading: true,
   pollsLoading: true,
   pollsLoadingMore: false,
-  activePollsLoading: true,
-  activePollsLoadingMore: false,
-  usersPollsLoading: true,
-  usersPollsLoadingMore: false,
   poll: undefined,
   polls: undefined,
-  activePolls: undefined,
-  usersPolls: undefined,
 };
 
 // Reducers
@@ -50,53 +34,23 @@ const pollSlice = createSlice({
     setPollsPage: (state, action) => {
       state.pollsPage = action.payload;
     },
-    setActivePollsPage: (state, action) => {
-      state.activePollsPage = action.payload;
-    },
-    setUsersPollsPage: (state, action) => {
-      state.usersPollsPage = action.payload;
-    },
     setPollLoading: (state) => {
       state.pollLoading = true;
     },
     clearPollLoading: (state) => {
       state.pollLoading = false;
     },
-    setPollsLoading: (state, action) => {
-      if (action.payload === 'active') {
-        state.activePollsLoading = true;
-      } else if (action.payload === 'users') {
-        state.usersPollsLoading = true;
-      } else {
-        state.pollsLoading = true;
-      }
+    setPollsLoading: (state) => {
+      state.pollsLoading = true;
     },
-    clearPollsLoading: (state, action) => {
-      if (action.payload === 'active') {
-        state.activePollsLoading = false;
-      } else if (action.payload === 'users') {
-        state.usersPollsLoading = false;
-      } else {
-        state.pollsLoading = false;
-      }
+    clearPollsLoading: (state) => {
+      state.pollsLoading = false;
     },
-    setPollsLoadingMore: (state, action) => {
-      if (action.payload === 'active') {
-        state.activePollsLoadingMore = true;
-      } else if (action.payload === 'users') {
-        state.usersPollsLoadingMore = true;
-      } else {
-        state.pollsLoadingMore = true;
-      }
+    setPollsLoadingMore: (state) => {
+      state.pollsLoadingMore = true;
     },
-    clearPollsLoadingMore: (state, action) => {
-      if (action.payload === 'active') {
-        state.activePollsLoadingMore = false;
-      } else if (action.payload === 'users') {
-        state.usersPollsLoadingMore = false;
-      } else {
-        state.pollsLoadingMore = false;
-      }
+    clearPollsLoadingMore: (state) => {
+      state.pollsLoadingMore = false;
     },
     setPoll: (state, action) => {
       state.poll = action.payload;
@@ -109,20 +63,6 @@ const pollSlice = createSlice({
     },
     clearPolls: (state) => {
       state.polls = undefined;
-      state.activePolls = undefined;
-      state.usersPolls = undefined;
-    },
-    setActivePolls: (state, action) => {
-      state.activePolls = action.payload;
-    },
-    clearActivePolls: (state) => {
-      state.activePolls = undefined;
-    },
-    setUsersPolls: (state, action) => {
-      state.usersPolls = action.payload;
-    },
-    clearUsersPolls: (state) => {
-      state.usersPolls = undefined;
     },
   },
 });
@@ -130,19 +70,13 @@ const pollSlice = createSlice({
 export const {
   setPollPage,
   setPollsPage,
-  setActivePollsPage,
-  setUsersPollsPage,
   setPoll,
   setPolls,
-  setActivePolls,
-  setUsersPolls,
   setPollLoading,
   setPollsLoading,
   setPollsLoadingMore,
   clearPoll,
   clearPolls,
-  clearActivePolls,
-  clearUsersPolls,
   clearPollLoading,
   clearPollsLoading,
   clearPollsLoadingMore,
@@ -191,19 +125,15 @@ export const getPolls = async (
   dispatch: Dispatch,
   page = 0,
   uid?: string,
-  incrementPage = false,
   isActive = true,
   isUser = false,
   isLoading = true,
-  decrementPage = false,
 ) => {
   try {
     if (isLoading) {
-      dispatch(setPollsLoading(isActive ? 'active' : isUser ? 'users' : ''));
+      dispatch(setPollsLoading());
     } else {
-      dispatch(
-        setPollsLoadingMore(isActive ? 'active' : isUser ? 'users' : ''),
-      );
+      dispatch(setPollsLoadingMore());
     }
 
     if (page < 0) {
@@ -216,33 +146,7 @@ export const getPolls = async (
 
     const polls: PollType[] = response.data;
 
-    if (polls) {
-      if (incrementPage) {
-        if (isUser) {
-          dispatch(setUsersPollsPage(page));
-        } else if (isActive) {
-          dispatch(setActivePollsPage(page));
-        } else {
-          dispatch(setPollsPage(page));
-        }
-      } else if (decrementPage) {
-        if (isUser) {
-          dispatch(setUsersPollsPage(page));
-        } else if (isActive) {
-          dispatch(setActivePollsPage(page));
-        } else {
-          dispatch(setPollsPage(page));
-        }
-      }
-
-      if (isUser) {
-        dispatch(setUsersPolls(polls));
-      } else if (isActive) {
-        dispatch(setActivePolls(polls));
-      } else {
-        dispatch(setPolls(polls));
-      }
-    }
+    dispatch(setPolls(polls));
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error);
@@ -253,9 +157,7 @@ export const getPolls = async (
       activatePopup(dispatch, 'Error getting polls', '');
     }
   } finally {
-    dispatch(clearPollsLoading(isActive ? 'active' : isUser ? 'users' : ''));
-    dispatch(
-      clearPollsLoadingMore(isActive ? 'active' : isUser ? 'users' : ''),
-    );
+    dispatch(clearPollsLoading());
+    dispatch(clearPollsLoadingMore());
   }
 };

@@ -4,7 +4,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Dropdown } from '../comps/Dropdown.comp';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CreateFormData } from '../types/comps.types';
 import { Side } from '../comps/Side.comp';
 import { Slider } from '../comps/Slider.comp';
@@ -47,6 +47,7 @@ export const Create = () => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const { user } = useAppSelector((state) => state.user);
+  const categoryRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     'Entertainment',
@@ -114,6 +115,14 @@ export const Create = () => {
     }
   }, [category]);
 
+  useEffect(() => {
+    if (errors.category && Object.keys(errors).length === 1) {
+      categoryRef.current?.scrollIntoView({
+        block: 'center',
+      });
+    }
+  }, [errors]);
+
   const createPoll = async (data: CreateFormData) => {
     try {
       setLoading(true);
@@ -162,14 +171,14 @@ export const Create = () => {
             </label>
           </header>
           <h3>Choose a category</h3>
-          <div>
+          <div ref={categoryRef}>
             <h4>Category</h4>
             <Dropdown options={categories} setValue={setValue} />
             {errors.category && (
               <p className="error">{errors.category.message}</p>
             )}
           </div>
-          <h3>How long will the poll be?</h3>
+          <h3>How long will the poll be active?</h3>
           <div>
             <h4>Length of poll</h4>
             <Slider

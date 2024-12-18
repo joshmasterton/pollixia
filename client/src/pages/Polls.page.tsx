@@ -1,19 +1,54 @@
-import { useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { Nav } from '../comps/Nav.comp';
 import { Side } from '../comps/Side.comp';
 import { Footer } from '../comps/Footer.comp';
-import { ScrollPage } from '../comps/ScrollPoll.comp';
 import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {
+  clearPolls,
+  getPolls,
+  setPollsPage,
+} from '../features/pollSlice.feature';
+import { Loading } from '../utilities/Loading.utilities';
+import { Poll } from '../comps/Poll.comp';
+import { Pagination } from '../comps/Pagination.comp';
 
 export const Polls = () => {
-  const {
-    polls,
-    activePolls,
-    usersPolls,
-    pollsLoading,
-    activePollsLoading,
-    usersPollsLoading,
-  } = useAppSelector((state) => state.poll);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
+  const [currentPollType, setCurrentPollType] = useState<
+    'Users' | 'All' | 'Active'
+  >('Users');
+  const [initalLoading, setInitialLoading] = useState(true);
+  const { polls, pollsLoading, pollsPage } = useAppSelector(
+    (state) => state.poll,
+  );
+
+  useEffect(() => {
+    dispatch(setPollsPage(0));
+
+    if (currentPollType === 'Active') {
+      getPolls(dispatch, 0, user?.uid, true, false);
+    } else if (currentPollType === 'Users') {
+      getPolls(dispatch, 0, user?.uid, false, true);
+    } else {
+      getPolls(dispatch, 0, user?.uid, false, false);
+    }
+
+    setInitialLoading(false);
+
+    return () => {
+      dispatch(clearPolls());
+    };
+  }, [user, currentPollType]);
+
+  const changeCurrentPollType = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    type: 'Users' | 'Active' | 'All',
+  ) => {
+    e.currentTarget.blur();
+    setCurrentPollType(type);
+  };
 
   return (
     <>
@@ -21,35 +56,52 @@ export const Polls = () => {
       <Side />
       <div id="polls">
         <h2>Lets get started voting!</h2>
-        <ScrollPage
-          polls={activePolls}
-          loading={activePollsLoading}
-          title="Active polls"
-          type="active"
-        />
-        <ScrollPage
-          polls={usersPolls}
-          loading={usersPollsLoading}
-          title="Users polls"
-          type="users"
-        />
-        <ScrollPage
-          polls={polls}
-          loading={pollsLoading}
-          title="All polls"
-          type="all"
-        />
-        {!(pollsLoading || activePollsLoading || usersPollsLoading) &&
-          !polls?.length &&
-          !usersPolls?.length &&
-          !activePolls?.length && (
-            <div className="box">
-              <h3>No polls right now</h3>
+        <header>
+          <button
+            type="button"
+            onClick={(e) => changeCurrentPollType(e, 'Users')}
+            className={`${currentPollType === 'Users' ? 'primary' : 'container'} full`}
+          >
+            <div>Yours</div>
+          </button>
+          <button
+            type="button"
+            onClick={(e) => changeCurrentPollType(e, 'Active')}
+            className={`${currentPollType === 'Active' ? 'primary' : 'container'} full`}
+          >
+            <div>Live</div>
+          </button>
+          <button
+            type="button"
+            onClick={(e) => changeCurrentPollType(e, 'All')}
+            className={`${currentPollType === 'All' ? 'primary' : 'container'} full`}
+          >
+            <div>All</div>
+          </button>
+        </header>
+        {pollsLoading || initalLoading ? (
+          <Loading />
+        ) : polls && !pollsLoading ? (
+          <main>
+            {polls.map((poll) => (
+              <Poll poll={poll} key={poll.pid} />
+            ))}
+          </main>
+        ) : (
+          <div className="box">
+            <h3>{`${!user ? 'Login to see your polls' : 'No polls right now'}`}</h3>
+            {!user ? (
+              <NavLink to="/login" className="primary">
+                <div>Login</div>
+              </NavLink>
+            ) : (
               <NavLink to="/create" className="primary">
                 <div>Create a poll</div>
               </NavLink>
-            </div>
-          )}
+            )}
+          </div>
+        )}
+        <Pagination page={pollsPage} currentPollType={currentPollType} />
         <Footer />
       </div>
     </>

@@ -1,4 +1,4 @@
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { botVote } from '../../src/bot/vote.bot';
 import { mockIdToken } from '../utilities/mocks';
 import request from 'supertest';
@@ -44,6 +44,8 @@ describe('bot vote', () => {
 
     const newBotVote = await botVote();
 
-    console.log(newBotVote);
+    if (newBotVote) {
+      expect(newBotVote.options[0].votes).toBe(1);
+    }
   });
 });

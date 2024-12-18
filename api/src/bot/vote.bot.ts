@@ -30,7 +30,7 @@ export const botVote = async () => {
     );
     const poll = await new Poll().get(true, polls[randomValue].cpid, undefined);
 
-    return poll;
+    return poll as PollType;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);

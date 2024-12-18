@@ -1,18 +1,18 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebase.config';
 import { clearUser } from '../features/userSlice.feature';
-import { CiMenuFries } from 'react-icons/ci';
-import { BiLogIn, BiLogOut, BiPoll } from 'react-icons/bi';
+import { BiChevronLeft, BiLogIn, BiLogOut, BiPoll } from 'react-icons/bi';
 import { Theme } from './Theme.comp';
 import { CgClose } from 'react-icons/cg';
 import { MdOutlinePrivacyTip } from 'react-icons/md';
 import logo from '../assets/loopza.png';
 import { AiOutlineCoffee } from 'react-icons/ai';
+import { RiMenu3Fill } from 'react-icons/ri';
 
-export const Nav = ({ type }: { type: 'home' | 'main' }) => {
+export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const currentPage =
@@ -51,9 +51,17 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
       <div>
         <span />
         <header>
-          <div className="img">
-            <img alt="logo" src={logo} className="full paddingSmall end" />
-          </div>
+          {type === 'return' ? (
+            <div className="img">
+              <NavLink to="/polls">
+                <BiChevronLeft />
+              </NavLink>
+            </div>
+          ) : (
+            <div className="img">
+              <img alt="logo" src={logo} className="full paddingSmall end" />
+            </div>
+          )}
           <h3>{title}</h3>
         </header>
         <main>
@@ -85,9 +93,12 @@ export const Nav = ({ type }: { type: 'home' | 'main' }) => {
             <button
               type="button"
               className="menu"
-              onClick={() => setIsMenu(!isMenu)}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.blur();
+                setIsMenu(!isMenu);
+              }}
             >
-              {isMenu ? <CgClose /> : <CiMenuFries />}
+              {isMenu ? <CgClose /> : <RiMenu3Fill />}
             </button>
           </div>
         </div>

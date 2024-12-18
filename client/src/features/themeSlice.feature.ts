@@ -34,7 +34,7 @@ export const getTheme = (dispatch: Dispatch) => {
     document.documentElement.setAttribute('data-theme', localTheme);
     metaThemeColor?.setAttribute(
       'content',
-      localTheme === 'dark' ? 'rgb(15, 15, 20)' : 'rgb(220, 220, 235)',
+      localTheme === 'dark' ? 'rgb(15, 15, 20)' : 'rgb(235, 235, 245)',
     );
     return localTheme;
   }

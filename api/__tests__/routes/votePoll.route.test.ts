@@ -5,7 +5,7 @@ import { mockIdToken } from '../utilities/mocks';
 
 describe('/votePoll', () => {
   test('Should vote on a poll', async () => {
-    await request(app)
+    const createdPoll = await request(app)
       .post('/createPoll')
       .set('Authorization', `Bearer ${mockIdToken}`)
       .send({
@@ -28,13 +28,14 @@ describe('/votePoll', () => {
       .send({
         oid: 1,
         pid: 1,
+        cpid: createdPoll.body.createdPoll.cpid,
       });
 
     expect(votePoll.body.options[0].votes).toBe(1);
   });
 
   test('Should switch vote if user changed their mind', async () => {
-    await request(app)
+    const createdPoll = await request(app)
       .post('/createPoll')
       .set('Authorization', `Bearer ${mockIdToken}`)
       .send({
@@ -57,6 +58,7 @@ describe('/votePoll', () => {
       .send({
         oid: 1,
         pid: 1,
+        cpid: createdPoll.body.createdPoll.cpid,
       });
 
     const votePoll = await request(app)
@@ -65,6 +67,7 @@ describe('/votePoll', () => {
       .send({
         oid: 2,
         pid: 1,
+        cpid: createdPoll.body.createdPoll.cpid,
       });
 
     const getPoll = await request(app).get('/getPoll').query({

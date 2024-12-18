@@ -19,9 +19,9 @@ export const verifyToken = async (
     next();
   } catch (error) {
     if (error instanceof Error) {
-      return res.status(401).json({ error: error.message });
+      return res.status(401).json({ error: 'Login required' });
     }
 
-    return res.status(401).json({ error: 'Invalid or expired ID token' });
+    return res.status(401).json({ error: 'Login required' });
   }
 };

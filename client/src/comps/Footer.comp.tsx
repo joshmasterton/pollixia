@@ -8,15 +8,15 @@ export const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <NavLink to="/">
+        <button type="button">
           <RxGithubLogo />
-        </NavLink>
-        <NavLink to="/">
+        </button>
+        <button type="button">
           <FaFacebook />
-        </NavLink>
-        <NavLink to="/">
+        </button>
+        <button type="button">
           <RiInstagramFill />
-        </NavLink>
+        </button>
       </div>
       <main>
         <NavLink to="/polls">

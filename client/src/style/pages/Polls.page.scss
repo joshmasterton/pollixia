@@ -16,9 +16,14 @@
 
 #polls > header {
   display: flex;
-  overflow: scroll;
   width: 100%;
-  padding: var.$spaceXXSmall;
+  gap: var.$space;
+}
+
+#polls > main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var.$space;
 }
 
@@ -26,5 +31,9 @@
   #polls {
     margin-top: 0;
     padding-left: calc(var.$spaceXSmall * 46);
+  }
+
+  #polls > main {
+    grid-template-columns: 1fr 1fr;
   }
 }
