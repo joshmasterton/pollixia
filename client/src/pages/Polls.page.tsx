@@ -89,8 +89,8 @@ export const Polls = () => {
           </main>
         ) : (
           <div className="box">
-            <h3>{`${!user ? 'Login to see your polls' : 'No polls right now'}`}</h3>
-            {!user ? (
+            <h3>{`${!user && currentPollType === 'Users' ? 'Login to see your polls' : 'No polls right now'}`}</h3>
+            {!user && currentPollType === 'Users' ? (
               <NavLink to="/login" className="primary">
                 <div>Login</div>
               </NavLink>
