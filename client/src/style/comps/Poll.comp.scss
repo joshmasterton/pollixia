@@ -56,9 +56,10 @@
 
 .poll > header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: start;
-  height: var.$sizeLarge;
+  gap: var.$spaceSmall;
 }
 
 .poll > header > div {
@@ -66,6 +67,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: calc(var.$spaceSmall * 10);
   height: var.$size;
   background: var(--backgroundOpac);
   outline: 0.1rem solid var(--online);
