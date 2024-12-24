@@ -8,13 +8,13 @@ export const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <button type="button">
+        <button type="button" name="github">
           <RxGithubLogo />
         </button>
-        <button type="button">
+        <button type="button" name="facebook">
           <FaFacebook />
         </button>
-        <button type="button">
+        <button type="button" name="instagram">
           <RiInstagramFill />
         </button>
       </div>

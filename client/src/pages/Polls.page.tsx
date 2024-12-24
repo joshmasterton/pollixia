@@ -42,6 +42,13 @@ export const Polls = () => {
     };
   }, [user, currentPollType]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [polls]);
+
   const changeCurrentPollType = (
     e: React.MouseEvent<HTMLButtonElement>,
     type: 'Users' | 'Active' | 'All',
@@ -60,23 +67,23 @@ export const Polls = () => {
           <button
             type="button"
             onClick={(e) => changeCurrentPollType(e, 'Users')}
-            className={`${currentPollType === 'Users' ? 'primary' : 'container'} full`}
+            className={`${currentPollType === 'Users' ? 'primary' : 'container'}`}
           >
-            <div>Yours</div>
+            <div>Your polls</div>
           </button>
           <button
             type="button"
             onClick={(e) => changeCurrentPollType(e, 'Active')}
-            className={`${currentPollType === 'Active' ? 'primary' : 'container'} full`}
+            className={`${currentPollType === 'Active' ? 'primary' : 'container'}`}
           >
-            <div>Live</div>
+            <div>Live polls</div>
           </button>
           <button
             type="button"
             onClick={(e) => changeCurrentPollType(e, 'All')}
-            className={`${currentPollType === 'All' ? 'primary' : 'container'} full`}
+            className={`${currentPollType === 'All' ? 'primary' : 'container'}`}
           >
-            <div>All</div>
+            <div>All polls</div>
           </button>
         </header>
         {pollsLoading || initalLoading ? (

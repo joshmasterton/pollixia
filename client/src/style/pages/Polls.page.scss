@@ -16,6 +16,7 @@
 
 #polls > header {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   gap: var.$space;
 }
@@ -34,6 +35,6 @@
   }
 
   #polls > main {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 }
