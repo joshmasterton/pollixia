@@ -29,3 +29,9 @@
     padding-left: calc(var.$spaceXSmall * 46);
   }
 }
+
+@media screen and (min-width: var.$tabletWidth) {
+  #privacy {
+    padding-right: calc(var.$spaceXSmall * 46);
+  }
+}

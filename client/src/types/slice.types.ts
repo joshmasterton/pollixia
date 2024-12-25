@@ -35,3 +35,7 @@ export type CreateFormData = {
     value: string;
   }[];
 };
+
+export type SearchFormData = {
+  search?: string;
+};

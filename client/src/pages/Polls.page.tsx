@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../store';
 import { Nav } from '../comps/Nav.comp';
-import { Side } from '../comps/Side.comp';
+import { Side, SideAd } from '../comps/Side.comp';
 import { Footer } from '../comps/Footer.comp';
 import { NavLink } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -12,6 +12,16 @@ import {
 import { Loading } from '../utilities/Loading.utilities';
 import { Poll } from '../comps/Poll.comp';
 import { Pagination } from '../comps/Pagination.comp';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { BiSearch } from 'react-icons/bi';
+import { SearchFormData } from '../types/slice.types';
+
+// Validation schema for searching for a poll
+const createSchema = yup.object().shape({
+  search: yup.string().optional(),
+});
 
 export const Polls = () => {
   const dispatch = useAppDispatch();
@@ -24,15 +34,22 @@ export const Polls = () => {
     (state) => state.poll,
   );
 
+  const { register, handleSubmit, watch } = useForm<SearchFormData>({
+    mode: 'onChange',
+    resolver: yupResolver(createSchema),
+  });
+
+  const search = watch('search');
+
   useEffect(() => {
     dispatch(setPollsPage(0));
 
     if (currentPollType === 'Active') {
-      getPolls(dispatch, 0, user?.uid, true, false);
+      getPolls(dispatch, 0, user?.uid, true, false, true, search);
     } else if (currentPollType === 'Users') {
-      getPolls(dispatch, 0, user?.uid, false, true);
+      getPolls(dispatch, 0, user?.uid, false, true, true, search);
     } else {
-      getPolls(dispatch, 0, user?.uid, false, false);
+      getPolls(dispatch, 0, user?.uid, false, false, true, search);
     }
 
     setInitialLoading(false);
@@ -57,6 +74,18 @@ export const Polls = () => {
     setCurrentPollType(type);
   };
 
+  const searchForPoll = async (data: SearchFormData) => {
+    dispatch(setPollsPage(0));
+
+    if (currentPollType === 'Active') {
+      await getPolls(dispatch, 0, user?.uid, true, false, true, data.search);
+    } else if (currentPollType === 'Users') {
+      await getPolls(dispatch, 0, user?.uid, false, true, true, data.search);
+    } else {
+      await getPolls(dispatch, 0, user?.uid, false, false, true, data.search);
+    }
+  };
+
   return (
     <>
       <Nav type="main" />
@@ -67,25 +96,38 @@ export const Polls = () => {
           <button
             type="button"
             onClick={(e) => changeCurrentPollType(e, 'Users')}
-            className={`${currentPollType === 'Users' ? 'primary' : 'container'}`}
+            className={`${currentPollType === 'Users' ? 'primary' : 'container'} full`}
           >
-            <div>Your polls</div>
+            <div>Own</div>
           </button>
           <button
             type="button"
             onClick={(e) => changeCurrentPollType(e, 'Active')}
-            className={`${currentPollType === 'Active' ? 'primary' : 'container'}`}
+            className={`${currentPollType === 'Active' ? 'primary' : 'container'} full`}
           >
-            <div>Live polls</div>
+            <div>Live</div>
           </button>
           <button
             type="button"
             onClick={(e) => changeCurrentPollType(e, 'All')}
-            className={`${currentPollType === 'All' ? 'primary' : 'container'}`}
+            className={`${currentPollType === 'All' ? 'primary' : 'container'} full`}
           >
-            <div>All polls</div>
+            <div>All</div>
           </button>
         </header>
+        <form method="get" onSubmit={handleSubmit(searchForPoll)}>
+          <label htmlFor="search" className="container">
+            <input
+              max={200}
+              id="search"
+              {...register('search')}
+              placeholder="Type poll question to search..."
+            />
+          </label>
+          <button type="submit" className="primary">
+            <BiSearch />
+          </button>
+        </form>
         {pollsLoading || initalLoading ? (
           <Loading />
         ) : polls && !pollsLoading ? (
@@ -108,9 +150,14 @@ export const Polls = () => {
             )}
           </div>
         )}
-        <Pagination page={pollsPage} currentPollType={currentPollType} />
+        <Pagination
+          page={pollsPage}
+          currentPollType={currentPollType}
+          search={search}
+        />
         <Footer />
       </div>
+      <SideAd />
     </>
   );
 };

@@ -8,6 +8,7 @@ import { auth } from '../config/firebase.config';
 import { Theme } from './Theme.comp';
 import { MdOutlinePrivacyTip } from 'react-icons/md';
 import { AiOutlineCoffee } from 'react-icons/ai';
+import mountain from '../assets/mountain.jpg';
 
 export const Side = () => {
   const dispatch = useAppDispatch();
@@ -78,6 +79,16 @@ export const Side = () => {
           <Theme />
         </div>
       </ul>
+    </div>
+  );
+};
+
+export const SideAd = () => {
+  return (
+    <div className="sideAd">
+      <div>
+        <img src={mountain} />
+      </div>
     </div>
   );
 };

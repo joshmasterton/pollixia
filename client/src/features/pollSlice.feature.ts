@@ -128,6 +128,7 @@ export const getPolls = async (
   isActive = true,
   isUser = false,
   isLoading = true,
+  search?: string,
 ) => {
   try {
     if (isLoading) {
@@ -141,7 +142,7 @@ export const getPolls = async (
     }
 
     const response = await axios.get(
-      `${API_URL}/getPoll?fetchSingle=${false}&uid=${uid}&page=${page}&isActive=${isActive}&isUser=${isUser}`,
+      `${API_URL}/getPoll?fetchSingle=${false}&uid=${uid}&page=${page}&isActive=${isActive}&isUser=${isUser}${search ? `&search=${search}` : ''}`,
     );
 
     const polls: PollType[] = response.data;

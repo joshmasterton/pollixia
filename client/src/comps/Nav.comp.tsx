@@ -47,7 +47,9 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
   }, []);
 
   return (
-    <nav className={`${type} ${isMenu ? `active` : ``}`}>
+    <nav
+      className={`${type} ${isMenu ? `${user ? `active user` : 'active notUser'}` : `${user ? 'user' : 'notUser'}`}`}
+    >
       <div>
         <span />
         <header>
@@ -105,6 +107,14 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
       </div>
       <footer>
         <div>
+          {user && (
+            <NavLink to="/" className="full end">
+              <div>{user.displayName}</div>
+              <div className="img padding">
+                <img alt="user" src={user.photoURL} className="full end" />
+              </div>
+            </NavLink>
+          )}
           <NavLink to="/polls" className="full end">
             <div>Polls</div>
             <BiPoll />

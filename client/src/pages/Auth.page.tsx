@@ -10,6 +10,7 @@ import { clearUser, setUser } from '../features/userSlice.feature';
 import { useAppDispatch } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { activatePopup } from '../features/popupSlice.feature';
+import { FirebaseError } from 'firebase/app';
 
 export const Auth = () => {
   const dispatch = useAppDispatch();
@@ -43,7 +44,24 @@ export const Auth = () => {
         dispatch(clearUser());
       }
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof FirebaseError) {
+        await auth.signOut();
+
+        const email = error.customData?.email as string;
+        if (type === 'github') {
+          activatePopup(
+            dispatch,
+            `${email} is already connected to google.`,
+            '',
+          );
+        } else if (type === 'google') {
+          activatePopup(
+            dispatch,
+            `${email} is already connected to github.`,
+            '',
+          );
+        }
+      } else if (error instanceof Error) {
         activatePopup(dispatch, error.message, '');
       } else {
         activatePopup(dispatch, 'Error signing in', '');

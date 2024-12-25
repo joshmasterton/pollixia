@@ -39,7 +39,7 @@ export const PollPie = ({ poll }: { poll: PollType }) => {
             outerRadius: '100%',
             paddingAngle: 2,
             cornerRadius: 10,
-            startAngle: 40,
+            startAngle: 47.5,
             endAngle: 410,
             highlightScope: { fade: 'global', highlight: 'item' },
           },

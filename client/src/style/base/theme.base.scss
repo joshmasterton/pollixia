@@ -1,13 +1,13 @@
 [data-theme='dark'] {
   --color: rgb(240, 240, 250);
-  --colorPlaceholder: rgb(100, 100, 115);
+  --colorPlaceholder: rgb(120, 120, 135);
   --colorSwitch: black;
   --switch: rgba(255, 255, 255, 1);
   --outline: rgba(45, 45, 60, 1) 0.1rem solid;
   --side: rgba(45, 45, 60, 0.5);
   --primaryOutline: #7a4ee19b 0.1rem solid;
   --primaryExtra: rgb(91, 74, 184);
-  --primary: linear-gradient(90deg, rgb(122, 101, 227) 0%, #5d76c2 100%),
+  --primary: linear-gradient(90deg, #7a65e3 0%, #5d76c2 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.1) 0%,
@@ -56,7 +56,7 @@
 
 [data-theme='light'] {
   --color: black;
-  --colorPlaceholder: rgb(140, 140, 155);
+  --colorPlaceholder: rgb(130, 130, 145);
   --colorSwitch: white;
   --switch: rgba(24, 28, 32, 1);
   --outline: rgba(200, 200, 215) 0.1rem solid;

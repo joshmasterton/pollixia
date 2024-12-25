@@ -52,6 +52,12 @@ label {
   padding: 0;
 }
 
+label.container input {
+  background: var(--container);
+  box-shadow: var(--shadow);
+  background-blend-mode: var.$blend;
+}
+
 .label {
   position: relative;
   width: 100%;

@@ -5,9 +5,11 @@ import { useAppDispatch, useAppSelector } from '../store';
 export const Pagination = ({
   page,
   currentPollType,
+  search,
 }: {
   page: number;
   currentPollType: 'Active' | 'Users' | 'All';
+  search?: string;
 }) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
@@ -18,11 +20,11 @@ export const Pagination = ({
   ) => {
     e.currentTarget.blur();
     if (currentPollType === 'Active') {
-      getPolls(dispatch, newPage, user?.uid, true, false);
+      getPolls(dispatch, newPage, user?.uid, true, false, true, search);
     } else if (currentPollType === 'Users') {
-      getPolls(dispatch, newPage, user?.uid, false, true);
+      getPolls(dispatch, newPage, user?.uid, false, true, true, search);
     } else {
-      getPolls(dispatch, newPage, user?.uid, false, false);
+      getPolls(dispatch, newPage, user?.uid, false, false, true, search);
     }
 
     dispatch(setPollsPage(newPage));

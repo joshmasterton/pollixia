@@ -45,11 +45,15 @@
   gap: var.$spaceSmall;
 }
 
+#auth * {
+  text-align: center;
+}
+
 #auth > div > main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var.$spaceSmall;
   width: 100%;
-  padding-top: var.$space + var.$size;
+  padding-top: var.$space;
 }

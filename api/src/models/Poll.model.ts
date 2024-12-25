@@ -84,6 +84,7 @@ export class Poll {
     page = 0,
     isActive: boolean = true,
     isUser: boolean = false,
+    search?: string,
   ) {
     const pollFromDatabase = await sql`
 			SELECT p.*, o.*, v.oid as user_vote
@@ -94,6 +95,7 @@ export class Poll {
 				${pid ? sql`AND cpid = ${pid}` : sql``}
 				${isActive ? sql`AND expires_at > CURRENT_TIMESTAMP` : sql``}
 				${isUser && uid ? sql`AND uid = ${uid}` : sql``}
+				${search ? sql`AND question ILIKE ${'%' + search + '%'}` : sql``}
 				ORDER BY created_at DESC
 				LIMIT ${10} OFFSET ${page * 10}
 			) p

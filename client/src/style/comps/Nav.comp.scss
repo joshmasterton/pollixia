@@ -46,10 +46,16 @@ nav > div > span {
   z-index: 0;
 }
 
-nav.active > div > span {
+nav.active.notUser > div > span {
   display: flex;
   align-items: start;
   height: calc(var.$spaceXSmall * 55);
+}
+
+nav.active.user > div > span {
+  display: flex;
+  align-items: start;
+  height: calc(var.$spaceXSmall * 63);
 }
 
 nav > div > main {
@@ -130,6 +136,18 @@ nav > footer > div {
   }
 
   nav.active > div > span {
+    height: calc(var.$spaceXSmall * 11);
+  }
+
+  nav.active.notUser > div > span {
+    display: flex;
+    align-items: start;
+    height: calc(var.$spaceXSmall * 11);
+  }
+
+  nav.active.user > div > span {
+    display: flex;
+    align-items: start;
     height: calc(var.$spaceXSmall * 11);
   }
 

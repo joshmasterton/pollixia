@@ -75,3 +75,9 @@
     padding-left: calc(var.$spaceXSmall * 46);
   }
 }
+
+@media screen and (min-width: var.$tabletWidth) {
+  #create {
+    padding-right: calc(var.$spaceXSmall * 46);
+  }
+}
