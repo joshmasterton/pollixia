@@ -6,6 +6,8 @@ import { votePollRoute } from './routes/votePoll.route';
 import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import './utilities/firebaseAdmin';
 dotenv.config({ path: `${process.cwd()}/dev.env` });
 
@@ -14,9 +16,27 @@ export const tableConfig = new TableConfig('polls', 'votes', 'options');
 
 const { PORT, CLIENT_URL, API_URL, TEST } = process.env;
 
+app.use(helmet());
 app.use(
   cors({
     origin: CLIENT_URL,
+  }),
+);
+
+app.set('trust proxy', true);
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 500,
+    message: {
+      error: 'Too many requests from this IP, please try again in 15 minutes',
+    },
+    keyGenerator: (req) => {
+      const ip = req.ip || 'unknown';
+      const logMessage = `${new Date().toISOString()} - IP: ${ip}`;
+      console.log(logMessage);
+      return ip;
+    },
   }),
 );
 
@@ -28,12 +48,6 @@ app.use(getPollRoute);
 app.use(votePollRoute);
 
 if (!TEST) {
-  // dropTables(
-  //   tableConfig.getTableConfig().pollTable,
-  //   tableConfig.getTableConfig().voteTable,
-  //   tableConfig.getTableConfig().optionsTable,
-  // ).then(() => {});
-
   createTables(
     tableConfig.getTableConfig().pollTable,
     tableConfig.getTableConfig().voteTable,
