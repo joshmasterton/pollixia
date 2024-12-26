@@ -184,7 +184,7 @@ export const Poll = ({
             </button>
           </footer>
           <h3>Pie chart</h3>
-          <PollPie poll={pollState} />
+          <PollPie poll={pollState} totalVotes={totalVotes} />
         </>
       )}
     </>

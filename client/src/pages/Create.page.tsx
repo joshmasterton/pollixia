@@ -219,7 +219,7 @@ export const Create = () => {
               <p className="error">{errors.options.message}</p>
             )}
             <button disabled={loading} type="submit" className="primary full">
-              {loading ? <Loading /> : <div>Create poll</div>}
+              {loading ? <Loading isContainer /> : <div>Create poll</div>}
             </button>
           </footer>
         </form>

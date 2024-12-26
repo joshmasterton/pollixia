@@ -7,7 +7,13 @@ type ChartDataType = {
   value: number;
 }[];
 
-export const PollPie = ({ poll }: { poll: PollType }) => {
+export const PollPie = ({
+  poll,
+  totalVotes,
+}: {
+  poll: PollType;
+  totalVotes: number;
+}) => {
   const { localTheme } = useAppSelector((state) => state.theme);
   const [chartData, setChartData] = useState<ChartDataType>([]);
   const optionColors = [
@@ -51,10 +57,28 @@ export const PollPie = ({ poll }: { poll: PollType }) => {
       <main>
         {poll.options.map((option, index) => (
           <div key={option.oid}>
-            <span style={{ backgroundColor: optionColors[index] }} />
-            <div>{option.text}</div>
+            <div>
+              <div>{option.text}</div>
+              <p>
+                {Math.round((option?.votes / totalVotes) * 100)}% (
+                {option.votes} votes)
+              </p>
+            </div>
+            <span>
+              <div
+                style={{
+                  backgroundColor: optionColors[index],
+                  width: `${
+                    totalVotes !== 0
+                      ? Math.round((option?.votes / totalVotes) * 100)
+                      : 0
+                  }%`,
+                }}
+              />
+            </span>
           </div>
         ))}
+        <div>{`Total votes - ${totalVotes}`}</div>
       </main>
     </div>
   );

@@ -69,6 +69,16 @@
   background-blend-mode: var.$blend;
 }
 
+.loading.container > div {
+  background: transparent;
+  box-shadow: none;
+  background-blend-mode: none;
+}
+
+.loading.container > div > div {
+  background: white;
+}
+
 .progressBar .loading > div > div {
   animation: 1s infinite sway ease;
 }

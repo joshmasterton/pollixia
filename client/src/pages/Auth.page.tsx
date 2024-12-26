@@ -10,22 +10,35 @@ import {
   githubProvider,
   googleProvider,
 } from '../config/firebase.config';
-import { clearUser, setUser } from '../features/userSlice.feature';
-import { useAppDispatch } from '../store';
+import {
+  clearLoading,
+  clearUser,
+  setLoading,
+  setUser,
+} from '../features/userSlice.feature';
+import { useAppDispatch, useAppSelector } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { activatePopup } from '../features/popupSlice.feature';
-import { FirebaseError } from 'firebase/app';
 import { PiAlienFill } from 'react-icons/pi';
 import defaultAvatar from '../assets/ghost.jpg';
+import { Loading } from '../utilities/Loading.utilities';
+import { useState } from 'react';
 
 export const Auth = () => {
+  const { loading } = useAppSelector((state) => state.user);
+  const [type, setType] = useState<
+    'google' | 'github' | 'anonymous' | undefined
+  >(undefined);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   // Login with google
   const handleLogin = async (type: 'google' | 'github' | 'anonymous') => {
     try {
+      dispatch(setLoading());
+
       let result: UserCredential;
+      setType(type);
 
       if (type === 'anonymous') {
         result = await signInAnonymously(auth);
@@ -67,29 +80,11 @@ export const Auth = () => {
       } else {
         dispatch(clearUser());
       }
-    } catch (error) {
-      if (error instanceof FirebaseError) {
-        await auth.signOut();
-
-        const email = error.customData?.email as string;
-        if (type === 'github') {
-          activatePopup(
-            dispatch,
-            `${email} is already connected to google.`,
-            '',
-          );
-        } else if (type === 'google') {
-          activatePopup(
-            dispatch,
-            `${email} is already connected to github.`,
-            '',
-          );
-        }
-      } else if (error instanceof Error) {
-        activatePopup(dispatch, error.message, '');
-      } else {
-        activatePopup(dispatch, 'Error signing in', '');
-      }
+    } catch {
+      activatePopup(dispatch, 'Error signing in', '');
+    } finally {
+      dispatch(clearLoading());
+      setType(undefined);
     }
   };
 
@@ -106,19 +101,32 @@ export const Auth = () => {
         <main>
           <button
             type="button"
+            disabled={loading}
             className="background large full"
             onClick={() => handleLogin('google')}
           >
-            <FcGoogle className="group" />
-            <p>Sign in with Google</p>
+            {loading && type === 'google' ? (
+              <Loading />
+            ) : (
+              <>
+                <FcGoogle className="group" />
+                <p>Sign in with Google</p>
+              </>
+            )}
           </button>
           <button
             type="button"
             className="background large full"
             onClick={() => handleLogin('anonymous')}
           >
-            <PiAlienFill className="group" />
-            <p>Sign in anonymously</p>
+            {loading && type === 'anonymous' ? (
+              <Loading />
+            ) : (
+              <>
+                <PiAlienFill className="group" />
+                <p>Sign in anonymously</p>
+              </>
+            )}
           </button>
         </main>
       </div>

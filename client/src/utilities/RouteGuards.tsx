@@ -12,7 +12,9 @@ export const Protected = ({ children }: { children: ReactNode }) => {
     }
   }, [user]);
 
-  return <>{children}</>;
+  if (user) {
+    return <>{children}</>;
+  }
 };
 
 export const Public = ({ children }: { children: ReactNode }) => {
@@ -23,7 +25,7 @@ export const Public = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (location.pathname === '/login') {
       if (user) {
-        navigate('/');
+        navigate('/polls');
       }
     }
   }, [user]);

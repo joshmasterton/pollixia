@@ -109,7 +109,6 @@ export const getPoll = async (
     return poll;
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error);
       activatePopup(dispatch, error.response?.data.error, '');
     } else if (error instanceof Error) {
       activatePopup(dispatch, error.message, '');
@@ -150,7 +149,6 @@ export const getPolls = async (
     dispatch(setPolls(polls));
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error);
       activatePopup(dispatch, error.response?.data.error, '');
     } else if (error instanceof Error) {
       activatePopup(dispatch, error.message, '');

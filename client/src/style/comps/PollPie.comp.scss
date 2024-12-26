@@ -1,47 +1,74 @@
 @use '../base/var.base.scss';
+@use '../base/anim.base.scss';
 
 .pollPie {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   gap: var.$space;
   padding: var.$space;
-  height: 20rem;
   pointer-events: none;
   box-shadow: var(--shadow);
   background: var(--container);
   background-blend-mode: var.$blend;
 }
 
-.pollPie svg {
+.pollPie > div {
+  flex: 1;
+  min-width: calc(var.$size * 5);
+  min-height: calc(var.$size * 5);
+  max-width: calc(var.$size * 9);
+}
+
+.pollPie > div svg {
   display: flex;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
+  min-width: 100%;
   max-height: 100%;
+  padding: 0;
   stroke-opacity: 0%;
 }
 
 .pollPie > main {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space;
+  min-width: calc(var.$size * 6);
   gap: var.$space;
 }
 
 .pollPie > main > div {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: end;
   gap: var.$spaceSmall;
   padding: var.$spaceSmall;
   background: var(--background);
 }
 
+.pollPie > main > div:last-of-type {
+  flex: 1;
+  padding: 0;
+  background: transparent;
+}
+
 .pollPie > main > div > span {
-  width: var.$sizeSmall;
+  display: flex;
+  width: 100%;
   height: var.$sizeSmall;
-  background: var(--background);
+  background: var(--container);
+  background-blend-mode: var.$filter;
+  box-shadow: var(--shadow);
+}
+
+.pollPie > main > div > span > div {
+  transition: anim.$anim width;
+}
+
+.pollPie > main > div > div {
+  display: flex;
+  align-items: center;
+  gap: var.$spaceSmall;
 }

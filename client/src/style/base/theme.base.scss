@@ -1,6 +1,6 @@
 [data-theme='dark'] {
   --color: rgb(240, 240, 250);
-  --colorPlaceholder: rgb(120, 120, 135);
+  --colorPlaceholder: rgb(125, 125, 145);
   --colorSwitch: black;
   --switch: rgba(255, 255, 255, 1);
   --outline: rgba(45, 45, 60, 1) 0.1rem solid;
@@ -34,12 +34,12 @@
   --container: linear-gradient(
       90deg,
       rgba(37, 39, 71, 0.5) 0%,
-      rgba(43, 33, 61, 0.5) 100%
+      rgba(39, 33, 61, 0.5) 100%
     ),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(0, 0, 0, 0.4) 100%
+      rgba(0, 0, 0, 0.5) 100%
     ),
     radial-gradient(
       at bottom left,
@@ -56,7 +56,7 @@
 
 [data-theme='light'] {
   --color: black;
-  --colorPlaceholder: rgb(130, 130, 145);
+  --colorPlaceholder: rgb(125, 125, 140);
   --colorSwitch: white;
   --switch: rgba(24, 28, 32, 1);
   --outline: rgba(200, 200, 215) 0.1rem solid;
