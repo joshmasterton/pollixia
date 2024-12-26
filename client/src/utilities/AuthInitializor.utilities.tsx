@@ -5,6 +5,7 @@ import { clearUser, setUser } from '../features/userSlice.feature';
 import { useAppDispatch } from '../store';
 import { Loading } from './Loading.utilities';
 import { getTheme } from '../features/themeSlice.feature';
+import defaultAvatar from '../assets/ghost.jpg';
 
 export const AuthInitializor = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
@@ -17,15 +18,27 @@ export const AuthInitializor = ({ children }: { children: ReactNode }) => {
       if (user) {
         const idToken = await user.getIdToken();
 
-        dispatch(
-          setUser({
-            uid: user.uid,
-            displayName: user.displayName,
-            email: user.email,
-            photoURL: user.photoURL,
-            idToken,
-          }),
-        );
+        if (user.isAnonymous) {
+          dispatch(
+            setUser({
+              uid: user.uid,
+              displayName: `guest${user.uid.slice(0, 10)}`,
+              email: user.email,
+              photoURL: defaultAvatar,
+              idToken,
+            }),
+          );
+        } else {
+          dispatch(
+            setUser({
+              uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              photoURL: user.photoURL,
+              idToken,
+            }),
+          );
+        }
       } else {
         dispatch(clearUser());
       }
