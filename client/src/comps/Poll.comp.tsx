@@ -26,6 +26,13 @@ export const Poll = ({
   const [pollState, setPollState] = useState(poll);
   const [totalVotes, setTotalVotes] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
+  const optionColors = [
+    'rgba(59, 84, 226, 0.75)',
+    'rgba(98, 62, 208, 0.75)',
+    'rgba(85, 51, 173, 0.75)',
+    'rgba(231, 201, 43, 0.75)',
+    'rgba(231, 146, 39, 0.75)',
+  ];
 
   useEffect(() => {
     if (poll.pid && isPie && getTimeRemaining(pollState.expires_at).total > 0) {
@@ -42,7 +49,7 @@ export const Poll = ({
         if (updatedPoll) {
           setPollState(updatedPoll);
         }
-      }, 1000);
+      }, 3000);
 
       return () => clearInterval(interval);
     }
@@ -119,7 +126,7 @@ export const Poll = ({
         </div>
         <main>
           {pollState &&
-            pollState?.options?.map((option) => (
+            pollState?.options?.map((option, index) => (
               <button
                 key={option?.text}
                 onClick={async () => await vote(option.oid)}
@@ -140,6 +147,7 @@ export const Poll = ({
                   <div className="percent">
                     <div
                       style={{
+                        backgroundColor: optionColors[index],
                         width: `${
                           totalVotes !== 0
                             ? Math.round((option?.votes / totalVotes) * 100)
@@ -183,8 +191,12 @@ export const Poll = ({
               <BiLink />
             </button>
           </footer>
-          <h3>Pie chart</h3>
-          <PollPie poll={pollState} totalVotes={totalVotes} />
+          {totalVotes > 0 && (
+            <>
+              <h3>Pie chart</h3>
+              <PollPie poll={pollState} totalVotes={totalVotes} />
+            </>
+          )}
         </>
       )}
     </>

@@ -108,12 +108,12 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
       <footer>
         <div>
           {user && (
-            <NavLink to="/" className="full end">
+            <button type="button" className="full end">
               <div>{user.displayName}</div>
               <div className="img padding">
                 <img alt="user" src={user.photoURL} className="full end" />
               </div>
-            </NavLink>
+            </button>
           )}
           <NavLink to="/polls" className="full end">
             <div>Polls</div>

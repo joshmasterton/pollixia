@@ -28,20 +28,22 @@ export const Side = () => {
     <div className="side">
       <ul>
         <header>
-          <div className="img padding">
-            <img alt="logo" src={logo} />
-          </div>
-          <h4 className="paddingSmall">Pollixia</h4>
+          <NavLink to="/" className="full start">
+            <div className="img padding">
+              <img alt="logo" src={logo} />
+            </div>
+            <h4 className="paddingSmall">Pollixia</h4>
+          </NavLink>
         </header>
         <div>
           <h4>Menu</h4>
           {user && (
-            <NavLink to="/" className="full start">
+            <button type="button" className="full start">
               <div className="img padding">
                 <img alt="user" src={user.photoURL} className="full end" />
               </div>
               <div>{user.displayName}</div>
-            </NavLink>
+            </button>
           )}
           <NavLink to="/polls" className="full start">
             <BiPoll />

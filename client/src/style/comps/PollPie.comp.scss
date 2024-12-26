@@ -4,8 +4,7 @@
 .pollPie {
   position: relative;
   display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   gap: var.$space;
   padding: var.$space;
@@ -15,24 +14,36 @@
   background-blend-mode: var.$blend;
 }
 
+@media screen and (min-width: var.$mobileWidth) {
+  .pollPie {
+    flex-direction: row-reverse;
+  }
+}
+
 .pollPie > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
-  min-width: calc(var.$size * 5);
-  min-height: calc(var.$size * 5);
-  max-width: calc(var.$size * 9);
+  min-width: 15rem;
+  min-height: 15rem;
+  width: 100%;
+  height: 100%;
 }
 
 .pollPie > div svg {
-  display: flex;
-  min-width: 100%;
-  max-height: 100%;
   padding: 0;
+  margin: 0;
+  min-width: 15rem;
+  min-height: 15rem;
+  width: 100%;
+  height: 100%;
   stroke-opacity: 0%;
 }
 
 .pollPie > main {
   display: flex;
-  flex: 1;
+  flex: 2;
   flex-direction: column;
   justify-content: space;
   min-width: calc(var.$size * 6);
@@ -57,7 +68,8 @@
 .pollPie > main > div > span {
   display: flex;
   width: 100%;
-  height: var.$sizeSmall;
+  min-height: var.$spaceSmall;
+  max-height: var.$spaceSmall;
   background: var(--container);
   background-blend-mode: var.$filter;
   box-shadow: var(--shadow);
@@ -70,5 +82,5 @@
 .pollPie > main > div > div {
   display: flex;
   align-items: center;
-  gap: var.$spaceSmall;
+  gap: var.$spaceXSmall;
 }

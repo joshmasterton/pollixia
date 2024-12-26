@@ -26,8 +26,8 @@ app.use(
 app.set('trust proxy', true);
 app.use(
   rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 500,
+    windowMs: 10 * 60 * 1000,
+    max: 1000,
     message: {
       error: 'Too many requests from this IP, please try again in 15 minutes',
     },

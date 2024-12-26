@@ -43,25 +43,29 @@ export const PollPie = ({
             data: chartData,
             innerRadius: '25%',
             outerRadius: '100%',
-            paddingAngle: 2,
-            cornerRadius: 10,
+            paddingAngle: 3,
+            cornerRadius: 3,
             startAngle: 47.5,
             endAngle: 410,
             highlightScope: { fade: 'global', highlight: 'item' },
           },
         ]}
+        width={100}
+        height={100}
         margin={{
           right: 0,
         }}
-      />
+      ></PieChart>
       <main>
         {poll.options.map((option, index) => (
           <div key={option.oid}>
             <div>
-              <div>{option.text}</div>
+              <div>{option.text} - </div>
               <p>
-                {Math.round((option?.votes / totalVotes) * 100)}% (
-                {option.votes} votes)
+                {option.votes !== 0
+                  ? Math.round((option?.votes / totalVotes) * 100)
+                  : 0}
+                % ({option.votes} votes)
               </p>
             </div>
             <span>

@@ -126,12 +126,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var.$space;
-  padding: var.$space;
   width: 100%;
-  min-height: calc(var.$spaceSmall * 7);
-  height: calc(var.$spaceSmall * 7);
-  max-height: calc(var.$spaceSmall * 7);
+  gap: var.$spaceSmall;
+  padding: var.$spaceSmall;
   background: var(--background);
   flex: 1;
 }
@@ -141,8 +138,6 @@
   align-items: center;
   width: 100%;
   gap: var.$spaceXSmall;
-  min-height: var.$spaceSmall;
-  max-height: var.$spaceSmall;
   padding: 0;
 }
 
@@ -177,9 +172,8 @@
 }
 
 .poll > main > .progressBar > .percent > div {
-  height: var.$spaceSmall;
+  min-height: var.$spaceSmall;
+  max-height: var.$spaceSmall;
   width: 50%;
-  background: var(--primary);
-  background-blend-mode: var.$blend;
   transition: anim.$anim width;
 }

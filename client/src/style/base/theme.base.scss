@@ -20,7 +20,7 @@
     );
   --danger: rgb(255, 53, 53);
   --online: rgb(56, 194, 56);
-  --primaryOpac: linear-gradient(90deg, #7a4ee14d 0%, #6784da53 100%),
+  --primaryOpac: linear-gradient(90deg, #785de384 0%, #6784da69 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.1) 0%,
@@ -33,20 +33,20 @@
     );
   --container: linear-gradient(
       90deg,
-      rgba(37, 39, 71, 0.5) 0%,
-      rgba(39, 33, 61, 0.5) 100%
+      rgba(37, 39, 65, 0.3) 0%,
+      rgba(35, 30, 53, 0.3) 100%
     ),
     radial-gradient(
       at top right,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(0, 0, 0, 0.5) 100%
+      rgba(255, 255, 255, 0.075) 0%,
+      rgba(0, 0, 0, 0.1) 100%
     ),
     radial-gradient(
       at bottom left,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(0, 0, 0, 0.2) 63%
+      rgba(255, 255, 255, 0.075) 0%,
+      rgba(0, 0, 0, 0.1) 63%
     );
-  --shadow: inset rgba(240, 240, 255, 0.05) 0 0 60px 0;
+  --shadow: inset rgba(240, 240, 255, 0.04) 0 0 60px 0;
   --backgroundGradient: linear-gradient(90deg, #282a3d 0%, #2d263f 100%),
     radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.15) 100%),
     radial-gradient(at top, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.08) 63%);
@@ -76,7 +76,7 @@
     );
   --danger: rgb(217, 52, 52);
   --online: rgb(75, 188, 95);
-  --primaryOpac: linear-gradient(90deg, #804aff39 0%, #5e73fe4c 100%),
+  --primaryOpac: linear-gradient(90deg, #804aff3a 0%, #5e73fe51 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.8) 0%,
