@@ -17,7 +17,7 @@ import {
   setUser,
 } from '../features/userSlice.feature';
 import { useAppDispatch, useAppSelector } from '../store';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { activatePopup } from '../features/popupSlice.feature';
 import { PiAlienFill } from 'react-icons/pi';
 import defaultAvatar from '../assets/ghost.jpg';
@@ -29,6 +29,7 @@ export const Auth = () => {
   const [type, setType] = useState<
     'google' | 'github' | 'anonymous' | undefined
   >(undefined);
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -76,7 +77,8 @@ export const Auth = () => {
           );
         }
 
-        navigate('/polls');
+        const from = location.state?.from?.pathname || '/polls';
+        navigate(from);
       } else {
         dispatch(clearUser());
       }

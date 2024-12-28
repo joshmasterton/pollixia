@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/loopza.png';
 import { BiLogIn, BiLogOut, BiPoll } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../store';
@@ -12,6 +12,7 @@ import { AiOutlineCoffee } from 'react-icons/ai';
 export const Side = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
+  const location = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -49,7 +50,11 @@ export const Side = () => {
             <BiPoll />
             <div>Polls</div>
           </NavLink>
-          <NavLink to="/privacy" className=" full start">
+          <NavLink
+            to="/privacy"
+            state={{ from: location }}
+            className=" full start"
+          >
             <MdOutlinePrivacyTip />
             <div>Privacy</div>
           </NavLink>
@@ -63,7 +68,11 @@ export const Side = () => {
               <div>Logout</div>
             </button>
           ) : (
-            <NavLink to="/login" className="full start">
+            <NavLink
+              to="/login"
+              state={{ from: location }}
+              className="full start"
+            >
               <BiLogIn />
               <div>Login</div>
             </NavLink>
@@ -71,7 +80,11 @@ export const Side = () => {
         </div>
         <div>
           <h4>Poll</h4>
-          <NavLink to="/create" className="full start">
+          <NavLink
+            to="/create"
+            state={{ from: location }}
+            className="full start"
+          >
             <AiOutlineCoffee />
             <div>Create</div>
           </NavLink>

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { useEffect, useState } from 'react';
 import { CountdownTimer, getTimeRemaining } from './CountdownTimer.comp';
 import { Loading } from '../utilities/Loading.utilities';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { PollPie } from './PollPie';
 import { activatePopup } from '../features/popupSlice.feature';
 import { getPoll } from '../features/pollSlice.feature';
@@ -21,6 +21,7 @@ export const Poll = ({
   isPie?: boolean;
 }) => {
   const dispatch = useAppDispatch();
+  const reactLocation = useLocation();
   const { localTheme } = useAppSelector((state) => state.theme);
   const { user } = useAppSelector((state) => state.user);
   const [loadingOptionId, setLoadingOptionId] = useState<number | null>(null);
@@ -195,7 +196,11 @@ export const Poll = ({
               </button>
             ))}
           {!isPie && (
-            <NavLink to={`/poll/${poll.cpid}`} className="primary fit">
+            <NavLink
+              to={`/poll/${poll.cpid}`}
+              state={{ from: reactLocation }}
+              className="primary fit"
+            >
               {getTimeRemaining(pollState.expires_at).total <= 0 ? (
                 <div>See results</div>
               ) : (

@@ -25,7 +25,8 @@ export const Public = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (location.pathname === '/login') {
       if (user) {
-        navigate('/polls');
+        const from = location.state?.from?.pathname || '/polls';
+        navigate(from);
       }
     }
   }, [user]);

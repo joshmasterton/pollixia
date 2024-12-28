@@ -24,6 +24,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
     : '';
   const { user } = useAppSelector((state) => state.user);
   const [isMenu, setIsMenu] = useState(false);
+  const from = location.state?.from?.pathname || '/polls';
 
   const handleLogout = async () => {
     try {
@@ -55,7 +56,7 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
         <header>
           {type === 'return' ? (
             <div className="img">
-              <NavLink to="/polls">
+              <NavLink to={from}>
                 <BiChevronLeft />
               </NavLink>
             </div>
@@ -72,10 +73,10 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
           <NavLink to="/polls" className="end">
             <div>Polls</div>
           </NavLink>
-          <NavLink to="/create" className="end">
+          <NavLink to="/create" state={{ from: location }} className="end">
             <div>Create</div>
           </NavLink>
-          <NavLink to="/privacy" className="end">
+          <NavLink to="/privacy" state={{ from: location }} className="end">
             <div>Privacy</div>
           </NavLink>
         </main>
@@ -90,7 +91,11 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
                 <div>Logout</div>
               </button>
             ) : (
-              <NavLink to="/login" className="full end login">
+              <NavLink
+                to="/login"
+                state={{ from: location }}
+                className="full end login"
+              >
                 <div>Login</div>
               </NavLink>
             )}
@@ -121,11 +126,15 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
             <div>Polls</div>
             <BiPoll />
           </NavLink>
-          <NavLink to="/create" className="full end">
+          <NavLink to="/create" state={{ from: location }} className="full end">
             <div>Create</div>
             <AiOutlineCoffee />
           </NavLink>
-          <NavLink to="/privacy" className="full end">
+          <NavLink
+            to="/privacy"
+            state={{ from: location }}
+            className="full end"
+          >
             <div>Privacy</div>
             <MdOutlinePrivacyTip />
           </NavLink>
@@ -142,7 +151,11 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
               <BiLogOut />
             </button>
           ) : (
-            <NavLink to="/login" className="full end">
+            <NavLink
+              to="/login"
+              state={{ from: location }}
+              className="full end"
+            >
               <div>Login</div>
               <BiLogIn />
             </NavLink>

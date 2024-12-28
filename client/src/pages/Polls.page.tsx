@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { Nav } from '../comps/Nav.comp';
 import { Side, SideAd } from '../comps/Side.comp';
 import { Footer } from '../comps/Footer.comp';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import {
   clearPolls,
@@ -25,6 +25,7 @@ const createSchema = yup.object().shape({
 
 export const Polls = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const { user } = useAppSelector((state) => state.user);
   const [currentPollType, setCurrentPollType] = useState<
     'Users' | 'All' | 'Active'
@@ -144,7 +145,11 @@ export const Polls = () => {
                 <div>Login</div>
               </NavLink>
             ) : (
-              <NavLink to="/create" className="primary">
+              <NavLink
+                to="/create"
+                state={{ from: location }}
+                className="primary"
+              >
                 <div>Create a poll</div>
               </NavLink>
             )}

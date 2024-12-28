@@ -5,7 +5,7 @@ import { Side } from '../comps/Side.comp';
 export const Privacy = () => {
   return (
     <>
-      <Nav type="main" />
+      <Nav type="return" />
       <Side />
       <div id="privacy">
         <main>
