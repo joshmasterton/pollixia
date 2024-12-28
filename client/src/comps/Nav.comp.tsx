@@ -61,7 +61,9 @@ export const Nav = ({ type }: { type: 'home' | 'main' | 'return' }) => {
             </div>
           ) : (
             <div className="img">
-              <img alt="logo" src={logo} className="full paddingSmall end" />
+              <NavLink to="/">
+                <img alt="logo" src={logo} className="full paddingSmall end" />
+              </NavLink>
             </div>
           )}
           <h3>{title}</h3>

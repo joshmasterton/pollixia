@@ -146,7 +146,7 @@ export const Create = () => {
 
   return (
     <>
-      <Nav type="main" />
+      <Nav type="return" />
       <Side />
       <div id="create">
         <h2>Lets create a poll!</h2>

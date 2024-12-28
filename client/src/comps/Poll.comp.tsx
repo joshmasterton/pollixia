@@ -21,18 +21,33 @@ export const Poll = ({
   isPie?: boolean;
 }) => {
   const dispatch = useAppDispatch();
+  const { localTheme } = useAppSelector((state) => state.theme);
   const { user } = useAppSelector((state) => state.user);
   const [loadingOptionId, setLoadingOptionId] = useState<number | null>(null);
   const [pollState, setPollState] = useState(poll);
   const [totalVotes, setTotalVotes] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
-  const optionColors = [
-    'rgba(59, 84, 226, 0.75)',
-    'rgba(98, 62, 208, 0.75)',
-    'rgba(85, 51, 173, 0.75)',
-    'rgba(231, 201, 43, 0.75)',
-    'rgba(231, 146, 39, 0.75)',
-  ];
+  const optionColors =
+    localTheme === 'dark'
+      ? ['#3656E1', '#633DCF', '#4B4CDC', '#E5C02A', '#E79527']
+      : ['#4264ff', '#8356ff', '#5c5cff', '#ffd630', '#ffa42d'];
+
+  const optionColorsTransparent =
+    localTheme === 'dark'
+      ? [
+          'rgba(54, 86, 225, 0.5)',
+          'rgba(99, 61, 207, 0.5)',
+          'rgba(75, 76, 220, 0.5)',
+          'rgba(229, 192, 42, 0.5)',
+          'rgba(231, 149, 39, 0.5)',
+        ]
+      : [
+          'rgba(66, 100, 255, 0.4)',
+          'rgba(131, 86, 255, 0.4)',
+          'rgba(92, 92, 255, 0.4)',
+          'rgba(255, 214, 48, 0.4)',
+          'rgba(255, 164, 45, 0.4)',
+        ];
 
   useEffect(() => {
     if (poll.pid && isPie && getTimeRemaining(pollState.expires_at).total > 0) {
@@ -131,12 +146,32 @@ export const Poll = ({
                 key={option?.text}
                 onClick={async () => await vote(option.oid)}
                 type="button"
+                style={
+                  option.isSelected
+                    ? {
+                        background: `linear-gradient(45deg, ${optionColorsTransparent[index]}, ${optionColorsTransparent[index]}), 
+												${
+                          localTheme === 'dark'
+                            ? `radial-gradient(at top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.15) 100%), 
+															 radial-gradient(at top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 63%)`
+                            : `radial-gradient(at top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0) 100%), 
+															 radial-gradient(at top, rgba(255, 255, 255, 0) 0%, rgba(155, 155, 155, 0.05) 63%)`
+                        }`,
+                      }
+                    : {
+                        background: '',
+                      }
+                }
                 className={`progressBar ${option.isSelected ? 'primaryBox' : ''}`}
                 disabled={loadingOptionId !== null}
               >
                 <div>
                   <div>
-                    <div />
+                    <div
+                      style={{
+                        backgroundColor: optionColors[index],
+                      }}
+                    />
                   </div>
                   <div>{option?.text}</div>
                   <p>{option?.votes}</p>

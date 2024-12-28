@@ -16,13 +16,10 @@ export const PollPie = ({
 }) => {
   const { localTheme } = useAppSelector((state) => state.theme);
   const [chartData, setChartData] = useState<ChartDataType>([]);
-  const optionColors = [
-    'rgba(59, 84, 226, 0.75)',
-    'rgba(98, 62, 208, 0.75)',
-    'rgba(85, 51, 173, 0.75)',
-    'rgba(231, 201, 43, 0.75)',
-    'rgba(231, 146, 39, 0.75)',
-  ];
+  const optionColors =
+    localTheme === 'dark'
+      ? ['#3656E1', '#633DCF', '#4B4CDC', '#E5C02A', '#E79527']
+      : ['#4264ff', '#8356ff', '#5c5cff', '#ffd630', '#ffa42d'];
 
   useEffect(() => {
     if (poll) {
@@ -43,10 +40,10 @@ export const PollPie = ({
             data: chartData,
             innerRadius: '25%',
             outerRadius: '100%',
-            paddingAngle: 3,
+            paddingAngle: 0,
             cornerRadius: 3,
             startAngle: 47.5,
-            endAngle: 410,
+            endAngle: 425,
             highlightScope: { fade: 'global', highlight: 'item' },
           },
         ]}

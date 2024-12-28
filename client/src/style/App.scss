@@ -143,7 +143,5 @@ textarea {
 }
 
 .primaryBox {
-  background: var(--primaryOpac) !important;
   background-blend-mode: var.$blend;
-  box-shadow: var(--shadow);
 }
