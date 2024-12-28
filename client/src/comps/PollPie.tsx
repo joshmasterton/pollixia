@@ -18,8 +18,8 @@ export const PollPie = ({
   const [chartData, setChartData] = useState<ChartDataType>([]);
   const optionColors =
     localTheme === 'dark'
-      ? ['#3656E1', '#633DCF', '#4B4CDC', '#E5C02A', '#E79527']
-      : ['#4264ff', '#8356ff', '#5c5cff', '#ffd630', '#ffa42d'];
+      ? ['#3656E1', '#E5C02A', '#4B4CDC', '#E79527', '#633DCF']
+      : ['#4264ff', '#ffd630', '#5c5cff', '#ffa42d', '#8356ff'];
 
   useEffect(() => {
     if (poll) {

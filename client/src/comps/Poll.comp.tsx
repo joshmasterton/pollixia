@@ -29,24 +29,24 @@ export const Poll = ({
   const [isCopied, setIsCopied] = useState(false);
   const optionColors =
     localTheme === 'dark'
-      ? ['#3656E1', '#633DCF', '#4B4CDC', '#E5C02A', '#E79527']
-      : ['#4264ff', '#8356ff', '#5c5cff', '#ffd630', '#ffa42d'];
+      ? ['#3656E1', '#E5C02A', '#4B4CDC', '#E79527', '#633DCF']
+      : ['#4264ff', '#ffd630', '#5c5cff', '#ffa42d', '#8356ff'];
 
   const optionColorsTransparent =
     localTheme === 'dark'
       ? [
           'rgba(54, 86, 225, 0.5)',
-          'rgba(99, 61, 207, 0.5)',
-          'rgba(75, 76, 220, 0.5)',
           'rgba(229, 192, 42, 0.5)',
+          'rgba(75, 76, 220, 0.5)',
           'rgba(231, 149, 39, 0.5)',
+          'rgba(99, 61, 207, 0.5)',
         ]
       : [
           'rgba(66, 100, 255, 0.4)',
-          'rgba(131, 86, 255, 0.4)',
-          'rgba(92, 92, 255, 0.4)',
           'rgba(255, 214, 48, 0.4)',
+          'rgba(92, 92, 255, 0.4)',
           'rgba(255, 164, 45, 0.4)',
+          'rgba(131, 86, 255, 0.4)',
         ];
 
   useEffect(() => {
