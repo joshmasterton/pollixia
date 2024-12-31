@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import { checkCookieNotify, clearPopup } from '../features/popupSlice.feature';
+import { IoIosNotifications } from 'react-icons/io';
 
 export const Popup = () => {
   const dispatch = useAppDispatch();
@@ -25,15 +26,22 @@ export const Popup = () => {
       {popups &&
         popups.map((popup) => (
           <div key={popup.id}>
-            {popup.title && <h3>{popup.title}</h3>}
-            <div>{popup.text}</div>
-            <button
-              type="button"
-              className="background fit"
-              onClick={() => clearPopup(dispatch, popup.id)}
-            >
-              <div>Okay</div>
-            </button>
+            <header>
+              <IoIosNotifications />
+            </header>
+            <div>
+              {popup.title && <h3>{popup.title}</h3>}
+              <div>{popup.text}</div>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="fit"
+                onClick={() => clearPopup(dispatch, popup.id)}
+              >
+                <div>Okay</div>
+              </button>
+            </div>
           </div>
         ))}
     </div>

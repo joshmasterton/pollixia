@@ -13,21 +13,43 @@
   z-index: 4;
 }
 
-#popups > div > * {
-  color: white;
-}
-
 #popups > div {
   display: flex;
-  flex-direction: column;
-  padding: var.$space;
-  gap: var.$space;
   animation: popupEntrance anim.$anim;
   backdrop-filter: var.$filter;
   -webkit-backdrop-filter: var.$filter;
   background-blend-mode: var.$blend;
-  background: var(--primary);
+  background: var(--container);
   box-shadow: var(--shadow);
+}
+
+#popups > div > header {
+  padding: var.$space;
+  border-radius: 0;
+  border-right: var(--outline);
+}
+
+#popups > div > header > svg {
+  min-width: var.$space;
+  min-height: var.$space;
+  padding: 0;
+}
+
+#popups > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var.$spaceSmall;
+  padding: var.$spaceSmall;
+}
+
+#popups > div > div:last-of-type {
+  justify-content: center;
+  border-radius: 0;
+  border-left: var(--outline);
+}
+
+#popups > div > div > button {
 }
 
 @keyframes popupEntrance {
@@ -37,8 +59,4 @@
   to {
     transform: translateY(0rem);
   }
-}
-
-#popups > div > button {
-  align-self: end;
 }
