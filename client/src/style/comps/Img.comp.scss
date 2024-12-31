@@ -49,6 +49,9 @@ svg {
 
 svg.group {
   margin-left: var.$spaceXSmall;
+  width: var.$size;
+  height: var.$size;
+  padding: calc(var.$spaceXSmall) !important;
 }
 
 img.group {
