@@ -5,9 +5,9 @@
   --switch: rgba(255, 255, 255, 1);
   --outline: rgba(45, 45, 60, 1) 0.1rem solid;
   --side: rgba(45, 45, 60, 0.5);
-  --primaryOutline: #3656e1 0.1rem solid;
-  --primaryExtra: #3656e1;
-  --primary: linear-gradient(45deg, #3656e1 0%, #4b4cdc 100%),
+  --primaryOutline: #7de35f 0.1rem solid;
+  --primaryExtra: #7de35f;
+  --primary: linear-gradient(45deg, #7de35f 0%, #3ca26e 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.1) 0%,
@@ -20,7 +20,7 @@
     );
   --danger: rgb(255, 53, 53);
   --online: rgb(56, 194, 56);
-  --primaryOpac: linear-gradient(90deg, #3856e4 0%, #4b4cdc 100%),
+  --primaryOpac: linear-gradient(90deg, #7de35f 0%, #3ca26e 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.1) 0%,
@@ -61,9 +61,9 @@
   --switch: rgba(24, 28, 32, 1);
   --outline: rgba(200, 200, 215) 0.1rem solid;
   --side: rgba(200, 200, 215, 0.5);
-  --primaryOutline: #4264ff 0.1rem solid;
-  --primaryExtra: #4264ff;
-  --primary: linear-gradient(45deg, #4264ff 0%, #5858ff 100%),
+  --primaryOutline: #7de35f 0.1rem solid;
+  --primaryExtra: #7de35f;
+  --primary: linear-gradient(45deg, #7de35f 0%, #54ca8c 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.8) 0%,
@@ -76,7 +76,7 @@
     );
   --danger: rgb(217, 52, 52);
   --online: rgb(75, 188, 95);
-  --primaryOpac: linear-gradient(90deg, #4265ffbc 0%, #5858ff 100%),
+  --primaryOpac: linear-gradient(90deg, #7ee35fb9 0%, #54ca8bcf 100%),
     radial-gradient(
       at top right,
       rgba(255, 255, 255, 0.8) 0%,

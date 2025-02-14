@@ -33,7 +33,7 @@ export const Footer = () => {
         <div className="img">
           <img alt="logo" src={logo} className="full paddingSmall end" />
         </div>
-        <p>©2024 Josh Masterton. All Rights Reserved.</p>
+        <p>{`©${new Date().getFullYear()} Josh Masterton. All Rights Reserved.`}</p>
       </footer>
     </div>
   );
