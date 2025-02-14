@@ -38,10 +38,12 @@
 
 Try the live demo of Pollixia here: [Pollixia Live Demo](https://www.pollixia.com/)
 
-Deployment
+## Deployment
+
 Pollixia is deployed on Vercel (Frontend) and Railway (Backend).
 
-License
+## License
+
 Copyright 2025 Josh Masterton All Rights Reserved.
 
 This project is proprietary and cannot be used, modified, or distributed without explicit permission from the author.
