@@ -40,7 +40,7 @@
 
 ## Live Demo
 
-Try the live demo of Pollixia here: [Pollixia Live Demo](https://your-vercel-link-here](https://www.pollixia.com/)
+Try the live demo of Pollixia here: [Pollixia Live Demo](https://www.pollixia.com/)
 
 Deployment
 Pollixia is deployed on Vercel (Frontend) and Railway (Backend).
