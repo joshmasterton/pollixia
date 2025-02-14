@@ -9,13 +9,9 @@
 ## Features
 
 - **Create Polls**: Users can easily create custom polls with multiple options.
- 
 - **Real-time Results**: View live results as users vote in the polls.
-
 - **User-Friendly Interface**: Simple, intuitive design for seamless interaction (using pure css).
-
 - **Secure Authentication**: Firebase Authentication ensures secure access and user management.
-
 - **Responsive and Scalable**: Dockerized setup for easy development and deployment, making it scalable for large user bases.
 
 ## Tech Stack
